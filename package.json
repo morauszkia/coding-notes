@@ -1,0 +1,22 @@
+{
+  "name": "coding-notes",
+  "version": "1.0.0",
+  "description": "A web page intended to contain my notes connected to coding.",
+  "main": "index.html",
+  "scripts": {
+    "compile:sass": "sass sass/main.scss css/styles.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morauszkia/coding-notes.git"
+  },
+  "author": "András Morauszki (mantis)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morauszkia/coding-notes/issues"
+  },
+  "homepage": "https://github.com/morauszkia/coding-notes#readme",
+  "devDependencies": {
+    "sass": "^1.69.3"
+  }
+}
