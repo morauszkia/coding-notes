@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "My Treasury of Coding Notes"
-  tagline: "A site to house all my coding notes for various languages, frameworks and libraries that I came into contact"
+  tagline: "A site to house all my coding notes on various languages, frameworks, and libraries that I came into contact with"
 
 features:
   - icon:
@@ -18,58 +18,58 @@ features:
       src: "/assets/icons/TypeScript.svg"
       alt: "TypeScript logo"
     title: TypeScript
-    details: A statically typed superset of JavaScript
+    details: A superset of JavaScript that adds static typing and other features to enhance developer productivity and code quality
     link: "ts/intro"
     linkText: "Give me more info!"
   - icon:
       src: "./assets/icons/React.svg"
       alt: "React.js logo"
     title: React.js & Next.js
-    details: A JavaScript library and a metaframework built on top to build user interfaces
+    details: A popular JavaScript library and a framework for building user interfaces with a component-based architecture
     link: "react-next/intro"
     linkText: "Enlighten me!"
   - icon:
       src: "./assets/icons/Vue.js.svg"
     title: Vue.js
-    details: COMING SOON
+    details: Another popular JavaScript framework for building user interfaces (COMING SOON)
   - icon:
       src: "./assets/icons/Svelte.svg"
     title: Svelte.js
-    details: COMING SOON
+    details: A modern JavaScript framework that shifts much of the work to compile time, producing highly efficient, pure JavaScript code that directly manipulates the DOM (COMING SOON)
   - icon:
       src: "./assets/icons/Angular.svg"
     title: Angular
-    details: COMING SOON
+    details: A robust, full-featured framework for building dynamic web applications, that uses TypeScript and provides extensive tools for developers (COMING SOON)
   - icon:
       src: "./assets/icons/HTML5.svg"
     title: HTML, CSS & Responsive Web Development
-    details: COMING SOON
+    details: The fundamental technologies for building and styling web pages (COMING SOON)
   - icon:
       src: "./assets/icons/PostgresSQL.svg"
     title: SQL&colon; MySQL, PostgresSQL
-    details: COMING SOON
+    details: A standardized language for managing and manipulating relational databases (COMING SOON)
   - icon:
       src: "./assets/icons/Python.svg"
     title: Python
-    details: COMING SOON
+    details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks (COMING SOON)
   - icon:
       src: "./assets/icons/RStudio.svg"
     title: R
-    details: COMING SOON
+    details: A programming language and environment specifically designed for statistical computing, data analysis, and graphical representation of data (COMING SOON)
   - icon:
       src: "./assets/icons/Elixir.svg"
     title: Elixir
-    details: COMING SOON
+    details: A dynamic, functional language designed for building scalable and maintainable applications, running on the Erlang VM (COMING SOON)
   - icon:
       src: "./assets/icons/Gleam.svg"
     title: Gleam
-    details: COMING SOON
+    details: A statically typed language for the Erlang VM that focuses on being small and simple, while offering strong guarantees about the reliability of code  (COMING SOON)
   - icon:
       src: "./assets/icons/Java.svg"
     title: Java
-    details: COMING SOON
+    details: A widely-used, object-oriented programming language designed to be platform-independent through the use of the Java Virtual Machine (COMING SOON)
   - icon:
       src: "./assets/icons/Ruby.svg"
     title: Ruby
-    details: COMING SOON
+    details: A dynamic, open-source programming language with a focus on simplicity and productivity, known for its elegant syntax (COMING SOON)
 ---
