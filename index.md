@@ -12,7 +12,7 @@ features:
       alt: "JavaScript logo"
     title: JavaScript
     details: The language that powers the web
-    link: "js/intro"
+    link: "js"
     linkText: "Tell me more!"
   - icon:
       src: "/assets/icons/TypeScript.svg"
