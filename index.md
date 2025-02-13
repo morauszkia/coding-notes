@@ -31,11 +31,13 @@ features:
   - icon:
       src: "./assets/icons/Vue.js.svg"
     title: Vue.js
-    details: Another popular JavaScript framework for building user interfaces (COMING SOON)
+    details: Another popular JavaScript framework for building user interfaces
+    link: "vue/intro"
+    linkText: "Show me!"
   - icon:
       src: "./assets/icons/Svelte.svg"
     title: Svelte.js
-    details: A modern JavaScript framework that shifts much of the work to compile time, producing highly efficient, pure JavaScript code that directly manipulates the DOM (COMING SOON)
+    details: A modern JavaScript framework that shifts much of the work to compile time, producing highly efficient, pure JavaScript code that directly manipulates the DOM
     link: "svelte/intro"
     linkText: "I want to know everything!"
   - icon:
