@@ -1,5 +1,8 @@
 ---
 title: Introduction to Svelte.js
+next:
+  text: "Svelte File Structure"
+  link: "/svelte/file-structure"
 ---
 
 # Introduction to Svelte.js
