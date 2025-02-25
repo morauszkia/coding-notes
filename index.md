@@ -19,26 +19,26 @@ features:
       alt: "TypeScript logo"
     title: TypeScript
     details: A superset of JavaScript that adds static typing and other features to enhance developer productivity and code quality
-    link: "ts/intro"
+    link: "ts"
     linkText: "Give me more info!"
   - icon:
       src: "/assets/icons/React.svg"
       alt: "React.js logo"
     title: React.js & Next.js
     details: A popular JavaScript library and a framework for building user interfaces with a component-based architecture
-    link: "react-next/intro"
+    link: "react-next"
     linkText: "Enlighten me!"
   - icon:
       src: "/assets/icons/Vue.js.svg"
     title: Vue.js
     details: Another popular JavaScript framework for building user interfaces
-    link: "vue/intro"
+    link: "vue"
     linkText: "Show me!"
   - icon:
       src: "/assets/icons/Svelte.svg"
     title: Svelte.js
     details: A modern JavaScript framework that shifts much of the work to compile time, producing highly efficient, pure JavaScript code that directly manipulates the DOM
-    link: "svelte/intro"
+    link: "svelte"
     linkText: "I want to know everything!"
   - icon:
       src: "/assets/icons/Angular.svg"
