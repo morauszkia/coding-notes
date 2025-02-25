@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/coding-notes/",
   title: "My Treasury of Coding Notes",
   description:
     "A site to house all my coding notes for various languages, frameworks and libraries that I came into contact",
