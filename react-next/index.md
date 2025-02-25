@@ -2,7 +2,7 @@
 title: Introduction to React & Next.js
 next:
   text: "Setting up your project"
-  link: "/react/project-set-up"
+  link: "/react-next/project-set-up"
 ---
 
 # Introduction to React.js & Next.js
