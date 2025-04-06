@@ -8,6 +8,13 @@ hero:
 
 features:
   - icon:
+      src: "/assets/icons/Bash.svg"
+      alt: "Bash logo"
+    title: Bash
+    details: A shell (command line interpreter) used on Unix-based systems that lets you interact with your computer by typing commands
+    link: "bash"
+    linkText: "Take me down the rabbit hole!"
+  - icon:
       src: "/assets/icons/JavaScript.svg"
       alt: "JavaScript logo"
     title: JavaScript
@@ -32,7 +39,7 @@ features:
       src: "/assets/icons/Vue.js.svg"
     title: Vue.js
     details: Another popular JavaScript framework for building user interfaces
-    link: "vue"
+    link: "vue-nuxt"
     linkText: "Show me!"
   - icon:
       src: "/assets/icons/Svelte.svg"
