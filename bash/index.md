@@ -16,6 +16,9 @@ A **shell** is the software that actually interprets you commands and executes t
 
 ```bash
 echo "Hello world"  # Write something to the console
+whoami              # Writes username to console
+history             # Writes the command history to the console
+clear               # Clears your console (not your history)
 ```
 
 ### Directories and files
@@ -67,6 +70,18 @@ tail -n 5 filename.txt          # Print last n lines of file content
 wc filename.txt                 # List number of lines words and characters in the file
 ```
 
+To search in a file, you can use the `grep` command, which takes a search query string or regular expression and a filename and prints the lines of the file in which the search query was found.
+To search for files based on their names, you can use the `find` command.
+
+```bash
+grep "hello" words.txt                      # Search for the word "hello" in the file
+grep "hello" file1.txt file2.txt            # Search in multiple files
+grep -r "hello" .                           # Search for a word in a whole directory
+find directory_name -name filename.txt      # Search for a file in a directory
+find directory_name -name "*.txt"           # Search for all .txt files
+find directory_name -name "*log*"           # Search for filenames containing log
+```
+
 ### File permissions
 
 To read, write and/or execute files and directories, users need permission. These can be managed using the `chmod` (change mode) command in the shell.
@@ -83,6 +98,34 @@ sudo
 man ls                  # Show the manual for the ls program
 ```
 
+### Input and output
+
+standard output: stdout
+standard error: stderr
+standard input: stdin
+
+```bash
+echo "Hello world"                                  # Writes "Hello world" to standard output
+grep "debit" transactions.csv > /tmp/debit.txt      # Redirect stdout to file
+my_script.sh 2> /tmp/error.log                      # Redirect stderr to file
+read NAME                                           # Reads from stdin into variable NAME
+echo "Hello world" | wc -w                          # Pipes the stdout of first function into stdin of the second
+```
+
+### Processes
+
+You can interrupt the program with `ctrl + c`.
+If this does not work, you can manually kill the program from another shell session with `kill`. You can check the process ID of the nonresponding program with `ps`
+
+```bash
+ps aux                          # Shows information about processes (incl. run by other users with extra information)
+ps aux | grep "my_program.sh"   # Shows information about processes and pipes the list into grep to search for my program
+kill PID                        # Kill process with id PID
+top                             # Lists processes by CPU usage (by default)
+```
+
+You can press `M` while running `top` to sort by memory usage.
+
 ## Bash as a programming language
 
 ### Variables and Environment
@@ -91,3 +134,39 @@ man ls                  # Show the manual for the ls program
 name="John Doe"
 echo $name
 ```
+
+## The Unix Philosophy
+
+1. Write programs that do one thing and do it well. (e.g. ls, grep, less, etc.)
+2. Write programs to work together. (e.g. output is pipeable into the other program)
+3. Write programs to handle text streams, because that is a universal interface.
+
+## Package Managers
+
+You can use package managers to:
+
+- Download software from official sources
+- Install software
+- Update software
+- Remove software
+- Manage dependencies
+
+On Ubuntu, the default package manager is `apt` (Advanced Package Tool)
+
+You can look where a package is installed on your system with `which`.
+
+```bash
+sudo apt update
+sudo apt install neovim
+which nvim
+```
+
+Installation process:
+
+The package manager will
+
+1. ...look if the software isn't already installed
+2. ...download the package from a repository
+3. ...install the package
+4. ...install any dependencies that the package needs
+5. ...add the software to the PATH if it should be there
