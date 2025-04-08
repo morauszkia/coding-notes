@@ -33,7 +33,7 @@ features:
     title: Python
     details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks (COMING SOON)
   - icon:
-      src: "/assets/icons/RStudio.svg"
+      src: "/assets/icons/R.svg"
     title: R
     details: A programming language and environment specifically designed for statistical computing, data analysis, and graphical representation of data (COMING SOON)
   - icon:
