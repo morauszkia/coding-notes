@@ -13,5 +13,7 @@ features:
     details: "More advanced concepts: OOP, functional programming, concurrency and parallelism, programming paradigms"
   - title: Version Control Systems
     details: "Git: staging, commit, push and pull to and from remote repositories, create and merge branches, etc."
+    link: "git"
+    linkText: "Tell me more!"
   - title: Algorithms and Data Structures
 ---
