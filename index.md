@@ -26,16 +26,16 @@ features:
       light: "/assets/icons/Browser.svg"
       dark: "assets/icons/Browser-dark.svg"
       alt: "Browser icon"
-    title: Front End Development
+    title: Frontend Development
     details: From the fundamental building blocks of the web to frameworks that make our lives easier
-    link: "front-end"
+    link: "frontend"
     linkText: "Take me down the rabbit hole!"
   - icon:
       light: "/assets/icons/Server.svg"
       dark: "assets/icons/Server-dark.svg"
       alt: "Server icon"
-    title: Back End Development
+    title: Backend Development
     details: From back end runtimes and frameworks through APIs to databases
-    link: "back-end"
+    link: "backend"
     linkText: "I want to know everything!"
 ---
