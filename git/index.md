@@ -42,3 +42,9 @@ DVCS, exemplified by Git, decentralize repositories, allowing full local copies.
 Git is the most popular DVCS. It is open source and free and enjoys cross-platform support. As the most popular VCS, there are plenty of tutorials and resources that teach it. It is easy to learn and is lightning fast. It works locally on your computer, which gives it a huge speed advantage compared to centralized systems. Furthermore, git's branching model makes it stand apart from the competition.
 
 You can learn more about git [on their website](https://git-scm.com/).
+
+### Git vs. GitHub, GitLab, Bitbucket
+
+Git is a _command line tool_, that helps you keep track of the changes made in your project. It manages the _local repository_ on your computer. It stores the snapshots of the project and keeps a full history.
+
+GitHub, GitLab and Bitbucket are _platforms_, that let you store git repositories online for collaboration. These can also be used to showcase your work.
