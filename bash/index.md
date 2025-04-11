@@ -86,10 +86,22 @@ find directory_name -name "*log*"           # Search for filenames containing lo
 
 To read, write and/or execute files and directories, users need permission. These can be managed using the `chmod` (change mode) command in the shell.
 
+The permissions for files and folders are indicated with a 10 character string, where the first character indicates if it is a file or directory, the characters 2-4 are _owner_, 5-7 are _user group_ and 8-10 are _other_ permissions. The permissions `rwx` indicate _read_, _write_ and _execute_ permissions.
+
+- `drwxrwxrwx` for folders
+- `-rwxrwxrwx` for files
+
+You can change owner of a file or directory with `chown`, which requires superuser privileges.
+
 ```bash
-chmod
-chown
-sudo
+ls -l                                       # List files with user permissions
+chmod u=rwx,g=rx,o=r filename               # Set permissions for file
+chmod -R u=rwx,g=r,o=r DIRECTORY            # Set permissions for directory
+chmod -x filename                           # Remove execute permissions
+chmod u+x filename                          # Add execute permissions to user (owner)
+sudo chown -R username DIRECTORY            # Change owner of directory
+sudo command                                # Run command with superuser privileges
+sudo whoami                                 # root
 ```
 
 ### Manuals and getting help
