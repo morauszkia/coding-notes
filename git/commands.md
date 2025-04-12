@@ -54,17 +54,21 @@ In Git, commands are divided into high-level ("porcelain") commands and low-leve
 - `git pull`
 - `git log`
 
-You use `add` to stage changes, and then use `commit` to create the new snapshot of your project. You can check your commits with `log`.
+You use `add` to stage changes, and then use `commit` to create the new snapshot of your project. You can check your commits with `log`. Log flags can be combined.
 
 ```bash
-git add new_file.txt          # Adds file to staging area
-git add .                     # Adds all files that changed in the current directory
-git commit -m "Message"       # Creates commit with message "Message"
-git log                       # Shows the commit log
-git log --decorate=full       # Commit log with full refs names
-git log --decorate=short      # The default view
-git log --decorate=no         # No branch names
-git log --oneline             # A more compact view of the log
+git add new_file.txt              # Adds file to staging area
+git add .                         # Adds all files that changed in the current directory
+git commit -m "Message"           # Creates commit with message "Message"
+git log                           # Shows the commit log
+git log --decorate=full           # Commit log with full refs names
+git log --decorate=short          # The default view
+git log --decorate=no             # No branch names
+git log --oneline                 # A more compact view of the log
+git log --graph                   # Will show a graphlike (ASCII art) output connecting the branches
+git log --all                     # Will log all branches, not only current
+git log --parents                 # Will add hashes of parent commits
+git log --oneline --graph --all   # Will log graph for all branches in a compact form
 ```
 
 ### Commit Lifecycle
@@ -91,3 +95,31 @@ git checkout branch_name      # Old command to do the same
 ```
 
 When you create a new branch, it uses the current commit as its base. Git stores the branch informations under `.git/refs/heads`, where each branch has a file containing the hash of the commit it points to.
+
+### Merging
+
+After you are satisfied with the code on your branch, you will want to merge it into the main branch. With merging, git will combine both branches by creating a new commit, that has both histories as parents.
+
+E.g. on main we have commits A - B - C, and on the other branch we have A - D - E.
+
+```bash
+git merge branch_name       # Merges branch_name into the current branch we are on.
+```
+
+The merge will:
+
+1. Find the "merge base" commit, or "best common ancestor" of the two branches. In this case, A.
+2. Replays the changes from `main`, starting from the best common ancestor, into a new commit.
+3. Replays the changes from the other branch onto main, starting from the best common ancestor.
+4. Records the result as a new commit, in our case, F.
+5. F is special because it has two parents, C and E.
+
+The simplest type of merge is a _fast-forward merge_: If a commit on a branch has all the commits, that main has, git automatically does a fast-forward merge. It just moves the pointer of the "base" branch to the head of the "feature" branch, and no merge commit is created.
+
+### Deleting
+
+After merging a feature branch into main, we no longer need it, and we can delete it.
+
+```bash
+git branch -d branch_name       # Deletes the branch
+```
