@@ -138,6 +138,10 @@ top                             # Lists processes by CPU usage (by default)
 
 You can press `M` while running `top` to sort by memory usage.
 
+### Exit codes
+
+If a process finishes without error, we get exit code `0`. In case of an error, we get another exit code, which can inform us about the type of error we get.
+
 ## Bash as a programming language
 
 ### Variables and Environment
