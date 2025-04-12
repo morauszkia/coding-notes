@@ -86,12 +86,13 @@ With git, you can use branches to experiment on the project without changing the
 Under the hood, a branch is just a named pointer to a commit. The commit, that the branch points to is called the _tip_ (or _head_) of the branch. This makes branches lightweight and cheap to create. You are not creating copies of the entire project with new branches, only pointers to specific commits.
 
 ```bash
-git branch                    # Check branch you are working on
-git branch -m master main     # Rename master branch to main
-git branch new_branch         # Creates a new branch with name new_branch
-git switch -c new_branch      # Creates new_branch and switches to it
-git switch branch_name        # Switch to branch
-git checkout branch_name      # Old command to do the same
+git branch                            # Check branch you are working on
+git branch -m master main             # Rename master branch to main
+git branch new_branch                 # Creates a new branch with name new_branch
+git switch -c new_branch              # Creates new_branch and switches to it
+git switch -c new_branch COMMITHASH   # Creates new_branch from a specified commit and switches to it
+git switch branch_name                # Switch to branch
+git checkout branch_name              # Old command to do the same
 ```
 
 When you create a new branch, it uses the current commit as its base. Git stores the branch informations under `.git/refs/heads`, where each branch has a file containing the hash of the commit it points to.
@@ -123,3 +124,23 @@ After merging a feature branch into main, we no longer need it, and we can delet
 ```bash
 git branch -d branch_name       # Deletes the branch
 ```
+
+### Rebase
+
+Rebasing a branch is another way to integrate changes from one branch into another. Rebasing does not create a merge commit, but can be used to bring the changes made on main into the feature branch, so we do not work with a stale branch.
+
+```bash
+git rebase main               # Rebases the current branch, adding changes on main
+```
+
+Rebasing does the following:
+
+1. Checkout the latest commit from `main` into a temporary location
+2. Replay each commit from the `feature` branch one at a time onto this temporary location
+3. Update the `feature` branch to point to the last replayed commit in the temporary location, making this the new permanent `feature` branch.
+4. The rebase does not affect the `main` branch; The `feature` branch will include all changes from `main`.
+
+#### Rebase vs. Merge
+
+- `merge` preserves the true history of the project, but it can create lots of merge conflicts, which make the history harder to read and understand.
+- `rebase` creates a linear history, which is easier to work with
