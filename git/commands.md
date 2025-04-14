@@ -156,3 +156,30 @@ A hard reset can be dangerous, because all the undone changes are deleted from c
 git reset --soft HASH         # Will undo last commits and return to the commit with specified HASH, but keep the changes in the files
 git reset --hard HASH         # Will undo changes and return to the state of the commit with specified HASH
 ```
+
+## Remote
+
+With git, there is no central repo. Another repo is called a `remote`. The repo, that we treat by convenience as a central repo and the "authoritative single source of truth" (e.g. our GitHub repo) is called an `origin`. This should contain the most up-to-date version of accepted code.
+
+```bash
+git remote add <name> <uri>                                       # Adds remote repo with specified name and path (can be relative path or URL)
+git remote add origin ../dirname                                  # Adds the git repo under dirname as the origin
+git remote add origin https://github.com/OWNER/REPOSITORY.git     # Adds GitHub repository as origin remote repo
+git remote get-url origin                                         # Get the URL of the origin remote repo
+```
+
+We can check the log of the remote repo:
+
+```bash
+git log remote/branch
+git log origin/main
+```
+
+### Fetch
+
+To bring the remote repo's info into the local repository, we use `fetch`. This fetches the metadata, but not the files. We need to `merge` the remote branch to get the files.
+
+```bash
+git fetch                 # Fetches metadata from remote repo
+git merge origin/main     # Merges remote repos branch with local branch
+```
