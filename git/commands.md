@@ -117,7 +117,7 @@ The merge will:
 
 The simplest type of merge is a _fast-forward merge_: If a commit on a branch has all the commits, that main has, git automatically does a fast-forward merge. It just moves the pointer of the "base" branch to the head of the "feature" branch, and no merge commit is created.
 
-### Deleting
+### Deleting branches
 
 After merging a feature branch into main, we no longer need it, and we can delete it.
 
@@ -144,3 +144,15 @@ Rebasing does the following:
 
 - `merge` preserves the true history of the project, but it can create lots of merge conflicts, which make the history harder to read and understand.
 - `rebase` creates a linear history, which is easier to work with
+
+## Reset
+
+The `reset` command can be used to undo the last commit(s) or any changes in the index (staged but not committed) and worktree (unstaged and uncommitted).
+The `--soft` flag is useful, if you just want to go back to previous commit, but keep the changes. Committed stages will be uncommitted and staged, the other changes will stay as they were before. A `--hard` reset will reset the changes.
+
+A hard reset can be dangerous, because all the undone changes are deleted from commit history, and cannot be restored.
+
+```bash
+git reset --soft HASH         # Will undo last commits and return to the commit with specified HASH, but keep the changes in the files
+git reset --hard HASH         # Will undo changes and return to the state of the commit with specified HASH
+```
