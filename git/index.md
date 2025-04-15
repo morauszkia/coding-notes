@@ -47,4 +47,17 @@ You can learn more about git [on their website](https://git-scm.com/).
 
 Git is a _command line tool_, that helps you keep track of the changes made in your project. It manages the _local repository_ on your computer. It stores the snapshots of the project and keeps a full history.
 
-GitHub, GitLab and Bitbucket are _platforms_, that let you store git repositories online for collaboration. These can also be used to showcase your work.
+GitHub, GitLab and Bitbucket are commercial products, _platforms_, that let you store git repositories online for collaboration. These can also be used to showcase your work.
+
+These can serve several purposes:
+
+- serve as a backup of your code on the cloud
+- a central place for storage and collaboration
+- public portfolio of projects to showcase them
+
+You can use the GitHub CLI to interact with GitHub from the terminal.
+
+```bash
+gh auth login
+gh auth status
+```
