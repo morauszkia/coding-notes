@@ -164,8 +164,10 @@ With git, there is no central repo. Another repo is called a `remote`. The repo,
 ```bash
 git remote add <name> <uri>                                       # Adds remote repo with specified name and path (can be relative path or URL)
 git remote add origin ../dirname                                  # Adds the git repo under dirname as the origin
-git remote add origin https://github.com/OWNER/REPOSITORY.git     # Adds GitHub repository as origin remote repo
+git remote add origin https://github.com/OWNER/REPOSITORY.git     # Adds GitHub repository as origin remote repo for https connection
+git remote add origin git@github.com:OWNER/REPOSITORY.git         # Adds GitHub repo for SSH connection
 git remote get-url origin                                         # Get the URL of the origin remote repo
+git ls-remote
 ```
 
 We can check the log of the remote repo:
@@ -183,3 +185,26 @@ To bring the remote repo's info into the local repository, we use `fetch`. This 
 git fetch                 # Fetches metadata from remote repo
 git merge origin/main     # Merges remote repos branch with local branch
 ```
+
+### Push
+
+Another way is to `push` local changes to the remote repository.
+
+```bash
+git push origin main                              # Pushes the main branch to the main branch of the origin remote
+git push origin <localbranch>:<remotebranch>      # Pushes a specified local branch to a remote branch
+git push origin :<remotebranch>                   # Pushes empty branch to remote and deletes remote branch
+```
+
+### Pull
+
+To get the actual file changes from the remote repo, you can use `pull` instead of `fetch`.
+
+```bash
+git pull                      # Pulls your current branch from the remote repo
+git pull remote/branch        # Pulls a remote branch
+```
+
+### Pull Requests
+
+On GitHub developers merge branches through pull requests, to avoid having broken code due to everybody pushing directly to main. A Pull Request is a way to propose changes and letting others review them before merging into the main branch.
