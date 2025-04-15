@@ -208,3 +208,27 @@ git pull remote/branch        # Pulls a remote branch
 ### Pull Requests
 
 On GitHub developers merge branches through pull requests, to avoid having broken code due to everybody pushing directly to main. A Pull Request is a way to propose changes and letting others review them before merging into the main branch.
+
+When working on a team a good workflow is to make changes on a separate branch, push that branch to the remote, and then open a pull request. After the PR gets approved by another team mate, it can be merged into main.
+
+## Gitignore
+
+There may be files or directories we do not want git to keep track of in our folder. This may be true for sensitive information, environment files containing private keys, folders containing modules or temporary files, etc. We can use the `.gitignore` file to tell git to ignore certain files or directories.
+
+You should ignore:
+
+- things that can be generated (e.g. compiled code, minified files)
+- dependencies (e.g. node_modules, venv, packages)
+- personal things or things specific to how we work (e.g. settings)
+- sensitive or dangerous things (e.g. `.env` files, passwords, private keys)
+
+This file is typically in the root directory of the repo, but this is not necessary. It is fairly common to have multiple such files. A `.gitignore` file inside a directory only applies to that directory and its subdirectories.
+
+In the `.gitignore` file, wildcards and other patterns can be used to simplify our work. Order is important, and patterns can override each other (e.g. negations should follow the general rule)
+
+```text
+*.txt             # * matches anything and any number of characters except "/"
+/main.py          # This will ignore the file only in the root directory where the gitignore file is
+!important.txt    # Negates the pattern - the txt pattern above will not apply for important.txt
+# Comment         # Comment
+```
