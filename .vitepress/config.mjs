@@ -18,19 +18,23 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "JS/TS",
+        text: "Programming Concepts",
         items: [
-          { text: "JavaScript", link: "/js/" },
-          { text: "TypeScript", link: "/ts/" },
+          { text: "Advanced Concepts", link: "/advanced-concepts/" },
+          { text: "Version Control", link: "/git/" },
         ],
       },
       {
-        text: "Frontend Frameworks",
-        items: [
-          { text: "React/Next.js", link: "/react-next/" },
-          { text: "Vue/Nuxt.js", link: "/vue-nuxt/" },
-          { text: "Svelte.js", link: "/svelte/" },
-        ],
+        text: "Languages",
+        link: "/languages",
+      },
+      {
+        text: "Frontend Development",
+        link: "/frontend",
+      },
+      {
+        text: "Backend Development",
+        link: "/backend",
       },
     ],
 
