@@ -10,7 +10,9 @@ features:
   - title: Basic Programming Concepts
     details: "The fundamentals of programming: variables, data structures, program flow, I/O operations, debugging, error handling"
   - title: Advanced Programming Concepts
-    details: "More advanced concepts: OOP, functional programming, concurrency and parallelism, programming paradigms"
+    details: "More advanced concepts: Clean code, OOP, functional programming, concurrency and parallelism, programming paradigms"
+    link: "advanced-concepts"
+    linkText: "Teach me!"
   - title: Version Control Systems
     details: "Git: staging, commit, push and pull to and from remote repositories, create and merge branches, etc."
     link: "git"
