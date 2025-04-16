@@ -15,4 +15,3 @@ After learning the fundamentals of coding, this section of my notes will deal wi
 - Object Oriented Programming (OOP)
 - Functional Programming
 - Concurrency and Parallelism
-- Data Structures and Algorithms
