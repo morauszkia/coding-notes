@@ -8,7 +8,7 @@ prev:
 
 Object-oriented programming (OOP) is a programming paradigm that structures software design around the concept of _objects_ rather than just functions and logic. Objects are self-contained units that bundle together _data_ (called attributes, fields or properties) and _behaviors_ (called methods or functions) that operate on that data.
 
-## Benefits of Object-Oriented Programming:
+## Benefits of Object-Oriented Programming
 
 - **Modularity**: OOP encourages breaking down complex problems into smaller, manageable objects, making code easier to understand, develop, and maintain.
 - **Reusability**: Inheritance allows for reusing code from existing classes, reducing development time and effort.
