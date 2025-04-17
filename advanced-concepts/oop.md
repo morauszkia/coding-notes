@@ -53,3 +53,19 @@ Object-oriented programming (OOP) is a programming paradigm that structures soft
    - You can write code that works with objects of different classes in a consistent way
    - There are different types of polymorphism, such as method overloading (same method name with different parameters within a class) and method overriding (a subclass providing a specific implementation for a method inherited from its superclass)
    - A `draw()` method could work differently for `Circle`, `Square`, and `Triangle` classes
+
+## OOP Languages
+
+Most modern programming languages support Object-oriented programming to some degree. Some are principally Object-oriented languages, that treat everything as an object. Some are purely OOP languages that fully support or even enforce OOP, while there are also some that are mostly OOP, but also include some procedural programming features. These include
+
+- Java
+- Ruby
+- C#
+- Scala
+- Smalltalk
+
+Other multi-paradigm languages have also strong support for OOP principles:
+
+- Python treats everything as an object, and has strong support for OOP, but also functional and procedural programming
+- JavaScript added the Class syntax only as syntactic sugar, but supports OOP principles such as prototypal inheritance
+- Other languages: C++, Swift, Kotlin, PHP and others also support OOP principles
