@@ -21,3 +21,14 @@ The current version is Python 3, which introduced significant improvements compa
 - Data Science and Machine Learning: Widely used for data analysis, machine learning, and artificial intelligence due to powerful libraries and frameworks
 - Automation and Scripting: Automates repetitive tasks and system scripting
 - Mathematics and Scientific Computing: Handles complex mathematical computations and big data processing
+
+## Installation and usage
+
+Python3 can be installed to the computer, and after that can be used from the terminal with the command `python3 filename.py`. You can enter interactive mode by typing `python` or `python3`, which starts the Python shell, where you can type and execute Python commands.
+
+```bash
+python3 --version
+python3 main.py
+```
+
+You can also use IDEs to run Python files, and to code in Python. Popular IDEs for Python Development are PyCharm, Visual Studio Code and Jupyter Notebook (especially for data science).
