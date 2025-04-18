@@ -21,5 +21,7 @@ features:
   - icon:
       src: "/assets/icons/Python.svg"
     title: Python
-    details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks (COMING SOON)
+    details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks
+    link: "python"
+    linkText: "Teach me everything!"
 ---
