@@ -2,6 +2,9 @@
 prev:
   text: Advanced Concepts Intro
   link: /advanced-concepts
+next:
+  text: Object-oriented Programming
+  ling: ./oop
 ---
 
 # Clean Code
@@ -13,7 +16,7 @@ The concept of clean code is about writing code that is easy for humans to under
 - making the development process faster
 - making the development process less painful
 
-Paradigms such as Object Oriented Programming or OOP and Functional programming aim to make your code clean.
+Paradigms such as [Object-oriented Programming or OOP](./oop) and Functional programming aim to make your code clean.
 
 ## DRY
 
