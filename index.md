@@ -13,7 +13,6 @@ features:
     title: Programming Concepts
     details: If you are looking for the various concepts of programming from the basics to functional programming, you're in the right place.
     link: "concepts"
-    linkText: "Tell me more!"
   - icon:
       light: "/assets/icons/Code.svg"
       dark: "assets/icons/Code-dark.svg"
@@ -21,7 +20,6 @@ features:
     title: Programming Languages
     details: From JavaScript through Python to Gleam - Varietas delectat
     link: "languages"
-    linkText: "Enlighten me!"
   - icon:
       light: "/assets/icons/Browser.svg"
       dark: "assets/icons/Browser-dark.svg"
@@ -29,7 +27,6 @@ features:
     title: Frontend Development
     details: From the fundamental building blocks of the web to frameworks that make our lives easier
     link: "frontend"
-    linkText: "Take me down the rabbit hole!"
   - icon:
       light: "/assets/icons/Server.svg"
       dark: "assets/icons/Server-dark.svg"
@@ -37,5 +34,4 @@ features:
     title: Backend Development
     details: From back end runtimes and frameworks through APIs to databases
     link: "backend"
-    linkText: "I want to know everything!"
 ---

@@ -1,18 +1,17 @@
 ---
-prev:
-  text: Programming Concepts Menu
-  link: /concepts
-next:
-  text: Clean Code
-  link: ./clean-code
+layout: home
+
+hero:
+  name: "Advanced Coding Concepts"
+  tagline: "After learning the fundamentals of coding, this section of my notes will deal with more advanced topics related to coding"
+
+features:
+  - title: Clean Code
+    link: ./clean-code
+  - title: Modules and Dependencies
+  - title: Object Oriented Programming (OOP)
+    link: ./oop
+  - title: Functional Programming
+    link: ./functional
+  - title: Concurrency and Parallelism
 ---
-
-# Advanced Coding Concepts
-
-After learning the fundamentals of coding, this section of my notes will deal with more advanced topics related to coding, such as:
-
-- [Writing clean code](./clean-code)
-- Modules and Dependencies
-- [Object Oriented Programming (OOP)](./oop)
-- [Functional Programming](./functional.md)
-- Concurrency and Parallelism
