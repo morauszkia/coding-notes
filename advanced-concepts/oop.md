@@ -31,13 +31,15 @@ Object-oriented programming (OOP) is a programming paradigm that structures soft
 
    - Bundling data and methods within objects
    - Interaction with the object happens through methods
-   - Restricting direct access to some of the object's components. This protects the integrity of the data and hides the internal implementation details.
+   - Restricting direct access to some of the object's components by making properties private or using conventions to indicate properties that shouldn't be manipulated directli. This protects the integrity of the data and hides the internal implementation details.
+   - Encapsulation focuses on _hiding_ implementation details and private properties
    - E.g. use the `accelerate` or `brake` method of a `Car` object to control its speed instead of accessing `speed` property directly
 
 2. **Abstraction**:
 
    - Exposing only essential features and hiding the complex implementation details
    - Users interact with objects through simple interfaces: allows you to work with objects at a higher level, without needing to know the details
+   - Abstraction focuses on what's _exposed_: on creating _simple interfaces_ for _complex behavior_
    - Using the `drive` method of the Car object without worrying, what happens under the hood.
 
 3. **Inheritance**:
@@ -69,3 +71,4 @@ Other multi-paradigm languages have also strong support for OOP principles:
 - Python treats everything as an object, and has strong support for OOP, but also functional and procedural programming
 - JavaScript added the Class syntax only as syntactic sugar, but supports OOP principles such as prototypal inheritance
 - Other languages: C++, Swift, Kotlin, PHP and others also support OOP principles
+- However, some languages only support encapsulation and abstraction, but do not support inheritance (e.g. Go or Rust).

@@ -13,7 +13,6 @@ features:
     title: Bash
     details: A shell (command line interpreter) used on Unix-based systems that lets you interact with your computer by typing commands
     link: "bash"
-    linkText: "Take me down the rabbit hole!"
   - icon:
       src: "/assets/icons/PostgresSQL.svg"
     title: SQL&colon; MySQL, PostgresSQL
@@ -23,5 +22,4 @@ features:
     title: Python
     details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks
     link: "python"
-    linkText: "Teach me everything!"
 ---
