@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Introduction to Go"
+  link: "./"
+next:
+  text: "Program Flow"
+  link: "./program-flow"
+---
+
 # Variables in Go
 
 ## Basic types
@@ -17,7 +26,12 @@ Integers, floats and complex numbers have type sizes. For instance, `int` exists
 
 ## Variable declaration
 
-Variables in Go can be declared the "sad" way by first declaring their type (and setting their value to the default zero value for the given type), and then assigning their value:
+Variables in Go can be declared the "sad" way by first declaring their type (and setting their value to the default zero value for the given type), and then assigning their value.
+The zero values are
+
+- 0 for numeric types
+- "" for strings
+- false for the boolean type
 
 ```go
 var age int
@@ -27,7 +41,19 @@ var name string
 name = "Peter"
 ```
 
+This can also happen in the same step: explicitly declaring type and setting the value, but if a value is present, type can be omited. In this case (and in the case of short declaration) the type is _inferred_.
+
+```go
+var age int = 27
+var name string = "Peter"
+var isAdmin = true
+```
+
+Declaration using `var` can be used at package or function level.
+
 Another way is to declare variables the short way, and let Go infer the type of variable. If you want a number to be treated as float type, you have to add `.0` to the end. Multiple variables can be declared at the same line.
+
+Short variable assignment _can only be done inside a function_.
 
 ```go
 ageInt := 27
@@ -35,13 +61,41 @@ ageFloat := 27.0
 pi := 3.14
 name := "Peter"
 isAdmin := false
+```
 
+In both cases, multiple variables can be declared at the same line. If they are of the same type, type can be declared only once for all variables.
+
+```go
+var firstName, country string = "Peter", "USA"
 name, age := "Susan", 31
 ```
 
-## Static typing
+Unlike in C-style languages, the types are described after the variable names, and not before. This makes Go code easier to read, especially in the case of complex [function signatures](./functions#function-signatures).
+
+## Static and strong typing
 
 Go enforces static typing, which means variable types are known before the code runs. This makes development easier and faster because the compiler can spot out type errors before running the code.
+
+Go is also strongly typed, which means, variables are not coerced automatically to other types. Atomatic type coercion, such as that in JavaScript can lead to unexpected outcomes. Go needs you to explicitly convert a type to another type, if for instance, a function requires an argument of a specific type.
+
+```go
+name := "John"  // string
+age := 29      // int
+
+age = "way too old" // Error: cannot use string for int value
+
+// Will throw error
+message := "Hi, my name is " + name + " and I am " + age " years old"
+
+ageStr := string(age)
+
+message := "Hi, my name is " + name + " and I am " + ageStr " years old"
+
+nine := 9
+
+fmt.Println(math.Sqrt(nine))  // Error: Sqrt expects float64
+fmt.Println(math.SQRT(float64(nine)))  // 3.0
+```
 
 ## Constants
 
