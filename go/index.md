@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Languages"
+  link: "/languages"
+next:
+  text: "Go: Variables"
+  link: "./variables"
+---
+
 # Introduction to Go
 
 Go (often referred to as Golang) is an open source, statically typed, compiled programming language developed at Google in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson, and publicly announced in 2009. Its design emphasizes simplicity, efficiency, and reliability, making it particularly well-suited for building secure, scalable systems and large-scale software infrastructure.
