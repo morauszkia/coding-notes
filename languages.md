@@ -50,4 +50,9 @@ features:
       src: "/assets/icons/Ruby.svg"
     title: Ruby
     details: A dynamic, open-source programming language with a focus on simplicity and productivity, known for its elegant syntax (COMING SOON)
+  - icon:
+      src: "/assets/icons/Go.svg"
+    title: Go
+    details: An open-source, statically typed, compiled programming language aimed at simplicity, efficiency, and reliability
+    link: "go"
 ---
