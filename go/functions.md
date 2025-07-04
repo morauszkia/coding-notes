@@ -88,3 +88,59 @@ func divide(dividend, divisor int) (int, error) {
     return dividend/divisor, nil
 }
 ```
+
+## Higher order functions
+
+In Go functions are first-class citizens, which means that they can be passed around as values, e.g. as arguments to functions.
+
+For instance the `aggregate()` function takes three integers, and an `arithmetic` function, that takes two integers, performs some operation and returns an integer. For instance, the `add` and `mul` functions are possible candidates as arguments.
+
+The arithmetic function can be called first with the two integers, and then with the result and the third integer to get the final result.
+
+```go
+func add(x, y int) int {
+    return x + y
+}
+
+func mul(x, y int) int {
+    return x * y
+}
+
+func aggregate(a, b, c int, arithmetic func(int, int) int) int {
+  firstResult := arithmetic(a, b)
+  secondResult := arithmetic(firstResult, c)
+  return secondResult
+}
+```
+
+## Anonymous functions
+
+Beside defining and passing in a function to a higher order function with a name, anonymous functions can be created and passed in as arguments in a function call.
+
+```go
+func double(a int) int {
+    return a + a
+}
+
+func main() {
+    // using a named function
+    newX, newY, newZ := conversions(double, 1, 2, 3)
+    // newX is 2, newY is 4, newZ is 6
+
+    // using an anonymous function
+    newX, newY, newZ = conversions(func(a int) int {
+        return a + a
+    }, 1, 2, 3)
+    // newX is 2, newY is 4, newZ is 6
+}
+```
+
+The anonymous functions is created with the following syntax:
+
+```go
+func(argument1 type, argument2 type, ...) return_type {
+    // function_body
+}
+```
+
+The only difference is, that instead of the function name, we use the `func` keyword.
