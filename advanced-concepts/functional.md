@@ -65,6 +65,24 @@ Pure functions are referentially transparent, which means that they can always b
 
 Memoization is caching: storing a copy of the result of a complex and resource intensive computation in memory so that we don't have to compute it over and over again. Memoization is a tradeoff between memory and speed, so a function that is fast to execute is not worth memoizing.
 
+### Recursion
+
+Recursion is the functional programming alternative to regular loops. Recursion does an especially great job with nested structures, where the level of nesting is unknown or varying.
+
+### Functional Transformation
+
+In functional programming it is useful to return new transformed functions from functions.
+
+#### Closures
+
+Closures are functions that access variables that were defined in the scope where the function was created. These variables cannot be changed directly, but are accessed by the closure.
+
+#### Currying
+
+In certain cases, if we want to pass down functions to other functions or methods, the number of arguments a function takes is relevant, and sometimes we cannot determine it. In such a case currying is useful. It is the process of transforming a function into another that takes the required number of arguments, and returns inner function(s) that take the additional arguments, and in the end, return the end value.
+
+### Sum Types
+
 ## Functional Programming Languages
 
 Some languages are designed specifically for functional programming, while many modern languages incorporate functional features:
