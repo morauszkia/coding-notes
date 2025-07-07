@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -45,5 +46,10 @@ export default defineConfig({
         link: "https://www.linkedin.com/in/andras-morauszki/",
       },
     ],
+  },
+  markdown: {
+    config(md) {
+      md.use(tabsMarkdownPlugin);
+    },
   },
 });
