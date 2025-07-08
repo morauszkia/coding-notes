@@ -1,10 +1,10 @@
 ---
 prev:
   text: Intro
-  link: /python/
+  link: "../python"
 next:
   text: Control Flow
-  link: ./control-flow
+  link: "./control-flow"
 ---
 
 # Python Programming Basics
