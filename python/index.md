@@ -1,3 +1,12 @@
+---
+prev:
+  text: Languages
+  link: /languages
+next:
+  text: Basics
+  link: ./basics
+---
+
 # Python
 
 Python is a high-level, general-purpose programming language known for its readability, simplicity, and versatility.
