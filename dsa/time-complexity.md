@@ -56,3 +56,54 @@ def print_names_twice(names):
 `O(1)` describes algorithms that take the same time to run regardless of the input size. Dictionary lookups are O(1). Which is one of the reasons dictionaries and dictionary-equivalents in other languages are used all over the place.
 
 `O(log n)` is only slightly slower, than `O(1)`. These grow only according to the `log` of the size of input. A Binary Search algorithm is a great example of an `O(log n)` algorithm, because the doubling of the input size only increases the number of steps by 1.
+
+## Polynomial vs. Exponential - Reduction to P
+
+Some of the above time complexities fall into the _polynomial_, while others into the _exponential_ group. Polynomial algorithms tend to run faster, because their runtime does not grow faster than `n^k`, where `k` is a constant, and `n` is the size of the input. In comparison, exponential algorightms grow at a much higher rate.
+
+Algorithms that run in polynomial types fall into type P, and they are _practical_ to solve with computers. Algorithms that don't fall into the P type are, in comparison, impractical.
+
+**Reduction to P** is the process of turning an exponential algorithm into a polynomial one.
+
+The following algorithm to find the nth Fibonacci number runs in exponential time. It needs to call itself twice within each call (unless n is less than or equal to 1). As n grows, the number of times the function is called, grows exponentially.
+
+```python
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+```
+
+We can rewrite the algorithm to have it run in polynomial time: It uses a single for loop, which makes it `O(n)` and updates the values of the three variables it uses to keep track of the numbers in the sequence
+
+```python
+def fib(n):
+    if n <= 1:
+        return n
+    current = 0
+    parent = 1
+    grandparent = 0
+    for i in range(0, n - 1):
+        current = parent + grandparent
+        grandparent = parent
+        parent = current
+    return current
+```
+
+Another problem with exponential complexity is the _power set_: we want to get all possible subsets of a given set of values.
+
+```python
+def power_set(input_set):
+    if len(input_set) == 0:
+        return [[]]
+
+    all_subsets = [[]]
+    for element in input_set:
+        subsets_with_element = []
+        for subset in all_subsets:
+            subsets_with_element.append(subset + [element])
+        all_subsets.extend(subsets_with_element)
+    return all_subsets
+```
