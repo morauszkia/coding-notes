@@ -1,5 +1,4 @@
 ---
-title: "Structure of Svelte projects"
 prev:
   text: "Intro"
   link: "/svelte/"

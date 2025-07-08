@@ -1,10 +1,10 @@
 ---
 prev:
   text: Advanced Concepts Intro
-  link: /advanced-concepts
+  link: "./"
 next:
   text: Object-oriented Programming
-  ling: ./oop
+  ling: "./oop"
 ---
 
 # Clean Code

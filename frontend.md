@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Front End Development"
+  name: "Frontend Development"
   tagline: "From the basic building blocks of every website: HTML+CSS+JavaScript to various frameworks"
 
 features:

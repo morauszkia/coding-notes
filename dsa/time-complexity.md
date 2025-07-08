@@ -1,3 +1,12 @@
+---
+prev:
+  text: Data Structures and Algorithms Menu
+  link: "./"
+next:
+  text: Algorithms
+  link: "./algorithms"
+---
+
 # Time Complexity
 
 There is a need to distinguish between algorithms that solve the same problem by looking at how much time or memory they need to run.

@@ -1,6 +1,4 @@
----
-title: Introduction to the shell
----
+# Introduction to the Shell
 
 This section of my notes will deal with the shell (mostly bash).
 

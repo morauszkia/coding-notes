@@ -1,7 +1,10 @@
 ---
 prev:
   text: Advanced Concepts Menu
-  link: /advanced-concepts
+  link: "./"
+next:
+  text: Functional Programming
+  link: "./functional"
 ---
 
 # Object-Oriented Programming

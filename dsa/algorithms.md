@@ -1,3 +1,9 @@
+---
+prev:
+  text: Data Structures and Algorithms Menu
+  link: "./"
+---
+
 # Algorithms
 
 In computer science, an algorithm is a finite sequence of well-defined instructions, that the computer can implement

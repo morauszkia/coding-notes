@@ -1,5 +1,4 @@
 ---
-title: Introduction to React & Next.js
 prev:
   text: "Home"
   link: "/"
@@ -12,7 +11,7 @@ next:
 
 ## React.js
 
-React.js is a popular open-source JavaScript library used for building user interfaces, particularly single-page applications where you need a fast, interactive, and dynamic user experience. React was developed and is maintained by Facebook. It was initially released in 2013 and has since grown to become one of the most popular libraries for front-end development. The current version is v19.
+React.js is a popular open-source JavaScript library used for building user interfaces, particularly single-page applications where you need a fast, interactive, and dynamic user experience. React was developed and is maintained by Facebook. It was initially released in 2013 and has since grown to become one of the most popular libraries for frontend development. The current version is v19.
 
 You can learn more about React [on their website](https://react.dev/).
 
@@ -38,5 +37,5 @@ Key aspects of Next.js:
 - **Server-Side Rendering (SSR)**: Next.js enables server-side rendering, which means pages are pre-rendered on the server before being sent to the client. This improves initial load times and SEO performance compared to client-side rendering.
 - **Static Site Generation (SSG)**: Next.js supports static site generation, where HTML pages are generated at build time. This is beneficial for content that doesn't change frequently, offering fast load times and better scalability.
 - **Hybrid Rendering**: Next.js allows developers to use a mix of SSR, SSG, and client-side rendering within the same application, providing flexibility to optimize different parts of the site according to specific needs.
-- **API Routes**: With Next.js, you can build API endpoints directly within your application. This makes it easy to create a full-stack application with both front-end and back-end logic in a single project.
+- **API Routes**: With Next.js, you can build API endpoints directly within your application. This makes it easy to create a full-stack application with both frontend and backend logic in a single project.
 - **Optimized for Production**: Next.js provides numerous optimizations out-of-the-box for production environments, such as image optimization, automatic static optimization, etc.

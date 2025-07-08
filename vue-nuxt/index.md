@@ -1,7 +1,3 @@
----
-title: Introduction to Vue.js and Nuxt.js
----
-
 # Introduction to Vue.js & Nuxt.js?
 
 ## What is Vue.js?

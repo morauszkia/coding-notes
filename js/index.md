@@ -1,5 +1,7 @@
 ---
-title: Introduction to JavaScript
+next:
+  text: Basics
+  link: "./basics"
 ---
 
 # Introduction to JavaScript

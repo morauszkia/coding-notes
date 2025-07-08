@@ -1,7 +1,7 @@
 ---
 prev:
   text: Advanced Concepts Menu
-  link: /advanced-concepts
+  link: "./"
 ---
 
 # Functional Programming

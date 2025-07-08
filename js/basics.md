@@ -1,5 +1,7 @@
 ---
-title: "JavaScript: Variables"
+prev:
+  text: "Intro to JS"
+  link: "./"
 ---
 
 # Variables in JavaScript

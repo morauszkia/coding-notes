@@ -1,9 +1,10 @@
 ---
-title: Setting up your React project
 prev:
   text: "Intro"
   link: "/react-next/"
 ---
+
+# Setting up a React project
 
 There are multiple way to create your new React project. If you are watching older tutorials on React app coding, you might come across create-react-app (CRA), which was for a long time the most popular way to start your React project. Nowadays, however the React team suggests using one of the full-stack React frameworks, but Vite is also a popular build tool, which has a template for React applications and which you can use to start your React project.
 
