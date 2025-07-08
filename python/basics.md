@@ -139,7 +139,7 @@ age_float = float(age_int)  # the float 25.0
 
 ## Mathamatical operations
 
-Python supports the most important mathematical operations, and the `math` module has functions for more complex operations (e.g. `sqrt()`)
+Python supports the most important mathematical operations, and the `math` module has functions for more complex operations (e.g. `sqrt()`). Python handles operator precedence the usual way (_PEMDAS_) for mathematical operators.
 
 ```python
 s = 5 + 7   # addition (becomes 12)
@@ -147,9 +147,28 @@ d = 7 - 3   # subtraction (becomes 4)
 p = 2 * 4   # multiplication (becomes 8)
 d = 8 / 2   # division (becomes the float 4.0)
 i = 9 // 2  # floor division (becomes the int 4)
-m = 10 % 3  # modulo (becomes 1)
+m = 10 % 3  # modulus (becomes 1)
 e = 2 ** 3  # exponentiation (becomes 8)
 ```
+
+For [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation) Python offers the bitwise and, or, xor and not operators and left/right shift operators.
+
+::: info Precedence
+Mathematical operators have a higher precedence than bitwise operators
+:::
+
+```python
+x << n      # shifts the bits of x left by n places (= x * 2**n)
+x >> n      # shifts the bits of x right by n places (= x // 2**n)
+x & y       # bitwise and (sets each bit to 1 if both bits are 1)
+x | y       # bitwise or (sets each bit to 1 if any of the bits is 1)
+x ^ y       # bitwise xor (sets each bit to 1 if and only if one of the bits is 1)
+~x         # bitwise not (sets each bit to 1 if it was 0, and to 0 if it was 1)
+```
+
+::: info Comparison & Logical operators
+Python also has comparison and logical operators. You can read about them more in the section on [Control Flow](./control-flow#operators)
+:::
 
 ### Augmented Assignment
 
