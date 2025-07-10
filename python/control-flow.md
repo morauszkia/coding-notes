@@ -75,7 +75,95 @@ Use parentheses when mixing comparison and logical operators for clarity.
 Be careful when mixing `and` and `or` operators without parentheses!
 :::
 
+### Truthy and Falsy values
+
+Non-boolean values also have their boolean value. Some values are _truthy_ (used in a condition they evaluate to `True`), others _falsy_
+
+Falsy values:
+
+- `False`
+- `None`
+- the number `0` in any form
+- empty sequences and collections: `""`, `[]`, `()`, `{}`, `set()`, `range(0)`
+
+Truthy values:
+
+- strings
+- numbers other than 0
+- non-empty sequences
+
+```python
+if user:
+    print(user.name)
+
+if not password:
+    raise Exception("Pleas provide your password!")
+```
+
 ### If-else statements
+
+The classic way to run conditional logic is to use an _if/else_ statement. In Python the indentation distinguishes the if/else blocks from the code that runs outside the if/else statements.
+
+The code indented after the `if` statement only runs, if the condition evaluates to `True`. If it evaluates to `False` the executions moves on to the code after the `if` block.
+
+For code that we want to execute if the condition of the `if` block is evaluated to `False`, we can use the `else` keyword. This block will only run, if the original condition or (in the case of `elif` statements - see below) all the preceding conditions were evaluated to `False`.
+
+Finally, we can use the `elif` keyword to check for other conditions, if the previous conditions were evaluated to `False`. Any number of `elif` statements can be used. The the first block with a condition that is satisfied will run.
+
+```python
+if size >= 10:
+    return "Large"
+elif size >= 5:
+    return "Medium"
+else:
+    return "Small"
+```
+
+For simple, one-line `if` and `else` blocks, we can also use the one-liner version.
+
+```python
+return "Eligible" if age >= 18 else "Ineligible"
+```
+
+There may be nested `if/else` blocks withing any of the blocks to check for other conditions and have complex branching logic, but it is best to not overdo it.
+
+**Guard clauses** and early returns in functions are a great way to simplify the code, and to make nested conditional statement flat.
+
+:::tabs
+
+== bad
+
+```python
+def process_user(user):
+    if user is not None:
+        if user.is_active:
+            if user.has_permission("edit"):
+                return "Access granted"
+            else:
+                return "Permission denied"
+        else:
+            return "User not active"
+    else:
+        return "No user provided"
+```
+
+== good
+
+```python
+def process_user(user):
+    if user is None:
+        return "No user provided"
+
+    if not user.is_active:
+        return "User not active"
+
+    if not user.has_permission("edit"):
+        return "Permission denied"
+
+    return "Access granted"
+```
+
+:::
 
 ### Match cases
 
