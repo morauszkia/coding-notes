@@ -135,7 +135,7 @@ func main() {
 }
 ```
 
-The anonymous functions is created with the following syntax:
+The anonymous function is created with the following syntax:
 
 ```go
 func(argument1 type, argument2 type, ...) return_type {
@@ -144,3 +144,32 @@ func(argument1 type, argument2 type, ...) return_type {
 ```
 
 The only difference is, that instead of the function name, we use the `func` keyword.
+
+## Defer execution
+
+We can use the `defer` keyword in front of a line, to defer the execution of the code until the function returns. This is especially usefull, if the function has multiple return statements, and we want to run a line of code regardless of which return statement will be executed.
+
+The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns.
+
+::: info
+Deferred functions are typically used to clean up resources that are no longer being used. Often to close database connections, file handlers and the like.
+:::
+
+```go
+func GetUsername(dstName, srcName string) (username string, err error) {
+    // Open a connection to a database
+    , _ := db.Open(srcName)
+
+    // Close the connection *anywhere* the GetUsername function returns
+    defer conn.Close()
+
+    username, err = db.FetchUser()
+    if err != nil {
+        // The defer statement is auto-executed if we return here
+        return "", err
+    }
+
+    // The defer statement is auto-executed if we return here
+    return username, nil
+}
+```
