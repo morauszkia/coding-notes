@@ -13,5 +13,6 @@ features:
     details: "...from Binary Search to verious sorting algorithms"
     link: "./algorithms"
   - title: Data Structures
-    details: "COMING SOON"
+    details: "Stacks, Queues, Linked Lists, Trees and Tries, Hashmaps and Graphs"
+    link: "./data-structures"
 ---
