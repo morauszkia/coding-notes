@@ -3,8 +3,8 @@ prev:
   text: Intro
   link: "../python"
 next:
-  text: Control Flow
-  link: "./control-flow"
+  text: Conditional Statements
+  link: "./conditionals"
 ---
 
 # Python Programming Basics
@@ -167,7 +167,7 @@ x ^ y       # bitwise xor (sets each bit to 1 if and only if one of the bits is 
 ```
 
 ::: info Comparison & Logical operators
-Python also has comparison and logical operators. You can read about them more in the section on [Control Flow](./control-flow#operators)
+Python also has comparison and logical operators. You can read about them more in the section on [Conditional Statements](./conditionals#operators)
 :::
 
 ### Augmented Assignment

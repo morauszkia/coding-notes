@@ -1,6 +1,31 @@
 import { defineConfig } from "vitepress";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 
+const mainNav = {
+  text: "Main Topics",
+  items: [
+    {
+      text: "Programming Concepts",
+      items: [
+        { text: "Advanced Concepts", link: "/advanced-concepts/" },
+        { text: "Version Control", link: "/git/" },
+      ],
+    },
+    {
+      text: "Languages",
+      link: "/languages",
+    },
+    {
+      text: "Frontend Development",
+      link: "/frontend",
+    },
+    {
+      text: "Backend Development",
+      link: "/backend",
+    },
+  ],
+};
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/coding-notes/",
@@ -17,28 +42,21 @@ export default defineConfig({
       { text: "Backend", link: "/backend" },
     ],
 
-    sidebar: [
-      {
-        text: "Programming Concepts",
-        items: [
-          { text: "Advanced Concepts", link: "/advanced-concepts/" },
-          { text: "Version Control", link: "/git/" },
-        ],
-      },
-      {
-        text: "Languages",
-        link: "/languages",
-      },
-      {
-        text: "Frontend Development",
-        link: "/frontend",
-      },
-      {
-        text: "Backend Development",
-        link: "/backend",
-      },
-    ],
-
+    sidebar: {
+      "/python/": [
+        {
+          text: "Python",
+          items: [
+            { text: "Intro to Python", link: "/python/" },
+            { text: "Python Basics", link: "/python/basics" },
+            { text: "Conditional Statements", link: "/python/conditionals" },
+            { text: "Loops", link: "/python/loops" },
+          ],
+        },
+        mainNav,
+      ],
+      "/": mainNav,
+    },
     socialLinks: [
       { icon: "github", link: "https://github.com/morauszkia" },
       {
