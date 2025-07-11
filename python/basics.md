@@ -3,8 +3,8 @@ prev:
   text: Intro
   link: "../python"
 next:
-  text: Control Flow
-  link: "./control-flow"
+  text: Conditional Statements
+  link: "./conditionals"
 ---
 
 # Python Programming Basics

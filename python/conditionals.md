@@ -1,15 +1,17 @@
-# Control Flow in Python
+---
+prev:
+  text: "Basics"
+  link: "./basics"
+next:
+  text: "Loops"
+  link: "./loops"
+---
 
-Under this title two main topics will be discussed: conditional logic and loops.
-
-- Conditional logic makes it possible to run specific lines of code only if a condition is satisfied.
-- Loops let us run the same code again and again without code duplication
-
-## Conditional Logic
+# Conditional Logic
 
 Conditional statements serve to run certain lines of code only if the condition we specify is true. To define our conditions, we use comparison and logical operators to express a potentially complex condition
 
-### Comparison and Logical operators {#operators}
+## Comparison and Logical operators {#operators}
 
 Python uses the usual operators to compare values.
 
@@ -75,7 +77,7 @@ Use parentheses when mixing comparison and logical operators for clarity.
 Be careful when mixing `and` and `or` operators without parentheses!
 :::
 
-### Truthy and Falsy values
+## Truthy and Falsy values
 
 Non-boolean values also have their boolean value. Some values are _truthy_ (used in a condition they evaluate to `True`), others _falsy_
 
@@ -100,7 +102,7 @@ if not password:
     raise Exception("Pleas provide your password!")
 ```
 
-### If-else statements
+## If-else statements
 
 The classic way to run conditional logic is to use an _if/else_ statement. In Python the indentation distinguishes the if/else blocks from the code that runs outside the if/else statements.
 
@@ -170,7 +172,7 @@ def process_user(user):
 
 :::
 
-### Match cases
+## Match cases
 
 From Python v3.10, the `match` statement can be used as a concise form instead of writing many `if... elif... else` blocks. It is similar, but not identical to the `switch` statement found in C, Java or JavaScript (or other languages).
 
@@ -220,7 +222,7 @@ match month:
         print("I have no idea which month you are referring to.")
 ```
 
-#### Advanced uses
+### Advanced uses
 
 We can bind values to variables in the `case` statements. These variables can be used in the `if` clause or the body of the case.
 
@@ -322,12 +324,11 @@ def describe(seq):
 
 :::
 
-## Loops
-
 ## Pass
 
-If blocks and loops (and function bodies) cannot be empty. If we for any reason (for example, we want to implement something later) want to leave a block empty, we can use the `pass` keyword.
+If blocks (and loops, and function bodies) cannot be empty. If we for any reason (for example, we want to implement something later) want to leave a block empty, we can use the `pass` keyword.
 
 ```python
-
+if condition:
+    pass
 ```
