@@ -2,6 +2,9 @@
 prev:
   text: Algorithms
   link: "./algorithms"
+next:
+  text: Stacks
+  link: "./stacks"
 ---
 
 # Data Structures
@@ -40,7 +43,7 @@ Lists are not as great if we need to:
 
 The main examples are:
 
-- Stacks
+- [Stacks](./stacks)
 - Queues
 - Linked Lists
 - Binary Trees
