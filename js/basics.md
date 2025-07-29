@@ -136,6 +136,10 @@ const value2 = 9;
 let sum = value1 + value2;
 
 console.log(sum); // "59"
+
+const numString = "18";
+const numNumber = --numString;
+console.log(typeof numNumber); // Number
 ```
 
 Variables can also be explicitly converted to other types.
