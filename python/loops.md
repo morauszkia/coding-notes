@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Conditionals"
+  link: "./conditionals"
+next:
+  text: "Functions"
+  link: "./functions"
+---
+
 # Loops
 
 We use loops in programming, to run commands repeatedly. There are two types of loops in Python: `for` loops for when we know, how many times we want to run a block of code, and `while` loops for when we don't know in advance, how many times a block of code will run, but we want to run it while a condition is true.
