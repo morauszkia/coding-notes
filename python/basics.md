@@ -51,6 +51,24 @@ print("This will continue in the same line")
 
 Printing is also useful for debugging purposes. If the program behaves unexpectedly, and produces strange results, a way to debug is to print the results of individual steps to the console.
 
+## Getting user input
+
+You can use the `input()` function to get user input.
+
+```python
+name = input("What is your name? ")
+age = input("How old are you? ")
+```
+
+::: warning Input is a string
+The `input()` function always returns a string. If you want to get a number or any other type, you need to explicitly convert the input.
+
+```python
+age = int(input("How old are you? "))
+```
+
+:::
+
 ## Syntax Error
 
 If you violate the Syntax rules of Python, your program will crash and you will get an error message printed to the console.
@@ -137,7 +155,7 @@ age_int = int(age_string) # the int 25
 age_float = float(age_int)  # the float 25.0
 ```
 
-## Mathamatical operations
+## Mathematical operations
 
 Python supports the most important mathematical operations, and the `math` module has functions for more complex operations (e.g. `sqrt()`). Python handles operator precedence the usual way (_PEMDAS_) for mathematical operators.
 
