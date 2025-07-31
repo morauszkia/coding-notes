@@ -14,6 +14,11 @@ features:
     details: A shell (command line interpreter) used on Unix-based systems that lets you interact with your computer by typing commands
     link: "bash"
   - icon:
+      src: "/assets/icons/Python.svg"
+    title: Python
+    details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks
+    link: "python"
+  - icon:
       src: "/assets/icons/JavaScript.svg"
       alt: "JavaScript logo"
     title: JavaScript
@@ -26,10 +31,10 @@ features:
     details: A superset of JavaScript that adds static typing and other features to enhance developer productivity and code quality
     link: "ts"
   - icon:
-      src: "/assets/icons/Python.svg"
-    title: Python
-    details: A high-level, interpreted programming language known for its readability, simplicity, and vast ecosystem of libraries and frameworks
-    link: "python"
+      src: "/assets/icons/Go.svg"
+    title: Go
+    details: An open-source, statically typed, compiled programming language aimed at simplicity, efficiency, and reliability
+    link: "go"
   - icon:
       src: "/assets/icons/R.svg"
     title: R
@@ -51,8 +56,7 @@ features:
     title: Ruby
     details: A dynamic, open-source programming language with a focus on simplicity and productivity, known for its elegant syntax (COMING SOON)
   - icon:
-      src: "/assets/icons/Go.svg"
-    title: Go
-    details: An open-source, statically typed, compiled programming language aimed at simplicity, efficiency, and reliability
-    link: "go"
+      src: "/assets/icons/C++.svg"
+    title: C/C++
+    details: Two closely related general-purpose programming languages, which are efficient and fast, and provide low-level access to memory(COMING SOON)
 ---
