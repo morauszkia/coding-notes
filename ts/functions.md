@@ -50,3 +50,60 @@ type MathFunction = (a: number, b: number) => number;
 
 let greetFunction: (name: string, greeting: string) => string;
 ```
+
+## Type guards
+
+If a function receives an argument that can be of [different types](./unions), a type guard can be used to narrow down, what type the value that was passed in actually has, and perform operations based on this. The compiler is really smart, and used with an IDE can show warnings if we try to perform an invalid operation.
+
+```typescript
+function safeSquare(val: string | number): number {
+  if (typeof val === "string") {
+    val = parseInt(val, 10);
+  }
+  // now val is only a number
+  return val * val;
+}
+```
+
+## Optional parameters
+
+Functions can have optional parameters. In TypeScript even without default values.
+
+Optional arguments are marked with a `?` after the name, and these need to come _after_ all required arguments. Optional arguments automatically get an `undefined` type _unioned_ to the specified type.
+
+Of course, default values can also be used, and in this case, the argument does not have to be marked as optional.
+
+::: tabs
+
+=== Optional argument
+
+The type of `title` will be `string | undefined` inside the function.
+
+```typescript
+function greet(name: string, title?: string): string {
+  if (title) {
+    return `Hello, ${title} ${name}!`;
+  }
+  return `Hello, ${name}!`;
+}
+
+greet("Gandalf"); // "Hello, Gandalf!"
+greet("Gandalf", "Wizard"); // "Hello, Wizard Gandalf!"
+```
+
+=== Default value
+
+In this case the parameter type can be _inferred_ automatically, but you can specify it, and you _should_ if you want to use a _wider_ (e.g. [union](./unions)) or _more restricted_ (e.g. [literal](./unions#literal-types)) type.
+
+```typescript
+function newCharacter(name: string, role: Class = "warrior"): string {
+  return `${name} is a ${role}`;
+}
+
+console.log(newCharacter("Gandalf"));
+// Gandalf is a warrior
+console.log(newCharacter("Gandalf", "wizard"));
+// Gandalf is a wizard
+```
+
+:::
