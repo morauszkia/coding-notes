@@ -51,6 +51,17 @@ export default defineConfig({
             { text: "Python Basics", link: "/python/basics" },
             { text: "Conditional Statements", link: "/python/conditionals" },
             { text: "Loops", link: "/python/loops" },
+            { text: "Functions", link: "/python/functions" },
+          ],
+        },
+        mainNav,
+      ],
+      "/js/": [
+        {
+          text: "JavaScript",
+          items: [
+            { text: "Intro to JavaScript", link: "/js/" },
+            { text: "JavaScript Basics", link: "/js/basics" },
           ],
         },
         mainNav,
