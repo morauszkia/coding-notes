@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Functions"
+  link: "./functions"
+next:
+  text: "Arrays"
+  link: "./arrays"
+---
+
 # Union Types
 
 We can use union types, if a variable can have a value of different types. Union types can be used in variable declarations, argument or return type declarations and type aliases as well.

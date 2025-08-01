@@ -2,6 +2,9 @@
 prev:
   text: "TypeScript Basics"
   link: "./basics"
+next:
+  text: "Union Types"
+  link: "./unions"
 ---
 
 # Functions
