@@ -47,7 +47,7 @@ height_mblanc < height_everest > height_kilimanjaro
 However, chaining should be used for clarity and to improve readability, so don't overdo it
 :::
 
-Python also has identity operators, that do not compare the euality, but the identity of objects (if they are the same object, stored at the same memory location).
+Python also has identity operators, that do not compare the equality, but the identity of objects (if they are the same object, stored at the same memory location).
 
 ```python
 x is y

@@ -95,7 +95,7 @@ and be split into multiple lines.
 
 As in other programming languages, we store the values used by our program in variables. Value assignment happens with the `=` operator. One or more variables can be declared on one line.
 
-Reassignment happens in the same way, we assing a new value to the same variable name with the `=` operator
+Reassignment happens in the same way, we assign a new value to the same variable name with the `=` operator
 
 ```python
 name = "Peter"    # name is now the string "Peter"
@@ -113,7 +113,7 @@ a = b = 5
 
 ### Variable names
 
-In Python variable names may consist of small and capital letters, nmbers, and the underscore (`_`), but cannot start with a number. Variable names are _case sensitive_.
+In Python variable names may consist of small and capital letters, numbers, and the underscore (`_`), but cannot start with a number. Variable names are _case sensitive_.
 
 The convention is to use the snake_case for variable names. Constants tend to have names in SCREAMING_SNAKE_CASE. Other casing (e.g. camelCase, PascalCase) is acceptable, but not Pythonic, while kebab-case in invalid.
 
@@ -144,7 +144,7 @@ print(type(False))            # bool
 ```
 
 :::info
-Python is dynamically and strongly typed. Variables can be reassigned to hold values of different types, than when they were first declared. However, there is no automatic type coercion, we need to explicity convert variables to other types, if we want to pass them as arguments to functions that accept other types as parameters or when combining values of different types.
+Python is dynamically and strongly typed. Variables can be reassigned to hold values of different types, than when they were first declared. However, there is no automatic type coercion, we need to explicitly convert variables to other types, if we want to pass them as arguments to functions that accept other types as parameters or when combining values of different types.
 :::
 
 The conversion of one type of value to another is also called _type casting_.
@@ -190,7 +190,7 @@ Python also has comparison and logical operators. You can read about them more i
 
 ### Augmented Assignment
 
-If we want to reassign a variable based on the current value (e.g. we want to inrement the value by a specific amount), we can use augmented assignment.
+If we want to reassign a variable based on the current value (e.g. we want to increment the value by a specific amount), we can use augmented assignment.
 
 ```python
 num = 10

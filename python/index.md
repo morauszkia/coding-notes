@@ -20,7 +20,7 @@ The name was inspired by the British comedy series _Monty Python's Flying Circus
 ## Key features
 
 - **Interpreted language**: code is executed line by line, which facilitates rapid development and debugging
-- **Dinamically typed**: variable types are determined at runtime, allowing for flexible and concise code
+- **Dynamically typed**: variable types are determined at runtime, allowing for flexible and concise code
 - **Strongly typed**: values need to be explicitly converted to other types, and are not coerced automatically such as in JavaScript
 - **Multi-Paradigm**: Python supports object-oriented, procedural, and functional programming styles, making it adaptable to various types of projects and developer preferences
 - **Readability and Simplicity**: Python’s syntax is designed to be clean and easy to read, often resembling the English language. Indentation is used to define code blocks, which enforces readability and consistent formatting

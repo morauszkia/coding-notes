@@ -8,7 +8,7 @@ prev:
 
 Functions are reusable pieces of code, that can be rerun multiple times, with various parameters. This way we can avoid repeating ourselves, and if we want to change our code, we only have to do it in one place.
 
-In Python, functions are declared using the `def` keyword. After this we write the function name, and the arguments in parentheses. Then after a colon the body of the funciton comes into an indented block.
+In Python, functions are declared using the `def` keyword. After this we write the function name, and the arguments in parentheses. Then after a colon the body of the function comes into an indented block.
 
 ```python
 def function_name(arg1, arg2):
@@ -141,7 +141,7 @@ def multiply(x, y):
 ```
 
 ::: info return None
-Functions, that do not return anything explicity, have a return value of `None`.
+Functions, that do not return anything explicitly, have a return value of `None`.
 :::
 
 ### Multiple returns
