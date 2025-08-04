@@ -2,6 +2,9 @@
 prev:
   text: Data Structures Intro
   link: "./data-structures"
+next:
+  text: Queues
+  link: "./queues"
 ---
 
 # Stacks
@@ -21,7 +24,11 @@ All of the above can be performed with `O(1)` time complexity. When all we need 
 
 Stacks are referred to as a _LIFO_ (last in, first out) data structure.
 
-Stacks can store any type of itmes, and are often used for
+::: tip FIFO
+If you need the performance of a Stack, but need to process items in the same order as they were added, use a [queue](./queues)
+:::
+
+Stacks can store any type of items, and are often used for
 
 - undo/redo functionality
 - function call management (call stack)

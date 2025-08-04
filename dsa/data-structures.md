@@ -44,8 +44,8 @@ Lists are not as great if we need to:
 The main examples are:
 
 - [Stacks](./stacks)
-- Queues
-- Linked Lists
+- [Queues](./queues)
+- [Linked Lists](./queues#linked-lists-as-queues)
 - Binary Trees
 - Red Black Trees
 - Hashmaps
