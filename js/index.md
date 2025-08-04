@@ -23,6 +23,16 @@ For more complex project setups, module bundlers are used, which will be discuss
 
 ## How does JavaScript work?
 
+Modern JavaScript is typically just-in-time compiled into machine code, which makes it typically faster than purely interpreted languages like Python or Ruby. however, JavaScript is not as fast as ahead-of-time compiled languages, such as Java or Go. It is also slower than non-garbage-collected languages.
+
 The V8 engine reads the JS code and builds a tree-like structure from it, breaking the code into parts. The interpreter then translates it into a language the processor can understand. At runtime, the profiler examines the code and, if possible, passes it to the compiler, which optimizes it and replaces the code that was originally running with the optimized code. This process is repeated whenever an optimization opportunity arises.
 
+JavaScript is single-threaded, but has great support for asynchronous programming. It is not as performant for CPU-bound tasks, but it works well for I/O-bound tasks (API calls, database connections).
+
 The rules for the JS language are given in the ECMAScript standards. A big step was the development of ES6, which added many features to the JS language.
+
+## JavaScript vs. Java
+
+Java and JavaScript have similar names, but are completely different languages. Java is a statically-typed, object-oriented language compiled to byte code and run in a Java Virtual Machine.
+
+JavaScript is dynamically and weakly-typed multi-paradigm language that runs in the browser or dedicated runtimes (Node.js, Deno, Bun).

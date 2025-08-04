@@ -9,6 +9,7 @@ prev:
 Variables in JavaScript are declared using `let` or `const`, formerly `var` (pre ES6). The value is assigned to the variable using `=`.
 Variables can be of different types (cf. [Variable Types](#variable-types))
 It is also possible to create an empty variable, which is assigned a value later (in this case only `let` can be used, not `const`).
+Multiple variables can be declared on the same line, separated with commas.
 
 ::: info comments
 In JavaScript you can insert comments into your code.
@@ -35,12 +36,18 @@ const user = {
   email: "sam.smith@email.com",
 };
 
+let username = "peter23", let password = "y0uW1llN3v3rGu3ssTh1s"
+
 // empty variable
 let bestFriend;
 
 // empty array
 let pets = [];
 ```
+
+::: info semicolons
+Lines typically end with semicolons in JavaScript, but these are (unlike in C) optional. The code will run without these, but it is easier to introduce bugs if we don't use them. Code formatters (e.g. Prettier for VS Code) will insert them by default (unless configured otherwise).
+:::
 
 The difference between `let` and `var` is that the former, when used in a loop, function, or any block, creates a variable in local scope, while `var` creates a variable in the scope of the function, which can lead to bugs.  
 Once a variable has been created, it is no longer necessary to use the `let`, `const` commands again, but simply to assign the new value to the variable (`=`). If you use `let` or `const` again, you create a new variable in the actual `scope` (block) with the same name but a different scope.
@@ -89,25 +96,25 @@ player = {
 
 ## Variable Types
 
-JavaScript is a dynamically typed language, which means, that the same variable name can be reassigned to a value of a different type later. The variable type is obtained by using the `typeof` command.
+JavaScript is a dynamically typed language, which means, that the same variable name (if it was declared using `let` or `var` - but you shouldn't use var) can be reassigned to a value of a different type later. The variable type is obtained by using the `typeof` command.
 
 ::: info console.log
 In the following examples I use the `console.log()` method of the built-in console object, to print values of variables to the console. In a browser you can open the developer tools to check you console, or you can read these logs in the terminal, if you are working on the backend.
 :::
 
 ```js
-leg myAge = 34;
+let myAge = 34;
 myAge = "forty";
 let year;
 
-console.log(typeof myAge);      // string
-console.log(typeof year);       // undefined
-console.log(year);              // undefined
+console.log(typeof myAge); // string
+console.log(typeof year); // undefined
+console.log(year); // undefined
 ```
 
 The basic types are:
 
-- `Number` - can be integers or floating point numbers, e.g. 2, 3.5, -17.2
+- `number` - can be integers or floating point numbers, e.g. 2, 3.5, -17.2
 - `string` - "A", "car", "Have a nice day'".
 - `boolean` - `true` of `false`
 
@@ -115,12 +122,31 @@ The basic types are:
 JavaScript does not have separate `integer` and `float` types. All numbers, except for _really_ large integers are of the type `number`.
 :::
 
+::: info declaring strings
+Strings can be declared using either `"` or `'` (or backticks). You can escape special characters with `\` (e.g. `\n` is a new line).
+:::
+
+::: info string encoding
+Strings are encoded as 16-bit numbers, which allows for non-English characters. Emojis are stored as a pair of 16-bit numbers.
+:::
+
 Additional types are:
 
-- `undefined` - e.g. for undeclared variables
-- `null`
+- `undefined` - e.g. for variables declared without value
+- `null` - is similar to undefined, but needs to be explicitly declared
 - `bigInt`
 - etc.
+
+### Template literals
+
+Template literals, introduced by ES6 are the easiest way to insert values into string templates. They are written using backticks, and variables or any JavaScript expressions can be inserted using `${}`.
+
+```js
+let name = "Peter";
+let age = 23;
+
+const greeting = `My friend ${name} is ${age} years old`;
+```
 
 ### Type inference
 
@@ -147,3 +173,45 @@ Variables can also be explicitly converted to other types.
 ```js
 myNumber = Number("0x11"); // 17
 ```
+
+## Basic operations
+
+JavaScript supports the usual mathematical operations: addition, subtraction, multiplication, division, etc.
+
+```js
+let sum = 2 + 5; // 7
+let difference = 13 - 7; // 6
+let product = 2.3 * 4.7; // 10.81
+let quotient = 9 / 3; // 3
+let remainder = 10 % 3; // 1
+let exponent = 2 ** 3; // 8
+```
+
+### Augmented assignment
+
+To shorten calculations based on the current value, JavaScript supports augmented assignment operators:
+
+```js
+let num = 5;
+num += 3; // 8
+num -= 2; // 6
+num *= 3; // 18
+num /= 2; // 9
+num **= 2; // 81
+num %= 2; // 1
+```
+
+### Increment and decrement
+
+To simplify the often used `+= 1` and `-= 1` operations, JavaScript offers the `++` increment and `--` decrement operators. Written before the variable name they perform pre-increment/decrement, while written after they perform post-increment/decrement, which can be useful, when assigning the current value to another variable.
+
+```js
+let a = 3;
+let b = a++; // a = 4; b = 3;
+a--; // a = 3
+let c = ++a; // a = 4; c = 4;
+```
+
+::: info
+Copying primitive types assigns their _value_ to the new variable. Copying reference type objects passes a pointer to the data stored in the memory heap to the new variable. If we change the original object, both variables will hold the new data.
+:::
