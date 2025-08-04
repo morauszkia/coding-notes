@@ -9,6 +9,7 @@ const mainNav = {
       items: [
         { text: "Advanced Concepts", link: "/advanced-concepts/" },
         { text: "Version Control", link: "/git/" },
+        { text: "Data Structures and Algorithms", link: "/dsa/" },
       ],
     },
     {
