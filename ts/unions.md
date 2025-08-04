@@ -35,6 +35,10 @@ function move(direction: Direction) {
 }
 ```
 
+::: info Declared constants
+If we declare a string or number variable with `const`, it will be inferred as a literal type automatically by TypeScript
+:::
+
 ### Superset unions
 
 It just happens sometimes, that while most of the time the value of a parameter will be one of a smaller set of possible values, but we want to accommodate other valid cases. Enter: _superset unions_. While these do not help in narrowing down the possible values, the IDEs can use these to provide better autocompletion.
