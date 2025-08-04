@@ -66,6 +66,25 @@ export default defineConfig({
         },
         mainNav,
       ],
+      "/dsa/": [
+        {
+          text: "Data Structures and Algorithms",
+          items: [
+            { text: "Intro to Data Structures and Algorithms", link: "/dsa/" },
+            { text: "Time Complexity", link: "/dsa/time-complexity" },
+            { text: "Algorithms", link: "/dsa/algorithms" },
+            {
+              text: "Data Structures",
+              items: [
+                { text: "Intro", link: "/dsa/data-structures" },
+                { text: "Stacks", link: "/dsa/stacks" },
+                { text: "Queues", link: "/dsa/queues" },
+              ],
+            },
+          ],
+        },
+        mainNav,
+      ],
       "/": mainNav,
     },
     socialLinks: [
