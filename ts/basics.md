@@ -11,23 +11,22 @@ next:
 
 TypeScript files usually have the extension `.ts`. These are compiled to regular `.js` files by the compiler. The compiler can be run with the `tsc` command from the terminal. At compile time, it checks your code and throws error if there are, for example, bugs related to the type of variables.
 
-::: info
+::: info Using other transpilers
 Other transpilers (e.g. Babel) can also transform your TypeScript code to JavaScript, but the official TypeScript compiler comes with other useful tools that make development less painful. For instance, IDEs can show errors in the code even before we run the compiler.
 :::
 
 ::: tip Watch mode
 During development, you can run the TypeScript compiler in watch mode, to automatically recompile the code after changes.
-:::
-
-::: tip TypeScript Projects
-We can initialize a TypeScript project using `tsc --init`. This will create a `tsconfig.json` file. After this, running `tsc` on its own will compile all `.ts` files in the project. Watch mode is also available with the proper flags.
-:::
 
 ```bash
 tsc --watch main.ts
 tsc -w main.ts
 ```
 
+:::
+
+::: tip TypeScript Projects
+We can initialize a TypeScript project using `tsc --init`. This will create a `tsconfig.json` file. After this, running `tsc` on its own will compile all `.ts` files in the project. Watch mode is also available with the proper flags.
 :::
 
 ## Variable type annotations

@@ -23,7 +23,7 @@ function getTicketInfo(id: number | string): string {
 
 In some cases a `string` or `number` is not restrictive enough, because we want our arguments to have a value out of a smaller set of possible string or numeric values. In this case we can use a _literal type_, which will be a union of specific values.
 
-::: info
+::: info Enums
 Other languages use Enums for this purpose, and TypeScript also has Enums, but literal types are a more lightweight solution.
 :::
 
@@ -77,8 +77,7 @@ type logRecord = `${string}: ${number}`;
 ::: warning "Type Masturbation" (sic!)
 Don't overdo this!
 While it might be easy, and therefore, perhaps, tempting to create template literal types that combine several union types, all of which combine several valid values, and hence, can have thousands or even millions of valid types all adhering to a specific pattern, this will slow down the editor and compilation, and therefore, TypeScript won't allow it after a certain point.
-:::
 
-::: tip
-Use a string instead
+::: tip Tip: Use a `string` instead
+
 :::
