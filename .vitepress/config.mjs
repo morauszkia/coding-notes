@@ -67,6 +67,20 @@ export default defineConfig({
         },
         mainNav,
       ],
+      "/ts/": [
+        {
+          text: "TypeScript",
+          items: [
+            { text: "Intro to TypeScript", link: "/ts/" },
+            { text: "TypeScript Basics", link: "/ts/basics" },
+            { text: "Functions", link: "/ts/functions" },
+            { text: "Unions", link: "/ts/unions" },
+            { text: "Arrays and Tuples", link: "/ts/arrays" },
+            { text: "Objects", link: "/ts/objects" },
+          ],
+        },
+        mainNav,
+      ],
       "/dsa/": [
         {
           text: "Data Structures and Algorithms",
