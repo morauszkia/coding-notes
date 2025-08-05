@@ -1,0 +1,75 @@
+---
+prev:
+  text: "Arrays and Tuples"
+  link: "./arrays"
+---
+
+# Objects
+
+TypeScript even allows you to specify the structure of an object. This way you can get better autocompletion or warning squiggly lines in your editor if you, for instance, mistype a property name or forget to add a property.
+
+```typescript
+type Pokemon = {
+  name: string;
+  types: PokemonType[];
+  health: number;
+};
+
+const fight = function (opponents: [Pokemon, Pokemon]) {
+  // implement fighting
+};
+```
+
+## Passing objects
+
+Objects can be passed to functions as literals or using variables. If we pass object literals to a function, TypeScript performs _excess property checking_, and won't allow any extra properties, that were not present in the object type declaration.
+
+Generally, extra properties are fine, and only missing properties are a problem. Therefore, it is better to pass objects stored in variables, in whose case, this checking won't be performed.
+
+```typescript
+type Spaceship = {
+  name: string;
+  speed: number;
+};
+
+const falcon = {
+  name: "Millennium Falcon",
+  speed: 75,
+  weapons: 4,
+};
+
+function pilot(ship: Spaceship) {
+  console.log(`Piloting ${ship.name} at ${ship.speed} light-years per hour`);
+}
+
+pilot(falcon); // This is ok
+pilot({ name: "Luke's X-Wing Fighter", speed: 73, weapons: 8 });
+/*
+Error: Object literal may only specify known properties, 
+and 'weapons' does not exist in type 'Spaceship'.
+*/
+```
+
+## Optional properties
+
+Objects may have optional properties, that need not be present on all instances of a given object. For instance, we could add "weapons" as an optional property. We specify its type, but under the hood TypeScript will [union](./unions) `undefined` to the specified type.
+
+```typescript
+type Spaceship = {
+  name: string;
+  speed: number;
+  weapons?: number;
+};
+```
+
+In code, we can check for the presence of a property:
+
+```typescript
+function attack(ship: Spaceship, target: Spaceship) {
+  if (!ship.weapons) {
+    throw new Error("Your ship has no weapons! Flee immediately!");
+  } else {
+    // implement attack
+  }
+}
+```

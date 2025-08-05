@@ -2,6 +2,9 @@
 prev:
   text: "Union Types"
   link: "./unions"
+next:
+  text: "Objects"
+  link: "./objects"
 ---
 
 # Arrays and Tuples
@@ -89,5 +92,8 @@ let config = getConfig();
 // config: (string | number)[]
 
 config.push(false);
-// Error: Argument of type 'boolean' is not assignable to parameter of type 'string | number'
+/* 
+Error: Argument of type 'boolean' is not assignable 
+to parameter of type 'string | number'
+*/
 ```
