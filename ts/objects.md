@@ -2,6 +2,9 @@
 prev:
   text: "Arrays and Tuples"
   link: "./arrays"
+next:
+  text: "Sets and Maps"
+  link: "./sets-maps"
 ---
 
 # Objects
