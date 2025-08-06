@@ -8,6 +8,8 @@ prev:
 
 TypeScript even allows you to specify the structure of an object. This way you can get better autocompletion or warning squiggly lines in your editor if you, for instance, mistype a property name or forget to add a property.
 
+Objects can hold values of any type: even other objects, that can be typed themselves.
+
 ```typescript
 type Pokemon = {
   name: string;
@@ -73,3 +75,51 @@ function attack(ship: Spaceship, target: Spaceship) {
   }
 }
 ```
+
+## Empty objects
+
+While in JavaScript objects can be created empty, and properties added later, TypeScript doesn't like that. If you create an empty object, you should declare its type, so that the compiler knows what properties to allow.
+
+::: info Almost anything is an object
+
+However, almost anything - even strings, numbers, etc. - can be assigned to a variable that is of type `{}`, because almost everything (except `undefined` and `null`) is an object in JavaScript.
+
+:::
+
+## Discriminated Unions
+
+We can combine object types into union types, similarly to primitive types. However, in the case of objects, distinguishing between the types can be tricky. In these cases _discriminant properties_ (or _tags_) can help. These are just a property that tells, which type of object we are dealing with, and can be used in code to distinguish between the types of object, and run code based on the type.
+
+Unions of objects with a _discriminant property_ are called _discriminated unions_.
+
+```typescript
+type MultipleChoiceLesson = {
+  kind: "multiple-choice"; // Discriminant property
+  question: string;
+  studentAnswer: string;
+  correctAnswer: string;
+};
+
+type CodingLesson = {
+  kind: "coding"; // Discriminant property
+  studentCode: string;
+  solutionCode: string;
+};
+
+type Lesson = MultipleChoiceLesson | CodingLesson;
+
+function isCorrect(lesson: Lesson): boolean {
+  switch (lesson.kind) {
+    case "multiple-choice":
+      return lesson.studentAnswer === lesson.correctAnswer;
+    case "coding":
+      return lesson.studentCode === lesson.solutionCode;
+  }
+}
+```
+
+If we add a new type to the union, but forget to handle it in the function, where we use this type, TypeScript will yell at us.
+
+:::info Convention
+While you can use any name for the tag, it is a convention worth following to use `kind`.
+:::
