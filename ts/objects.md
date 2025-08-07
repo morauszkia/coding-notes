@@ -79,6 +79,62 @@ function attack(ship: Spaceship, target: Spaceship) {
 }
 ```
 
+## Dynamic property names
+
+If we don't know, what exact properties the objects will have, but know the type of these properties, we can use the _dynamic property syntax_ offered by TypeScript.
+
+```typescript
+type UserMetrics = {
+  [key: string]: number;
+};
+```
+
+Objects of this type can hold numeric values assigned to string keys.
+
+::: info Key types
+Strings are the most often used types of object keys, but JavaScript allows numbers and symbols as property keys. Actually, there is a built-in `PropertyKey` type which is a union of `string | number | symbol`
+:::
+
+Dynamic properties can be combined with regular properties that will be **required** to be present on the object.
+
+```typescript
+type FormData = {
+  [field: string]: string | number | boolean;
+  name: string;
+  email: string;
+  password: string;
+  acceptTerms: boolean;
+};
+```
+
+::: tip Optional properties
+While this pattern can be used to have optional keys, this should only be used, if the keys are _unknown_, and otherwise the `?` operator should be used for _known_ but optional properties.
+:::
+
+## Readonly properties and `as const`
+
+Properties prefixed by the `readonly` modifier are made immutable, and TypeScript won't allow our code to modify their values.
+
+```typescript
+type User = {
+  readonly username: string;
+  email: string;
+  doNotDisturb: boolean;
+};
+```
+
+The `as const` assertion can be used to render a literal value readonly. This can be used with Arrays and Objects as well, and makes objects deeply immutable at compile time.
+
+```typescript
+const colorsConst = ["red", "green", "blue"] as const;
+```
+
+Unlike `Object.freeze()` this runs at compile-time, while the latter at run-time, and, furthermore, `as const` makes all nested structures readonly as well, while `Object.freeze()` only freezes the topmost level.
+
+::: info Type inference
+Objects and arrays marked `as const` are inferred as their literal types. This way we can create enums without actually using `enum`
+:::
+
 ## Empty objects
 
 While in JavaScript objects can be created empty, and properties added later, TypeScript doesn't like that. If you create an empty object, you should declare its type, so that the compiler knows what properties to allow.
@@ -126,3 +182,70 @@ If we add a new type to the union, but forget to handle it in the function, wher
 :::info Convention
 While you can use any name for the tag, it is a convention worth following to use `kind`.
 :::
+
+## Satisfies
+
+The `satisfies` operator can be used to both
+
+1. let TypeScript infer the types of values, which is flexible, but might miss errors
+2. use explicit type annotations, which is good for catching errors, but loses literal information
+
+For example TypeScript would miss a typo:
+
+```typescript
+// Using type inference (flexible but might miss errors)
+const colors = {
+  red: "#FF0000",
+  green: "#00FF00",
+  blue: "#0000FF",
+
+  // "classic Lane-style typo" - Allan
+  yelow: "#FFFF00",
+};
+```
+
+We can create a custom type to catch such typos, but we lose the more specific literal-value type information.
+
+```typescript
+type ColorMap = {
+  red: string;
+  green: string;
+  blue: string;
+  yellow: string;
+};
+
+const colorsTyped: ColorMap = {
+  red: "#FF0000",
+  green: "#00FF00",
+  blue: "#0000FF",
+  // Error: "yelow" is not in type ColorMap
+  yelow: "#FFFF00",
+};
+
+// RedHex is any 'string'
+// where it used to be the literal "#FF0000"
+type RedHex = typeof colors.red;
+```
+
+The `satisfies` operator solves this problem:
+
+```typescript
+type ColorMap = {
+  red: string;
+  green: string;
+  blue: string;
+  yellow: string;
+};
+
+const colorsSatisfies = {
+  red: "#FF0000",
+  green: "#00FF00",
+  blue: "#0000FF",
+  yellow: "#FFFF00",
+  // Error: "yelow" is not in type ColorMap
+  // yelow: "#FFFF00"
+} satisfies ColorMap;
+
+// We keep the literal types!
+type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000"
+```
