@@ -81,6 +81,19 @@ export default defineConfig({
         },
         mainNav,
       ],
+      "/go/": [
+        {
+          text: "Go",
+          items: [
+            { text: "Intro to Go", link: "/go/" },
+            { text: "Variables", link: "/go/variables" },
+            { text: "Program flow", link: "/go/program-flow" },
+            { text: "Functions", link: "/go/functions" },
+            { text: "Structs", link: "/go/structs" },
+          ],
+        },
+        mainNav,
+      ],
       "/dsa/": [
         {
           text: "Data Structures and Algorithms",
