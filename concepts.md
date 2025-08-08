@@ -9,6 +9,7 @@ hero:
 features:
   - title: Basic Programming Concepts
     details: "The fundamentals of programming: variables, data types and structures, program flow (conditionals and loops), I/O operations, modularity, debugging, error handling"
+    link: "basic-concepts"
   - title: Advanced Programming Concepts
     details: "More advanced concepts: Clean code, OOP, functional programming, concurrency and parallelism, programming paradigms"
     link: "advanced-concepts"

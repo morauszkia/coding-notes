@@ -77,6 +77,7 @@ export default defineConfig({
             { text: "Unions", link: "/ts/unions" },
             { text: "Arrays and Tuples", link: "/ts/arrays" },
             { text: "Objects", link: "/ts/objects" },
+            { text: "Sets & Maps", link: "/ts/sets-maps" },
           ],
         },
         mainNav,
