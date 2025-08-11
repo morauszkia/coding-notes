@@ -62,7 +62,7 @@ def binarySearch(arr, targetVal):
 
 ## Sorting Algorithms
 
-Often actions in an application rely on sorted data. There are multiple algorightms of various time complexities to sort the data.
+Often actions in an application rely on sorted data. There are multiple algorithms of various time complexities to sort the data.
 
 ### Bubble Sort
 
@@ -221,7 +221,7 @@ def insertion_sort(nums):
 
 ### Quicksort
 
-Quick sort is an efficient sorting algorightm widely used in production sorting implementations above a threshold. It is also a recursive _divide and conquer_ type algorithm, like [merge sort](#merge-sort).
+Quick sort is an efficient sorting algorithm widely used in production sorting implementations above a threshold. It is also a recursive _divide and conquer_ type algorithm, like [merge sort](#merge-sort).
 
 Pseudocode:
 

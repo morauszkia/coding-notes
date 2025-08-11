@@ -10,7 +10,7 @@ features:
     details: "... also known as Big O notation"
     link: "./time-complexity"
   - title: Algorithms
-    details: "...from Binary Search to verious sorting algorithms"
+    details: "...from Binary Search to various sorting algorithms"
     link: "./algorithms"
   - title: Nondeterministic Polynomial Time
     link: "./np"
