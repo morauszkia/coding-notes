@@ -102,6 +102,7 @@ export default defineConfig({
             { text: "Intro to Data Structures and Algorithms", link: "/dsa/" },
             { text: "Time Complexity", link: "/dsa/time-complexity" },
             { text: "Algorithms", link: "/dsa/algorithms" },
+            { text: "Nondeterministic Polynomial Time", link: "/dsa/np" },
             {
               text: "Data Structures",
               items: [

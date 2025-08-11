@@ -15,11 +15,11 @@ There is a need to distinguish between algorithms that solve the same problem by
 
 Some examples:
 
-- `O(1)` means, that the algorightm takes the same amount of time and/or space to run, regardless of the size of the
+- `O(1)` means, that the algorithm takes the same amount of time and/or space to run, regardless of the size of the
 - `O(log n)` shows a logarithmic relationship
 - `O(n)` shows, that the relationship is linear: an input twice the size of another makes the algorithm need twice the time to run
 - `O(n^2)` shows a squared relationship
-- `O(2^n)` shows exponential growth - the time needed to run the algorithm grows drammatically with the growth in the size of the input
+- `O(2^n)` shows exponential growth - the time needed to run the algorithm grows dramatically with the growth in the size of the input
 - `O(n!)` shows even faster factorial growth
 
 ![Big-O complexity comparison chart](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
@@ -59,7 +59,7 @@ def print_names_twice(names):
 
 ## Polynomial vs. Exponential - Reduction to P
 
-Some of the above time complexities fall into the _polynomial_, while others into the _exponential_ group. Polynomial algorithms tend to run faster, because their runtime does not grow faster than `n^k`, where `k` is a constant, and `n` is the size of the input. In comparison, exponential algorightms grow at a much higher rate.
+Some of the above time complexities fall into the _polynomial_, while others into the _exponential_ group. Polynomial algorithms tend to run faster, because their runtime does not grow faster than `n^k`, where `k` is a constant, and `n` is the size of the input. In comparison, exponential algorithms grow at a much higher rate.
 
 Algorithms that run in polynomial types fall into type P, and they are _practical_ to solve with computers. Algorithms that don't fall into the P type are, in comparison, impractical.
 
@@ -107,3 +107,7 @@ def power_set(input_set):
         all_subsets.extend(subsets_with_element)
     return all_subsets
 ```
+
+::: info NP
+There are problems that cannot be solved in P, however, given a potential solution, the solution can be _verified_ in P. These problems are in [nondeterministic polynomial time (NP)](./np)
+:::

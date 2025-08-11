@@ -12,6 +12,8 @@ features:
   - title: Algorithms
     details: "...from Binary Search to verious sorting algorithms"
     link: "./algorithms"
+  - title: Nondeterministic Polynomial Time
+    link: "./np"
   - title: Data Structures
     details: "Stacks, Queues, Linked Lists, Trees and Tries, Hashmaps and Graphs"
     link: "./data-structures"

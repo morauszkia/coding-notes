@@ -2,6 +2,9 @@
 prev:
   text: Data Structures and Algorithms Menu
   link: "./"
+next:
+  text: Nondeterministic Polynomial Time
+  link: "./np"
 ---
 
 # Algorithms
