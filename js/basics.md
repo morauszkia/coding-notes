@@ -2,6 +2,9 @@
 prev:
   text: "Intro to JS"
   link: "./"
+next:
+  text: "Conditionals"
+  link: "./conditionals"
 ---
 
 # Variables in JavaScript
@@ -146,6 +149,8 @@ let name = "Peter";
 let age = 23;
 
 const greeting = `My friend ${name} is ${age} years old`;
+
+console.log(`${num1} * ${num2} = ${num1 * num2}`);
 ```
 
 ### Type inference
