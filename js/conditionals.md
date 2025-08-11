@@ -1,3 +1,9 @@
+---
+prev:
+    text: "JavaScript Basics"
+    link: "./basics"
+---
+
 # Conditional Logic
 
 In JavaScript, to execute certain parts of our code only if a condition is met, we can use conditional (if/else) statements, a switch statement, a ternary operator or short circuiting. There are also logical assignment operators to overwrite only truthy or falsy values.

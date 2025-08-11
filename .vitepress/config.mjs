@@ -63,6 +63,7 @@ export default defineConfig({
           items: [
             { text: "Intro to JavaScript", link: "/js/" },
             { text: "JavaScript Basics", link: "/js/basics" },
+            { text: "Conditional Logic", link: "/js/conditionals" },
           ],
         },
         mainNav,
