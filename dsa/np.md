@@ -162,3 +162,22 @@ Pseudocode for `find_subset_sum(nums, target, index)` function
   4. Else call itself with same `target` and index decremented by 1, and save the result
   5. Call itself with the `target` reduced by the value of current element and `index` decremented by 1.
   6. If either of these calls returns `true`, retur `true`, otherwise return `false`
+
+Implementation in Python
+
+```python
+def subset_sum(nums, target):
+    return find_subset_sum(nums, target, len(nums)-1)
+
+
+def find_subset_sum(nums, target, index):
+    if target == 0:
+        return True
+    if index < 0 and target != 0:
+        return False
+    if nums[index] > target:
+        return find_subset_sum(nums, target, index-1)
+    result_one = find_subset_sum(nums, target, index-1)
+    result_two = find_subset_sum(nums, target-nums[index], index-1)
+    return result_one or result_two
+```
