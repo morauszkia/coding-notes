@@ -110,3 +110,51 @@ console.log(newCharacter("Gandalf", "wizard"));
 ```
 
 :::
+
+## Function overload
+
+If a function can be called in multiple ways, because of optional parameteres, we can define the combinations of parameters for a valid function call using _function overloads_.
+
+::: warning Declaration order
+Function overloads need to be declared above the implementation itself.
+:::
+
+```typescript
+function formatEmployeeMessage(employee: Employee): string;
+function formatEmployeeMessage(
+  employee: Employee,
+  isNew: true,
+  onBoardedDate: Date
+): string;
+
+function formatEmployeeMessage(
+  employee: Employee,
+  isNew?: boolean,
+  onBoardedDate?: Date
+): string {
+  if (!isNew) {
+    return `Employee: ${employee.name}, Dept: ${employee.dept}`;
+  }
+  return `Employee: ${employee.name}, New: Yes, Onboarded: ${onBoardedDate}`;
+}
+
+type Employee = {
+  name: string;
+  dept: string;
+};
+```
+
+If we specify the function signatures this way, the function cannot be called with only an `isNew` boolean value, but without an `onBoardedDate` value.
+
+Function overloads can also be used, if the functions can receive arguments of different types, but only certain combinations are valid.
+
+```typescript
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+function add(a: number | string, b: number | string) {
+  return a + b;
+}
+```
+
+The function cannot be called with a number _and_ a string as arguments.
