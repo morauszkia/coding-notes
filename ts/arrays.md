@@ -97,3 +97,95 @@ Error: Argument of type 'boolean' is not assignable
 to parameter of type 'string | number'
 */
 ```
+
+## Tuples
+
+A tuple in TypeScript is a special type of array where each position has a specified type.
+
+In the case of tuples, we need to be explicit, as TypeScript would infer a union type array.
+
+```typescript
+const nameAndLevel: [string, number] = ["Gandalf", 100];
+```
+
+::: warning Push and pop
+Tuples are still arrays under the hood. You need to be aware, that TypeScript would allow you to push to and pop from a tuple.
+:::
+
+::: tip Readonly Tuples
+You can specify a tuple to be readonly at creation, and this way it actually becomes immutable.
+
+However, pay attention to the fact that `readonly` is TypeScript, and disappears after compilation, so it is not enforced at runtime.
+:::
+
+### Tuples vs. Objects
+
+Tuples can be used in similar situation as Objects. Instead of accessing values by property name, you can access values by index. Tuples are therefore better, _if ordering matters_.
+
+```typescript
+type Distances = [number, number, number];
+
+// instead of { first: number; second: number; third: number };
+```
+
+### Return Tuples
+
+Tuples are useful if we want to return multiple values from a function, which is impossible in JavaScript/TypeScript. However, using a Tuple, combined with destructuring at the receiving end solves this problem.
+
+```typescript
+function getName(fullName: string): [string, string] {
+  const parts = fullName.split(" ");
+  return [parts[0], parts[1]];
+}
+
+const [firstName, lastName] = getName("Frodo Baggins");
+
+type UserWithAddress = [string, { city: string; country: string }];
+```
+
+With nested destructuring it looks like this:
+
+```typescript
+const userData: UserWithAddress = [
+  "Aragorn",
+  { city: "Minas Tirith", country: "Gondor" },
+];
+
+const [userName, { city, country }] = userData;
+```
+
+### Named Tuples
+
+The positions of a tuple can also be labeled to be more descriptive. These are just labels for documentation, and do not work as property names. In destructuring you can assign any name to the positions. _Only the positions matter_.
+
+```typescript
+type UserDataLabeled = [name: string, age: number, isAdmin: boolean];
+```
+
+### Optional elements
+
+As with objects and functions, you can make tuple elements optional using the `?` modifier. Optional values must come last. However, there can be several optional values. These get `undefined` unioned to their type.
+
+```typescript
+type HttpResponse = [statusCode: number, data: string, error?: string];
+
+// Both of these work!
+const successResponse: HttpResponse = [200, "Success!"];
+const errorResponse: HttpResponse = [404, "", "Resource not found"];
+```
+
+### Tuples with variable number of elements
+
+You can use the rest pattern to have your tuple have a variable number of elements of a specific type. While this is getting really close to being a simple array, it defines the type more narrowly.
+
+```typescript
+type Command = [name: string, ...args: string[]];
+
+const gitCommit: Command = ["git", "commit", "-m", "Add new feature"];
+const npmInstall: Command = ["npm", "install", "typescript"];
+
+// Function that handles commands
+function executeCommand([cmd, ...args]: Command) {
+  console.log(`Executing ${cmd} with arguments: ${args.join(", ")}`);
+}
+```
