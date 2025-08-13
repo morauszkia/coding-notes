@@ -72,6 +72,68 @@ let variableNum: number;
 variableNum = "Peter"; // Error: must be number
 ```
 
+### The `never` type
+
+There is a type for cases, that should _never_ occur. With this we can ensure, that our code handles all cases, that should be handled.
+
+TypeScript wouldn't complain if we give it the following code, where the type of `code` gets narrowed down:
+
+```typescript
+function handleStatusCode(code: 200 | 404 | 500) {
+  if (code === 200) {
+    console.log("OK");
+    return;
+  }
+  // code is now 404 | 500
+  if (code === 404) {
+    console.log("Not Found");
+    return;
+  }
+  // code is now 500
+  throw new Error(`Unknown status code: ${code}`);
+}
+```
+
+If we assign `code` to never, it will complain, unless we handle every case properly:
+
+```typescript
+function handleStatusCode(code: 200 | 404 | 500) {
+  if (code === 200) {
+    console.log("OK");
+    return;
+  }
+  if (code === 404) {
+    console.log("Not Found");
+    return;
+  }
+  // Type '500' is not assignable to type 'never'.
+  const err: never = code;
+  return err;
+}
+```
+
+After we fix it by handling all cases properly, TypeScript stops complaining:
+
+```typescript
+function handleStatusCode(code: 200 | 404 | 500) {
+  if (code === 200) {
+    console.log("OK");
+    return;
+  }
+  if (code === 404) {
+    console.log("Not Found");
+    return;
+  }
+  if (code === 500) {
+    console.log("Internal Server Error");
+    return;
+  }
+  // no errors! code is never
+  const err: never = code;
+  return err;
+}
+```
+
 ## Type alias
 
 To avoid having to rewrite long custom types over and over again, these can be stored as type aliases with the `type` keyword. Usually, we give type aliases names written in PascalCase.

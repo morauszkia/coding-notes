@@ -249,3 +249,18 @@ const colorsSatisfies = {
 // We keep the literal types!
 type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000"
 ```
+
+## Intersection Types
+
+We can use the `&` operator to create an intersection type, which will have all the properties of both original objects.
+
+```typescript
+type Point2D = {
+  x: number;
+  y: number;
+};
+
+type Point3D = Point2D & {
+  z: number;
+};
+```
