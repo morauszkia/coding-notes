@@ -264,3 +264,39 @@ type Point3D = Point2D & {
   z: number;
 };
 ```
+
+::: info Narrowing
+Intersection types also narrow down, if we use them with [union types](./unions).
+
+```typescript
+
+```
+
+:::
+
+### Incompatible types
+
+If we take the intersection of incompatible types, the type of the intersection will be inferred as [never](./basics#the-never-type). This can easily happen if we use [literal types](./unions#literal-types) or if we use the same property name in two object types, but we type it differently with incompatible types (e.g. `string` and `number` for `id`)
+
+```typescript
+type SupportAgent = {
+  id: number;
+  role: "agent";
+  assignedTickets: number;
+};
+
+type EndUser = {
+  id: number;
+  role: "customer";
+  submittedTickets: number;
+};
+
+type UserAgent = SupportAgent & EndUser;
+```
+
+### Intersections and unions
+
+Intersections and [unions](./unions) both combine multiple types.
+
+- We use intersections to tell TypeScript, that something is _both_ type one _AND_ type two. Intersections **narrow** the resulting type, so fewer possible values will satisfy these.
+- Unions are used to tell TypeScript, that in that place _either_ type one _OR_ type two is acceptable. Unions **widen** the resulting type, so more possible values will satisfy these.
