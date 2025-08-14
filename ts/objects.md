@@ -3,13 +3,19 @@ prev:
   text: "Arrays and Tuples"
   link: "./arrays"
 next:
-  text: "Sets and Maps"
-  link: "./sets-maps"
+  text: "Interfaces"
+  link: "./interfaces"
 ---
 
 # Objects
 
 TypeScript even allows you to specify the structure of an object. This way you can get better autocompletion or warning squiggly lines in your editor if you, for instance, mistype a property name or forget to add a property.
+
+::: info Types and Interfaces
+
+This page deals with the `type` way to describe objects. To learn about `interfaces` follow [this link](./interfaces)
+
+:::
 
 Objects can hold values of any type: even other objects, that can be typed themselves.
 

@@ -1,7 +1,7 @@
 ---
 prev:
-  text: "Objects"
-  link: "./objects"
+  text: "Interfaces"
+  link: "./interfaces"
 ---
 
 # Additional Data Structures
