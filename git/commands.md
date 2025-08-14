@@ -117,6 +117,10 @@ The merge will:
 
 The simplest type of merge is a _fast-forward merge_: If a commit on a branch has all the commits, that main has, git automatically does a fast-forward merge. It just moves the pointer of the "base" branch to the head of the "feature" branch, and no merge commit is created.
 
+::: info Not just branches
+You can merge not only branches, but also commits, tags, `reflog` entries.
+:::
+
 ### Deleting branches
 
 After merging a feature branch into main, we no longer need it, and we can delete it.
@@ -207,9 +211,19 @@ git pull remote/branch        # Pulls a remote branch
 
 ### Pull Requests
 
-On GitHub developers merge branches through pull requests, to avoid having broken code due to everybody pushing directly to main. A Pull Request is a way to propose changes and letting others review them before merging into the main branch.
+On GitHub developers merge branches through [pull requests](./cooperation#pull-requests), to avoid having broken code due to everybody pushing directly to main. A Pull Request is a way to propose changes and letting others review them before merging into the main branch.
 
 When working on a team a good workflow is to make changes on a separate branch, push that branch to the remote, and then open a pull request. After the PR gets approved by another team mate, it can be merged into main.
+
+## HEAD and reflog
+
+To put it simply, `HEAD` is a reference to where you are currently, to the branch you are working on.
+
+`git reflog` prints the log of where `HEAD` was in previous steps. It logs switches between branches, commits, clones, etc. You can even recover changes that were lost due to the deletion of a branch.
+
+You can use `git cat-file -p` with the hash of the commit from the deleted branch, and follow the hashes of the tree, blob and file, and recover the contents of a deleted file.
+
+You can also `merge` a previous reference to the `HEAD`, e.g. `HEAD@{1}`
 
 ## Gitignore
 
