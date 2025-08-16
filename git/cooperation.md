@@ -57,3 +57,22 @@ After running into a merge conflict, you can run this command to tell Git, if it
 ```bash
 git checkout --theirs path/to/file
 ```
+
+#### Workflow of a typical merge conflict
+
+1. You have worked on a branch
+2. You want to merge two branches - let's say `branch-b` into `branch-a`
+3. If you get a conflict
+   - you can manually resolve the conflicting lines: current will be `branch-a` and incoming will be code on `branch-b`
+   - you can checkout `--ours` (`branch-a`) or `--theirs` on a file-by-bile basis
+4. After resolving you `add` and `commit` with a commit message and get a merge commit and history will contain commits from both branches
+
+#### Workflow of a typical rebase conflict
+
+1. You worked on `feature-branch`
+2. Changes happened on branch `main`, which you want to bring to `feature-branch`
+3. You rebase `feature-branch` onto `main`: git checks out code from `main` and starts to replay changes from `feature-branch`
+4. If git runs into a conflict, you can
+   - manually resolve the conflict: current will be `main` and incoming will be `feature-branch`
+   - or checkout `--ours` (code from `main`) or `--theirs` (code from `feature-branch`)
+5. After resolution you `add` and `git rebase --continue` with the rebase. History will contain all commits from main, but the new commits from `feature-branch` only if they actually contain some changes that you kept compared to the code on `main`
