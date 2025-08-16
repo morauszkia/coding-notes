@@ -19,24 +19,38 @@ A typical workflow:
 
 ### Conflicting Changes
 
-If changes are made to _different_ lines of the code, merging goes smoothly. Similarly, if a line of code is changed in one commit, and later again, in a different commit, no problem arises, because Git knows, which change came first, and which came later.
+If changes are made to _different_ lines of the code, [merging](./commands#merging) and [rebasing](./commands#rebase) goes smoothly. Similarly, if a line of code is changed in one commit, and later again, in a different commit, no problem arises, because Git knows, which change came first, and which came later.
 
-However, if changes are made to the _same line_ of code _in parallel_, things get more complicated. In such cases one commit isn't the parent of another, and merge conflicts arise if we try to `merge` ore `rebase`. In these cases git can't automatically decide what to keep and what to discard. In such cases, Git will prompt the user to _manually_ decide which change to keep.
+However, if changes are made to the _same line_ of code _in parallel_, things get more complicated. In such cases one commit isn't the parent of another, and merge or rebase conflicts arise if we try to `merge` ore `rebase`. In these cases git can't automatically decide what to keep and what to discard. In such cases, Git will prompt the user to decide which changes to keep.
+
+Git will mark the conflicting lines in the files to help you. Editors may help you further by highlight such lines, but these are in fact just lines of text.
+
+The section between `<<<<<<< HEAD` and `=======` is either the version on the current branch, while the section between `=======` and `>>>>>>> main` is the incoming version. You may decide, if you want to keep one or the other, or even to combine the two.
+
+#### Merge vs. rebase conflicts
+
+In the case of a **merge** conflict, _current change_ is the code on the branch onto which you are merging, and _incoming change_ is the code from the branch you are trying to merge.
+
+In the case of a **rebase** conflict, _current change_ is the code on the branch you are trying to rebase onto (typically _main_), and _incoming change_ is the code on the branch that you want to rebase (typically the _feture branch_).
 
 #### Resolving a conflict manually
 
-Git will mark the conflicting lines in the files. Editors may highlight such lines, but these are in fact just lines of text.
+In the case of a **merge conflict** you are on the branch onto which you wanted to merge changes. After resolving the conflicts, you need to `add` and `commit` the changes. This tells git, that you have resolved the conflict, and it can continue with the `merge`. At the end you get a merge commit.
 
-The section between `<<<<<<< HEAD` and `=======` is the version on the current branch, while the section between `=======` and `>>>>>>> main` is the incoming version. You may decide, if you want to keep one or the other, or even to combine the two.
+In the case of **rebase conflicts**, however, the `HEAD` will point to the branch that you wanted your current branch to `rebase` onto. This is because `rebase` checks out the _source_ branch, so it can replay the changes from the _feature_ branch onto it. If you run `git branch` you will see, that you are on `* (no branch, rebasing branch-name)`, you're in a special state called _detached HEAD_, until you resolve the conflict. After conflict resolution you have to `add` the changes to the staging area, but after this you have to `git rebase --continue`.
 
-After this, you need to `add` and `commit` the changes. This tells git, that you have resolved the conflict, and it can continue with the `merge`.
+::: info Discarded changes
+
+You will get no merge commits, and if you keep the current changes, the commits with the incoming code will be discarded and will be missing from the commit history. If you combine the two or keep changes from the incoming commit, both will be kept in the history.
+
+:::
 
 #### Letting Git resolve
 
 Git provides the `checkout` command, which can checkout individual changes during a merge conflict using the `--theirs` or `--ours` flags.
 
-- `--ours` will overwrite the file with the changes from the branch you are currently working on and merging into
-- `--theirs` will overwrite the file with the incoming changes from the branch you are merging into the current branch
+- `--ours` will overwrite the file with the changes from the branch you are currently working on and merging into in the case of `merge` and with the code on the branch you want to rebase onto in the case of `rebase`
+- `--theirs` will overwrite the file with the incoming changes from the branch you are merging into the current branch or which you want to rebase onto another branch.
 
 After running into a merge conflict, you can run this command to tell Git, if it has to keep the incoming or the current changes on a file-by-file basis.
 
