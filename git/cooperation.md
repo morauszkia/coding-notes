@@ -76,3 +76,19 @@ git checkout --theirs path/to/file
    - manually resolve the conflict: current will be `main` and incoming will be `feature-branch`
    - or checkout `--ours` (code from `main`) or `--theirs` (code from `feature-branch`)
 5. After resolution you `add` and `git rebase --continue` with the rebase. History will contain all commits from main, but the new commits from `feature-branch` only if they actually contain some changes that you kept compared to the code on `main`
+
+#### RERERE
+
+With a long-running feature branch, it happens, that with `rebase` you have to resolve the same conflict again and again. For these situations, Git has the `rerere` feature (_REuse REcorded REsolution_), which allows Git to remember how you've resolved a conflict, so the next time Git can resolve it automatically. This applies both to `rebase` and to `merge`.
+
+::: info Disabling/enabling RERERE
+Git will inform you of saving resolutions. This shows, that the rerere function is enabled. You will get a message like "Recorded preimage for 'path/to/file'" before resolving the conflict and "Recorded resolution for 'path/to/file' after `git rebase --continue`. At the next occasion, you might receive "Resolved 'customers/favs.md' using previous resolution." if Git resolved the conflict using a previously saved resolution.
+"
+You can disable and enable RERERE using the config option `rerere.enabled`
+
+```bash
+# true, if you want to enable it
+git config --local rerere.enabled false
+```
+
+:::
