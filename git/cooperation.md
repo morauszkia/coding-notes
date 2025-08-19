@@ -92,3 +92,7 @@ git config --local rerere.enabled false
 ```
 
 :::
+
+#### Accidental commits after rebase conflicts
+
+If you accidentally commit the resolution of a rebase conflict instead of simply `--continue`, you can undo the commit using `git reset --soft HEAD~1`. The `--soft` will keep the changes, and you can `git rebase --continue`.

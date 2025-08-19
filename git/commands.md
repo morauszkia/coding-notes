@@ -129,6 +129,12 @@ After merging a feature branch into main, we no longer need it, and we can delet
 git branch -d branch_name       # Deletes the branch
 ```
 
+Git won't allow us to simply delete a branch, that was not fully merged. In such a case we receive a warning. We can force delete the branch using the `-D` flag.
+
+```bash
+git branch -D branch_name       # Will force delete the branch
+```
+
 ### Rebase
 
 Rebasing a branch is another way to integrate changes from one branch into another. Rebasing does not create a merge commit, but can be used to bring the changes made on main into the feature branch, so we do not work with a stale branch.
