@@ -155,6 +155,24 @@ Rebasing does the following:
 - `merge` preserves the true history of the project, but it can create lots of merge conflicts, which make the history harder to read and understand.
 - `rebase` creates a linear history, which is easier to work with
 
+#### Squashing
+
+The `rebase` command can be used to alter commit history by _squashing_ commits: make a single commit out of multiple separate commits. This can be done using `rebase` because it can be used to replay changes onto a previous state.
+
+For this, you should start an interactive rebase specifying the number of commits you want to squash.
+
+```bash
+git rebase -i HEAD~5    # Will start an interactive rebase for the last 5 commits.
+```
+
+The command will open the default editor with the list of commits. You have to change the word `pick` to `squash` for all commits but the first one. After this you have to save and close the editor. You can edit the commit message in the next editor.
+
+::: warning Deleted history
+Squashing commits will delete the history of the individual commits. You cannot return to these checkpoints anymore. It will keep the changes in the code, but will squash them into a single commit.
+:::
+
+Squashing is most often used to squash all the commits of a feature branch before creating a [PR](#pull-requests) to comply with a single-commit-pull-request policy.
+
 ## Reset
 
 The `reset` command can be used to undo the last commit(s) or any changes in the index (staged but not committed) and worktree (unstaged and uncommitted).

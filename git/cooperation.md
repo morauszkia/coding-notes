@@ -17,6 +17,19 @@ A typical workflow:
 4. Create pull request to original repo's `main` from the feature branch of your forked repo
 5. The owner of the original repo reviews your changes, and decides if they want to merge your changes into their repository
 
+#### Single-commit-pull-requests
+
+Some teams have a single-commit-pull-request policy. In such a case you will have to [squash](./commands#squashing) your commits before creating a PR.
+
+The typical workflow would be:
+
+1. Create a feature branch off of `main`
+2. Write some code and commit it as necessary
+3. When you're ready, squash all commits into a single one
+4. Push changes to remote feature branch
+5. Open a PR into `main`
+6. Merge changes from feature branch into `main`
+
 ### Conflicting Changes
 
 If changes are made to _different_ lines of the code, [merging](./commands#merging) and [rebasing](./commands#rebase) goes smoothly. Similarly, if a line of code is changed in one commit, and later again, in a different commit, no problem arises, because Git knows, which change came first, and which came later.
