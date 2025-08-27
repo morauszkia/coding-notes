@@ -249,6 +249,37 @@ You can use `git cat-file -p` with the hash of the commit from the deleted branc
 
 You can also `merge` a previous reference to the `HEAD`, e.g. `HEAD@{1}`
 
+## Stashing
+
+If you have uncommitted changes that you want to keep, but are not in a stage so that they can be committed, you can _stash_ them: record the current state of your working directory and the staging area, and revert the working directory to match the `HEAD` commit.
+
+You can add a message to your stashes with `-m`. You will rarely need to do that, as typically stash is only used to pause the work for a short time, and return to it as soon as possible, so typically you have only a single stash. But, if you need to, you can.
+
+You can then
+
+- list your stashes
+- return to your most recent stash, apply it to the working directory and remove it from the list of stashes (effectively, to undo the most recent stash)
+- apply last stash without removing it from the stack
+- remove stash without applying
+- apply/remove a specific stash from the list
+
+```bash
+git stash
+git stash -m "stash with a message"
+git stash list  # Will list your stashes
+git stash pop   # Will apply most recent stash to working directory and remove from stach
+git stash apply # Will apply without removing from stack
+git stash drop  # Will remove without applying
+git stash apply stash@{2}
+git stash drop stash@{1}
+```
+
+The `git stash` command stores your changes in a [stack data structure](/dsa/stacks). A stash entry will contain all the changes (staged or unstaged) that were not yet committed, and your working directory and index will be reverted to the state of the last commit.
+
+::: info Conflicts with stash
+You can run into conflicts with stashing as well. In such cases you will have to resolve the conflict in the usual way, and then continue with the work.
+:::
+
 ## Gitignore
 
 There may be files or directories we do not want git to keep track of in our folder. This may be true for sensitive information, environment files containing private keys, folders containing modules or temporary files, etc. We can use the `.gitignore` file to tell git to ignore certain files or directories.
