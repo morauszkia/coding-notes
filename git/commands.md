@@ -79,6 +79,16 @@ Most of the time you will use the following commands to commit changes:
 2. You will `commit -m` them with a message.
 3. If you use a remote repository, you will `push` changes to the remote repo.
 
+### Diff
+
+You can view the differences between two states using `diff`. Used without further parameters, it shows the difference between the last commit and the working tree.
+
+```bash
+git diff
+git diff HEAD~1 # Difference between the previous commit and the current state, incl. last commit and uncommitted changes
+git diff hash1 hash2 # Difference between two commits.
+```
+
 ## Branches
 
 With git, you can use branches to experiment on the project without changing the entire project directly. The solution is to keep the `master` or `main` branch intact, and work on the feature on a new branch. If you are satisfied with the result, you can `merge` the branch with the main branch.
@@ -173,10 +183,12 @@ Squashing commits will delete the history of the individual commits. You cannot 
 
 Squashing is most often used to squash all the commits of a feature branch before creating a [PR](#pull-requests) to comply with a single-commit-pull-request policy.
 
-## Reset
+## Undo Changes
+
+### Reset
 
 The `reset` command can be used to undo the last commit(s) or any changes in the index (staged but not committed) and worktree (unstaged and uncommitted).
-The `--soft` flag is useful, if you just want to go back to previous commit, but keep the changes. Committed stages will be uncommitted and staged, the other changes will stay as they were before. A `--hard` reset will reset the changes.
+The `--soft` flag is useful, if you just want to go back to previous commit, but keep the changes. Committed stages will be uncommitted and staged, the other changes will stay as they were before. A `--hard` reset will reset and discard the changes.
 
 A hard reset can be dangerous, because all the undone changes are deleted from commit history, and cannot be restored.
 
@@ -184,6 +196,16 @@ A hard reset can be dangerous, because all the undone changes are deleted from c
 git reset --soft HASH         # Will undo last commits and return to the commit with specified HASH, but keep the changes in the files
 git reset --hard HASH         # Will undo changes and return to the state of the commit with specified HASH
 ```
+
+### Revert
+
+Revert is a softer approach to undoing changes. While `reset` removes the commit, `revert` creates a new commit that does the exact opposite of the commit being reverted. It keeps a full history of the change and its undoing.
+
+```bash
+git revert commit-hash
+```
+
+If you are working on a shared branch `git revert` is the safer option, because it does not rewrite history. Rewriting history might cause that coworkers have to resolve conflicts.
 
 ## Remote
 

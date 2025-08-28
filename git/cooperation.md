@@ -10,7 +10,7 @@ It is _not_ a git command or operation, but a feature offered by Git hosting ser
 If you want the owners of the original repository to incorporate your changes into their code, you create a _pull request_ (PR) from one of the branches of your copy of the repo to one of the branches of the original repo.
 
 ::: info PRs from feature branch to main
-PRs can be created not only between original repos and forked repos, but also within the same repository, between branches. 
+PRs can be created not only between original repos and forked repos, but also within the same repository, between branches.
 :::
 
 A typical workflow:
