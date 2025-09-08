@@ -113,3 +113,35 @@ git config --local rerere.enabled false
 #### Accidental commits after rebase conflicts
 
 If you accidentally commit the resolution of a rebase conflict instead of simply `--continue`, you can undo the commit using `git reset --soft HEAD~1`. The `--soft` will keep the changes, and you can `git rebase --continue`.
+
+### Cherry Pick
+
+The `git cherry-pick` command lets you choose, which commit from another branch you want to apply to your branch. It comes handy, if you do not want to apply all commits with a `merge` or a `rebase`. You need to specify the hash of the commit you want to apply to your branch.
+
+```bash
+git cherry-pick COMMITHASH
+```
+
+### Bisect
+
+If a bug or any change that negatively affects performance was introduced, we typically either want to revert the changes, or write a new commit that fixes the bug.
+
+The `git bisect` command lets us find the commit that introduced a specific change much faster and easier, with O(log n) complexity. It iteratively checks out a commit between a commit, that did not have the bug and a commit, where we're sure that the bug is already present. We can tell, if the bug is present in the commit that was checked out, until we find the commit that introduced the bug (or any change).
+
+```bash
+git bisect start
+git bisect good COMMITISH     # To specify a commit where the bug was not present
+git bisect bad  COMMITISH     # To specify a commit where the bug is already present
+git bisect good               # The bug is not present
+git bisect bad                # The bug is present
+git bisect reset              # Exit bisect mode
+```
+
+The process can be automated using a shell script, that exits with code `0` for good code and any other exit code between `1` and `127` (inclusive), except `125`, if the code is bad.
+
+```bash
+git bisect start
+git bisect good COMMITISH
+git bisect bad COMMITISH
+git bisect run my_script arguments   # will run script with specified arguments
+```

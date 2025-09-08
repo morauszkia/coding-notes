@@ -202,7 +202,7 @@ git reset --hard HASH         # Will undo changes and return to the state of the
 Revert is a softer approach to undoing changes. While `reset` removes the commit, `revert` creates a new commit that does the exact opposite of the commit being reverted. It keeps a full history of the change and its undoing.
 
 ```bash
-git revert commit-hash
+git revert COMMITHASH
 ```
 
 If you are working on a shared branch `git revert` is the safer option, because it does not rewrite history. Rewriting history might cause that coworkers have to resolve conflicts.
