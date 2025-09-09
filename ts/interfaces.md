@@ -1,4 +1,7 @@
 ---
+prev:
+  text: "Objects"
+  link: "./objects"
 next:
   text: "Sets and Maps"
   link: "./sets-maps"
