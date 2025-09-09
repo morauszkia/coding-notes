@@ -43,6 +43,10 @@ Git is the most popular DVCS. It is open source and free and enjoys cross-platfo
 
 You can learn more about git [on their website](https://git-scm.com/).
 
+You can check if you have git installed with `git --version`
+
+You can read the manual for git with `man git`
+
 ### Git vs. GitHub, GitLab, Bitbucket
 
 Git is a _command line tool_, that helps you keep track of the changes made in your project. It manages the _local repository_ on your computer. It stores the snapshots of the project and keeps a full history.

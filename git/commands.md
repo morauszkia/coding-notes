@@ -6,7 +6,7 @@ prev:
 
 # Git Basics
 
-Git can be installed on Linux, Windows or MacOs. On Linux, the defaul package manager can be used. On MacOs Homebrew is the preferred way to install git. On Windows, you can download the installer from the Git website.
+Git can be installed on Linux, Windows or MacOs. On Linux, the default package manager can be used. On MacOs Homebrew is the preferred way to install git. On Windows, you can download the installer from the Git website.
 
 E.g. on Ubuntu you can type:
 
@@ -15,7 +15,7 @@ sudo apt update
 sudo apt install git
 ```
 
-Git is a command line tool. You can check if the installation was succesful by typing `git --version` in the terminal.
+Git is a command line tool. You can check if the installation was successful by typing `git --version` in the terminal.
 
 ## Git Configuration
 
@@ -69,6 +69,8 @@ git log --graph                   # Will show a graphlike (ASCII art) output con
 git log --all                     # Will log all branches, not only current
 git log --parents                 # Will add hashes of parent commits
 git log --oneline --graph --all   # Will log graph for all branches in a compact form
+git log --no-pager                # Log commits without the interactive pager
+git log -n 10                     # Limit the number of commits shown
 ```
 
 ### Commit Lifecycle
@@ -79,6 +81,17 @@ Most of the time you will use the following commands to commit changes:
 2. You will `commit -m` them with a message.
 3. If you use a remote repository, you will `push` changes to the remote repo.
 
+You can check the status of your repo with `git status`.
+
+Before working on a shared repo, you might want to `git fetch` or `git pull` changes from a remote repo.
+
+::: tip Commit messages
+
+You will want to make your commit messages informative. It is a good practice to start your message with the type of the change you are committing. Typical choices are `feat` or `feature` (for adding some new functionality), `docs` (update to the documentation), `fix` or `bug` (if you fixed some bug), `chore` (for other changes that don't modify source code), `test`, `refactor`, `revert`, `style` etc.
+
+You can also add a description to your commit message to provide even more information.
+:::
+
 ### Diff
 
 You can view the differences between two states using `diff`. Used without further parameters, it shows the difference between the last commit and the working tree.
@@ -88,6 +101,18 @@ git diff
 git diff HEAD~1 # Difference between the previous commit and the current state, incl. last commit and uncommitted changes
 git diff hash1 hash2 # Difference between two commits.
 ```
+
+### Some Plumbing commands
+
+Git stores its files in a hidden `.git` directory. These include the commits, branches, etc.
+
+Git allows us to see a content of a commit with `cat-file`. You can use this command to go all the way down from a `tree` (a directory) to a `blob` (a file), and check its contents.
+
+```bash
+git cat-file -p HASH
+```
+
+Git stores entire snapshots of files on a per-commit level, however, it also deduplicates, so if a file hasn't changed, it will reference the same file (same hash) in all the commits.
 
 ## Branches
 
