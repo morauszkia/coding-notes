@@ -3,13 +3,19 @@ prev:
   text: "Arrays and Tuples"
   link: "./arrays"
 next:
-  text: "Sets and Maps"
-  link: "./sets-maps"
+  text: "Interfaces"
+  link: "./interfaces"
 ---
 
 # Objects
 
 TypeScript even allows you to specify the structure of an object. This way you can get better autocompletion or warning squiggly lines in your editor if you, for instance, mistype a property name or forget to add a property.
+
+::: info Types and Interfaces
+
+This page deals with the `type` way to describe objects. To learn about `interfaces` follow [this link](./interfaces)
+
+:::
 
 Objects can hold values of any type: even other objects, that can be typed themselves.
 
@@ -249,3 +255,54 @@ const colorsSatisfies = {
 // We keep the literal types!
 type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000"
 ```
+
+## Intersection Types
+
+We can use the `&` operator to create an intersection type, which will have all the properties of both original objects.
+
+```typescript
+type Point2D = {
+  x: number;
+  y: number;
+};
+
+type Point3D = Point2D & {
+  z: number;
+};
+```
+
+::: info Narrowing
+Intersection types also narrow down, if we use them with [union types](./unions).
+
+```typescript
+
+```
+
+:::
+
+### Incompatible types
+
+If we take the intersection of incompatible types, the type of the intersection will be inferred as [never](./basics#the-never-type). This can easily happen if we use [literal types](./unions#literal-types) or if we use the same property name in two object types, but we type it differently with incompatible types (e.g. `string` and `number` for `id`)
+
+```typescript
+type SupportAgent = {
+  id: number;
+  role: "agent";
+  assignedTickets: number;
+};
+
+type EndUser = {
+  id: number;
+  role: "customer";
+  submittedTickets: number;
+};
+
+type UserAgent = SupportAgent & EndUser;
+```
+
+### Intersections and unions
+
+Intersections and [unions](./unions) both combine multiple types.
+
+- We use intersections to tell TypeScript, that something is _both_ type one _AND_ type two. Intersections **narrow** the resulting type, so fewer possible values will satisfy these.
+- Unions are used to tell TypeScript, that in that place _either_ type one _OR_ type two is acceptable. Unions **widen** the resulting type, so more possible values will satisfy these.

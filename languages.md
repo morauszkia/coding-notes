@@ -36,6 +36,11 @@ features:
     details: An open-source, statically typed, compiled programming language aimed at simplicity, efficiency, and reliability
     link: "go"
   - icon:
+      src: "/assets/icons/Csharp.svg"
+    title: C#
+    details: A statically-typed object-oriented general purpose language used for web development, applications for any platform, games and other purposes
+    link: "csharp"
+  - icon:
       src: "/assets/icons/R.svg"
     title: R
     details: A programming language and environment specifically designed for statistical computing, data analysis, and graphical representation of data (COMING SOON)

@@ -208,3 +208,56 @@ const primeFactors = (num) => {
 ```
 
 :::
+
+### Subset Sum Problem
+
+The main question is: "Can we pick numbers from a list to add up to a target number?" It is an NP-hard problem.
+
+Pseudocode for `find_subset(nums, target)` function
+
+- Inputs:
+
+  - `nums`: a list of integers
+  - `target`: the target sum we want to find a subset for
+
+- Output: a boolean value that tells us if it is possible to find such a subset
+
+- Steps:
+  1. Call helper function starting with the last index in `nums` and return its result
+
+Pseudocode for `find_subset_sum(nums, target, index)` function
+
+- Inputs:
+
+  - `nums`: a list of integers
+  - `target`: the target sum we want to find a subset for
+  - `index`: index of current element
+
+- Output: a boolean value that tells us if it is possible to find such a subset
+
+- Steps:
+  1. If `target == 0` return `true`
+  2. If `index < 0` and `target != 0` return `false`
+  3. If the number at current `index` is greater than `target`, call itself with same target but index decremented by 1 and return result
+  4. Else call itself with same `target` and index decremented by 1, and save the result
+  5. Call itself with the `target` reduced by the value of current element and `index` decremented by 1.
+  6. If either of these calls returns `true`, retur `true`, otherwise return `false`
+
+Implementation in Python
+
+```python
+def subset_sum(nums, target):
+    return find_subset_sum(nums, target, len(nums)-1)
+
+
+def find_subset_sum(nums, target, index):
+    if target == 0:
+        return True
+    if index < 0 and target != 0:
+        return False
+    if nums[index] > target:
+        return find_subset_sum(nums, target, index-1)
+    result_one = find_subset_sum(nums, target, index-1)
+    result_two = find_subset_sum(nums, target-nums[index], index-1)
+    return result_one or result_two
+```
