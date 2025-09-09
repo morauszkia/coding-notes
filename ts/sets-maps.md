@@ -2,6 +2,9 @@
 prev:
   text: "Objects"
   link: "./objects"
+next:
+  text: "Enums"
+  link: "./enums"
 ---
 
 # Additional Data Structures
