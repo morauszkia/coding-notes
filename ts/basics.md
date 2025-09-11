@@ -111,7 +111,9 @@ variableNum = "Peter"; // Error: must be number
 
 ### The `unknown` type
 
-Sometimes we want to tell TypeScript, that a type of variable is unknown by us, for example, because it comes from user input. TypeScript offers the `unknown` type for this. In code, the type of an `unknown` type variable can be narrowed down using [type guards](./functions#type-guards).
+Sometimes we want to tell TypeScript, that a type of variable is unknown by us, for example, because it comes from user input. TypeScript offers the `unknown` type for this. In code, the type of an `unknown` type variable can (and should, if we want to use it) be narrowed down using [type guards](./functions#type-guards).
+
+While the `any` type can be used to opt out of type checking features, the `unknown` is simply as its name suggests, telling TypeScript that we don't know what type the value will be. If we want to run any method or pass it to a function, we are forced to use type guards and type narrowing.
 
 ### The `never` type
 
