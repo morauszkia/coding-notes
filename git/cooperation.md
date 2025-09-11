@@ -1,3 +1,9 @@
+---
+prev:
+  text: "Working with Git"
+  link: "./parallel-work"
+---
+
 # Cooperation with git
 
 ## Fork
@@ -23,7 +29,7 @@ A typical workflow:
 
 #### Single-commit-pull-requests
 
-Some teams have a single-commit-pull-request policy. In such a case you will have to [squash](./commands#squashing) your commits before creating a PR.
+Some teams have a single-commit-pull-request policy. In such a case you will have to [squash](./parallel-work#squashing) your commits before creating a PR.
 
 The typical workflow would be:
 
@@ -36,7 +42,7 @@ The typical workflow would be:
 
 ### Conflicting Changes
 
-If changes are made to _different_ lines of the code, [merging](./commands#merging) and [rebasing](./commands#rebase) goes smoothly. Similarly, if a line of code is changed in one commit, and later again, in a different commit, no problem arises, because Git knows, which change came first, and which came later.
+If changes are made to _different_ lines of the code, [merging](./parallel-work#merging) and [rebasing](./parallel-work#rebase) goes smoothly. Similarly, if a line of code is changed in one commit, and later again, in a different commit, no problem arises, because Git knows, which change came first, and which came later.
 
 However, if changes are made to the _same line_ of code _in parallel_, things get more complicated. In such cases one commit isn't the parent of another, and merge or rebase conflicts arise if we try to `merge` ore `rebase`. In these cases git can't automatically decide what to keep and what to discard. In such cases, Git will prompt the user to decide which changes to keep.
 
@@ -144,35 +150,4 @@ git bisect start
 git bisect good COMMITISH
 git bisect bad COMMITISH
 git bisect run my_script arguments   # will run script with specified arguments
-```
-
-## Worktrees
-
-You can have more than one worktree. Worktrees accomplish similar goals as branches, clones and stashes: they allow you to work on different changes without losing work.
-
-They are especially useful if
-
-- you want to switch back and forth between versions without having to run many git commands (as with stash or branch)
-- you want to keep a light footprint (vs clone) on your machine that's still connected to the main repo
-
-The _main worktree_ contains the `.git` directory with the entire state of the repo, and is heavy. Main trees are created using `git init` or `git clone`-ing a repo.
-
-### Linked worktree
-
-A _linked worktree_ contains a `.git` file with a path to the main working tree, and is as light as a branch, because it contains no data, but can be complicated to work with if you use env files and secrets.
-
-```bash
-git worktree list       # List your working trees
-git worktree add PATH   # Create working tree with PATH name, optionally you can specify BRANCH name or use the PATH name for that
-git worktree add PATH BRANCHNAME
-```
-
-Linked worktrees behave like a normal git repo. You can create branches, switch between them, delete them, etc. But, you _cannot_ work on a branch that is currently checked out by any other working tree.
-
-Changes in a linked worktree are automatically reflected in the main worktree. The linked worktree is not a separate repository, just a different view of the same repository.
-
-If you no longer need a worktree, you can `remove` it or delete the directory manually and `prune` the worktrees.
-
-```bash
-git worktree remove NAME
 ```

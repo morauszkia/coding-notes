@@ -3,8 +3,8 @@ prev:
   text: "Coding Concepts"
   link: "/concepts"
 next:
-  text: "Git Commands"
-  link: ./commands
+  text: "Git Basics"
+  link: ./basics
 ---
 
 # Introduction to Version Control and Git
