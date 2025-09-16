@@ -2,6 +2,9 @@
 prev:
   text: "Sets and Maps"
   link: "./sets-maps"
+next:
+  text: "Type Narrowing"
+  link: "./type-narrowing"
 ---
 
 # Enums
