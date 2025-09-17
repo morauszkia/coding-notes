@@ -256,3 +256,21 @@ If you no longer need a worktree, you can `remove` it or delete the directory ma
 ```bash
 git worktree remove NAME
 ```
+
+## Tags
+
+A tag is a name linked to a commit. Unlike a branch, a tag doesn't move between commits. Tags can be created and deleted, but not be modified. Tags are often used to denote releases. In such cases, tags follow the [semver](https://semver.org/) convention.
+
+Tags are `commitish`, so you can use tags basically anywhere, you would use a commit hash.
+
+Commits can have multiple tags.
+
+Tags can be pushed to a remote repository using the `--tags` flag
+
+```bash
+git tag # Lists all tags
+git tag -a "name" -m "message" # Creates a tag with name and message
+git tag -a v1.0.0 -m "New major version v1.0.0"
+git tag -a v2.5.12 -m "Minor bug fixes"
+git push origin --tags
+```
