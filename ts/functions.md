@@ -32,6 +32,10 @@ const describePerson = (name: string, age: number): string =>
 
 TypeScripts is good at inferring the type of the returned value as well, so the return type annotation can be left out from the function declarations.
 
+::: warning Errors and function signature
+Potentially throwing an error does not show in the functions' signature. If a function always throws an error, and does not reach the end, the return type is `never`. However, if the function potentially has a returned value, its type is the return type of the function. You _must_ know, if a function can throw, and handle it in your code. The signature does not tell you that.
+:::
+
 ### The `void` type
 
 `void` is a special type that represents the return type of a function that does not return anything. In JavaScript such a function returns `undefined` by default. TypeScript uses `void` to indicate the intent more clearly, that indeed, nothing is supposed to be returned by the function.

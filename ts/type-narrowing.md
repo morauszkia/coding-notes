@@ -39,6 +39,10 @@ export function openTicket(customer: Customer): number {
 }
 ```
 
+::: info Guard clauses
+Guard clauses (or _early returns_ in other words) are great to quickly narrow down types of values coming from I/O and external APIs.
+:::
+
 TypeScript is even smart enough to narrow down types based on the equality of values. In the example below, TypeScript figures out, that if `x === y`, then `x` and `y` must be of type `string`, because that's the only common type.
 
 ```typescript
