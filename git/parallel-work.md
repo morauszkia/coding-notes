@@ -233,6 +233,12 @@ You can have more than one worktree. Worktrees accomplish similar goals as branc
 They are especially useful if
 
 - you want to switch back and forth between versions without having to run many git commands (as with stash or branch)
+  - working on multiple features at the same time
+  - checking out PRs
+  - want to run comparisons between branches
+  - collaborate on projects where you frequently check others' work
+  - experiment without impacting the main branch
+  - want to avoid anticipated conflicts between branches
 - you want to keep a light footprint (vs clone) on your machine that's still connected to the main repo
 
 The _main worktree_ contains the `.git` directory with the entire state of the repo, and is heavy. Main trees are created using `git init` or `git clone`-ing a repo.
