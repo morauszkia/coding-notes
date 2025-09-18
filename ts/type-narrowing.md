@@ -2,6 +2,9 @@
 prev:
   text: "Enums"
   link: "./enums"
+next:
+  text: "Type Assertion"
+  link: "./type-assertion"
 ---
 
 # Type Narrowing

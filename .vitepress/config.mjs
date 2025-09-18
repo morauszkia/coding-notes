@@ -81,6 +81,8 @@ export default defineConfig({
             { text: "Interfaces", link: "/ts/interfaces" },
             { text: "Sets & Maps", link: "/ts/sets-maps" },
             { text: "Enums", link: "/ts/enums" },
+            { text: "Type Narrowing", link: "/ts/type-narrowing" },
+            { text: "Type Assertion", link: "/ts/type-assertion" },
           ],
         },
         mainNav,

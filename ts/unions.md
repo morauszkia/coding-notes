@@ -81,4 +81,3 @@ While it might be easy, and therefore, perhaps, tempting to create template lite
 ::: tip Tip: Use a `string` instead
 
 :::
-
