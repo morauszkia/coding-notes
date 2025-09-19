@@ -2,6 +2,9 @@
 prev:
   text: "Type Narrowing"
   link: "./type-narrowing"
+next:
+  text: "Classes"
+  link: "./classes"
 ---
 
 # Type Assertions

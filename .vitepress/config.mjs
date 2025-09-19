@@ -83,6 +83,7 @@ export default defineConfig({
             { text: "Enums", link: "/ts/enums" },
             { text: "Type Narrowing", link: "/ts/type-narrowing" },
             { text: "Type Assertion", link: "/ts/type-assertion" },
+            { text: "Classes", link: "/ts/classes" },
           ],
         },
         mainNav,
