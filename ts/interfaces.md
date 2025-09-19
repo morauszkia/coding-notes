@@ -33,6 +33,53 @@ interface IPokemon {
 }
 ```
 
+Methods can be declared using two, slightly differing syntaxes:
+
+```typescript
+interface Pokemon {
+  name: string;
+  types: PokemonType[];
+  health: number;
+  attack(opponent: Pokemon): void;
+}
+
+interface Digimon {
+  name: string;
+  types: DigimonType[];
+  health: number;
+  attack: (opponent: Digimon) => void;
+}
+```
+
+::: info Function interfaces
+As functions are objects, these can also be typed using interfaces:
+
+```typescript
+interface MathFn {
+  (a: number, b: number): number;
+}
+```
+
+:::
+
+::: info Optional and readonly properties, dynamic property names
+You can have optional and readonly properties also if you declare the type of an object using interfaces. You can have [dynamic property names](./objects#dynamic-property-names), too.
+
+```typescript
+interface Spaceship {
+  readonly id: string;
+  name: string;
+  speed: number;
+  weapons?: number;
+}
+
+interface Query {
+  [param: string]: string | string[];
+}
+```
+
+:::
+
 ## Extending Interfaces
 
 Compared to using `type`, interfaces are better when it comes to extending: inheriting properties.
@@ -114,5 +161,13 @@ interface Wizard extends Character {
 ::: warning Declaration merging
 
 However, with interfaces you need to be aware, that if you declare multiple interfaces with the same name, they will be merged into a single interface with all of the properties. With `type` declarations, you get an error, if you try to reuse a name.
+
+However, this can be used to merge additional properties to imported interfaces.
+
+:::
+
+::: info Implementation
+
+Interfaces can also be [implemented by classes](./classes#interface-implementation).
 
 :::

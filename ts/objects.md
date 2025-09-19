@@ -85,6 +85,15 @@ function attack(ship: Spaceship, target: Spaceship) {
 }
 ```
 
+::: info Optional chaining
+You can also use JavaScript's _optional chaining_ if you ar unsure, if a property is present on an object. This way the program won't crash, if a property isn't present on an object, but the value will become `undefined`.
+
+```typescript
+console.log(fetchedUser?.job?.title);
+```
+
+:::
+
 ## Dynamic property names
 
 If we don't know, what exact properties the objects will have, but know the type of these properties, we can use the _dynamic property syntax_ offered by TypeScript.
@@ -275,7 +284,10 @@ type Point3D = Point2D & {
 Intersection types also narrow down, if we use them with [union types](./unions).
 
 ```typescript
-
+type Hero = Warrior | Wizard | Sorcerer | Bard;
+type Magician = Wizard | Sorcerer | Witch | Necromancer;
+type MagicianHero = Hero & Magician;
+// Wizard | Sorcerer
 ```
 
 :::

@@ -33,7 +33,7 @@ const directionName: string = Direction[directionValue];
 
 :::
 
-The values can also be explicitly set. It is also possible, to set the initial value, and let TypeScript increment the value for the rest.
+The values can also be explicitly set. It is also possible, to set the initial value, or some values, and let TypeScript increment the value for the rest starting from the set values.
 
 ```typescript
 enum StatusCode {

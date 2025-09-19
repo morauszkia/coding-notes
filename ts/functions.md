@@ -60,7 +60,7 @@ let greetFunction: (name: string, greeting: string) => string;
 
 ## Type guards
 
-If a function receives an argument that can be of [different types](./unions), a type guard can be used to narrow down, what type the value that was passed in actually has, and perform operations based on this. The compiler is really smart, and used with an IDE can show warnings if we try to perform an invalid operation.
+If a function receives an argument that can be of [different types](./unions), a type guard can be used to [narrow down](./type-narrowing), what type the value that was passed in actually has, and perform operations based on this. The compiler is really smart, and used with an IDE can show warnings if we try to perform an invalid operation.
 
 ```typescript
 function safeSquare(val: string | number): number {
@@ -71,6 +71,10 @@ function safeSquare(val: string | number): number {
   return val * val;
 }
 ```
+
+Checking the types of objects happens using the `in` keyword to check if a necessary property is present on the object passed in. For more information, check the [page on type narrowing](./type-narrowing#using-in).
+
+You can use the `instanceof` keyword to check for the type of an instance of a [class](./classes).
 
 ## Optional parameters
 
