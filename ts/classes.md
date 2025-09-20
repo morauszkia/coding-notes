@@ -18,12 +18,11 @@ In TypeScript classes work pretty much the same as in JavaScript, except for a f
 class Person {
   name: string;
   age: number;
-  friends?: Person[];
+  friends?: Person[] = [];
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-    this.friends = [];
   }
 
   addFriend(friend: Person): void {
@@ -38,10 +37,11 @@ class Person {
 
 ```javascript
 class Person {
+  friends = [];
+
   constructor(name, age) {
     this.name = name;
     this.age = age;
-    this.friends = [];
   }
 
   addFriend(friend) {
@@ -53,6 +53,8 @@ class Person {
 ```
 
 :::
+
+If the values of the fields don't depend on the initialization, you can set them right at the top with their type declaration (see `friends` in the example above).
 
 ## Optional Properties
 
@@ -72,7 +74,11 @@ class Person {
 }
 ```
 
-## Private Class Members
+## Access Modifiers
+
+Classes can have `private`, `protected` properties that can only be access from inside the class itself or inside the class and its subclasses. Classes can, similarly to types and interfaces have `readonly` properties that cannot be changed after initial declaration in the constructor (in such case they should be `public`) or at the top of the class. Classes can also be `abstract` that cannot be instantiated, and only provide templates for the implementation of certain methods in subclasses.
+
+### Private Class Members
 
 You can use JavaScript's `#` to indicate that a class member is private (only accessible from within the class). If you try to access such a member from outside, JavaScript will crash at runtime, but TypeScript will warn you at _compile time_.
 
@@ -107,6 +113,8 @@ The option to create private properties was added in TypeScript before JavaScrip
 ::: tip Use the JavaScript syntax
 While you may find the older syntax in TypeScript code, and it works, it is recommended to use the `#property` syntax because it's the native JavaScript way to do it. The older syntax can be used if you want to target older versions of JavaScript, that don't have the `#` syntax.
 :::
+
+### Protected properties
 
 The `protected` keyword, however is unique in that it allows access not only inside the class but also inside its _subclasses_. There is no native JavaScript equivalent.
 
@@ -148,7 +156,49 @@ console.log(fighter.health);
 fighter.takeDamage(10);
 ```
 
-## Abstract Classes
+### Readonly properties
+
+You can declare a property to be `readonly`. These cannot be changed after initial declaration.
+
+```typescript
+type Point = {
+  readonly x: number;
+  readonly y: number;
+};
+```
+
+If you then try to change such a property, the compiler will warn you.
+
+```typescript
+function moveX(p: Point, offset: number): Point {
+  p.x += offset; [!code error]
+  return p;
+}
+```
+
+### Parameter properties
+
+TypeScript has a shorter syntax to declare and initialize class properties directly in the _constructor parameters_. In such a case, you have to add the access modifiers including the `public` modifiers to every property.
+
+The body of the constructor is left empty, and TypeScript will automatically declare properties with the same name and type, and assign the parameter values to the properties.
+
+::: info No `#` here
+In the constructor you cannot use the `#` to declare a private property. You need to use TypeScript's own `private` keyword. If you want to use `#`, you have to declare these the usual way.
+:::
+
+```typescript{4}
+class Department {
+  #employees: string[] = [];
+
+  constructor(private readonly id: string, public name: string) {}
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+}
+```
+
+### Abstract classes and members
 
 Abstract classes are classes that cannot be instantiated directly, but templates for inheritance. We can force subclasses to implement specific methods and have specific properties.
 Both the class and the method is marked with the `abstract` keyword.
@@ -234,3 +284,42 @@ class Wizard implements Hero, Magician {
   }
 }
 ```
+
+## The `this` parameter
+
+TypeScript is typically good at inferring the type of `this` correctly. However, you can add the `this` parameter to your methods. This way we can indicate, that a method can be called on an object of the specified Class. This can be useful, because methods can be copied to other objects that are not instances of the same class. TypeScript will warn us, if we do so.
+
+```typescript{8-10}
+class Department {
+  name: string;
+  private employees: string[] = [];
+
+  constructor(n: string) {
+    this.name = n;
+  }
+
+  describe(this: Department) {
+    console.log(`Department: ${this.name}`)
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee)
+  }
+}
+```
+
+## Classes vs. Interfaces vs. Types
+
+Classes have the advantage that they
+
+- may have `private`, `protected`, `static` or `abstract` members
+- have a constructor
+- have predefined method implementations on all instances
+- support inheritance
+
+But interfaces and types
+
+- have no runtime overhead
+- are simpler to work with if you don't need the extra features
+- are more flexible, especially with plain objects
+- interfaces can be extended and merged in many ways
