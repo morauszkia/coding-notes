@@ -84,6 +84,7 @@ export default defineConfig({
             { text: "Type Narrowing", link: "/ts/type-narrowing" },
             { text: "Type Assertion", link: "/ts/type-assertion" },
             { text: "Classes", link: "/ts/classes" },
+            { text: "Utility Types", link: "/ts/utility-types" },
           ],
         },
         mainNav,

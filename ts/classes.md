@@ -2,6 +2,9 @@
 prev:
   text: "Type Assertion"
   link: "./type-assertion"
+next:
+  text: "Utility Types"
+  link: "./utility-types"
 ---
 
 # Classes
