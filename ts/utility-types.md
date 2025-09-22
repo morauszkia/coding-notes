@@ -64,3 +64,84 @@ function importConfig(config: Config): Readonly<Config> {
   return config;
 }
 ```
+
+## `Record`
+
+You can easily create the shape of an object with the `Record<K, T>` utility type, which defines a type of an object with keys of type `K` and values of type `T`.
+
+```typescript
+type StringKeyDictionary = Record<string, number>;
+
+const mountainHeights: StringKeyDictionary = {
+  "Mount Everest": 8848,
+  "Mount Blanc": 4806,
+  Kilimanjaro: 5895,
+};
+```
+
+Records can be used to ensure that are values of a union are present as keys in an object.
+
+```typescript
+type Status = "pending" | "success" | "failure";
+
+const statusMessageMap: Record<Status, string> = {
+  pending: "Your data are being processed.",
+  success: "Data successfully sent.",
+  failure: "Something went wrong.",
+};
+
+type HttpStatusCode = 200 | 201 | 400 | 401 | 403 | 404 | 500;
+
+const statusMessages: Record<HttpStatusCode, string> = {
+  200: "OK",
+  201: "Created",
+  400: "Bad Request",
+  401: "Unauthorized",
+  403: "Forbidden",
+  404: "Not Found",
+  500: "Internal Server Error",
+};
+```
+
+## `Pick`
+
+If you don't need all keys from an object in a function, you can quickly create a type holding only a certain set of properties using `Pick<T, K>`.
+
+```typescript
+interface BlogPost {
+  id: string;
+  title: string;
+  author: User;
+  createdAt: Date;
+  summary: string;
+  text: string;
+  comments: {
+    commentId: string;
+    text: string;
+    author: User;
+  };
+  likes: number;
+}
+
+type BlogPostDescription = Pick<
+  BlogPost,
+  "id" | "title" | "author" | "summary"
+>;
+```
+
+## `Omit`
+
+You can do it the opposite way with `Omit<T, K>`, which leaves out the keys specified by `K`. This can be used for example to remove sensitive information from an object.
+
+```typescript
+interface DatabaseUser {
+  id: string;
+  username: string;
+  email: string;
+  passwordHash: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type PublicUser = Omit<DatabaseUser, "passwordHash" | "updatedAt">;
+```
