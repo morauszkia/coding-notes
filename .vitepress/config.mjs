@@ -27,6 +27,12 @@ const mainNav = {
   ],
 };
 
+const tsPath = "/ts";
+const jsPath = "/js";
+const pythonPath = "/python";
+const goPath = "/go";
+const dsaPath = "/dsa";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/coding-notes/",
@@ -44,78 +50,85 @@ export default defineConfig({
     ],
 
     sidebar: {
-      "/python/": [
+      [pythonPath]: [
         {
           text: "Python",
           items: [
-            { text: "Intro to Python", link: "/python/" },
-            { text: "Python Basics", link: "/python/basics" },
-            { text: "Conditional Statements", link: "/python/conditionals" },
-            { text: "Loops", link: "/python/loops" },
-            { text: "Functions", link: "/python/functions" },
+            { text: "Intro to Python", link: `${pythonPath}/` },
+            { text: "Python Basics", link: `${pythonPath}/basics` },
+            {
+              text: "Conditional Statements",
+              link: `${pythonPath}/conditionals`,
+            },
+            { text: "Loops", link: `${pythonPath}/loops` },
+            { text: "Functions", link: `${pythonPath}/functions` },
           ],
         },
         mainNav,
       ],
-      "/js/": [
+      [jsPath]: [
         {
           text: "JavaScript",
           items: [
-            { text: "Intro to JavaScript", link: "/js/" },
-            { text: "JavaScript Basics", link: "/js/basics" },
-            { text: "Conditional Logic", link: "/js/conditionals" },
+            { text: "Intro to JavaScript", link: `${jsPath}/` },
+            { text: "JavaScript Basics", link: `${jsPath}/basics` },
+            { text: "Conditional Logic", link: `${jsPath}/conditionals` },
           ],
         },
         mainNav,
       ],
-      "/ts/": [
+      [tsPath]: [
         {
           text: "TypeScript",
           items: [
-            { text: "Intro to TypeScript", link: "/ts/" },
-            { text: "TypeScript Basics", link: "/ts/basics" },
-            { text: "Functions", link: "/ts/functions" },
-            { text: "Unions", link: "/ts/unions" },
-            { text: "Arrays and Tuples", link: "/ts/arrays" },
-            { text: "Objects", link: "/ts/objects" },
-            { text: "Interfaces", link: "/ts/interfaces" },
-            { text: "Sets & Maps", link: "/ts/sets-maps" },
-            { text: "Enums", link: "/ts/enums" },
-            { text: "Type Narrowing", link: "/ts/type-narrowing" },
-            { text: "Type Assertion", link: "/ts/type-assertion" },
-            { text: "Classes", link: "/ts/classes" },
-            { text: "Utility Types", link: "/ts/utility-types" },
+            { text: "Intro to TypeScript", link: `${tsPath}/` },
+            { text: "TypeScript Basics", link: `${tsPath}/basics` },
+            { text: "Functions", link: `${tsPath}/functions` },
+            { text: "Unions", link: `${tsPath}/unions` },
+            { text: "Arrays and Tuples", link: `${tsPath}/arrays` },
+            { text: "Objects", link: `${tsPath}/objects` },
+            { text: "Interfaces", link: `${tsPath}/interfaces` },
+            { text: "Sets & Maps", link: `${tsPath}/sets-maps` },
+            { text: "Enums", link: `${tsPath}/enums` },
+            { text: "Type Narrowing", link: `${tsPath}/type-narrowing` },
+            { text: "Type Assertion", link: `${tsPath}/type-assertion` },
+            { text: "Classes", link: `${tsPath}/classes` },
+            { text: "Utility Types", link: `${tsPath}/utility-types` },
+            { text: "Generics", link: `${tsPath}/generics` },
           ],
         },
         mainNav,
       ],
-      "/go/": [
+      [goPath]: [
         {
           text: "Go",
           items: [
-            { text: "Intro to Go", link: "/go/" },
-            { text: "Variables", link: "/go/variables" },
-            { text: "Program flow", link: "/go/program-flow" },
-            { text: "Functions", link: "/go/functions" },
-            { text: "Structs", link: "/go/structs" },
+            { text: "Intro to Go", link: `${goPath}/` },
+            { text: "Variables", link: `${goPath}/variables` },
+            { text: "Program flow", link: `${goPath}/program-flow` },
+            { text: "Functions", link: `${goPath}/functions` },
+            { text: "Structs", link: `${goPath}/structs` },
           ],
         },
         mainNav,
       ],
-      "/dsa/": [
+      [dsaPath]: [
         {
           text: "Data Structures and Algorithms",
           items: [
-            { text: "Intro to Data Structures and Algorithms", link: "/dsa/" },
-            { text: "Time Complexity", link: "/dsa/time-complexity" },
-            { text: "Algorithms", link: "/dsa/algorithms" },
-            { text: "Nondeterministic Polynomial Time", link: "/dsa/np" },
+            {
+              text: "Intro to Data Structures and Algorithms",
+              link: `${dsaPath}/`,
+            },
+            { text: "Time Complexity", link: `${dsaPath}/time-complexity` },
+            { text: "Algorithms", link: `${dsaPath}/algorithms` },
+            { text: "Nondeterministic Polynomial Time", link: `${dsaPath}/np` },
             {
               text: "Data Structures",
               items: [
-                { text: "Intro", link: "/dsa/data-structures" },
-                { text: "Stacks", link: "/dsa/stacks" },
-                { text: "Queues", link: "/dsa/queues" },
+                { text: "Intro", link: `${dsaPath}/data-structures` },
+                { text: "Stacks", link: `${dsaPath}/stacks` },
+                { text: "Queues", link: `${dsaPath}/queues` },
               ],
             },
           ],
