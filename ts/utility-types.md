@@ -2,6 +2,9 @@
 prev:
   text: "Classes"
   link: "./classes"
+next:
+  text: "Generics"
+  link: "./generics"
 ---
 
 # Utility Types
