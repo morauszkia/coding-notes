@@ -27,7 +27,7 @@ In some cases a `string` or `number` is not restrictive enough, because we want 
 Other languages use Enums for this purpose, and TypeScript also has Enums, but literal types are a more lightweight solution.
 :::
 
-```typescript
+```typescript{1}
 type Direction = "north" | "east" | "south" | "west";
 
 function move(direction: Direction) {

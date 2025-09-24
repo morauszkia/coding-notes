@@ -46,15 +46,15 @@ type Spaceship = {
 const falcon = {
   name: "Millennium Falcon",
   speed: 75,
-  weapons: 4,
+  weapons: 4, // [!code warning]
 };
 
 function pilot(ship: Spaceship) {
   console.log(`Piloting ${ship.name} at ${ship.speed} light-years per hour`);
 }
 
-pilot(falcon); // This is ok
-pilot({ name: "Luke's X-Wing Fighter", speed: 73, weapons: 8 });
+pilot(falcon); // This is ok [!code highlight]
+pilot({ name: "Luke's X-Wing Fighter", speed: 73, weapons: 8 }); // [!code error]
 /*
 Error: Object literal may only specify known properties, 
 and 'weapons' does not exist in type 'Spaceship'.
@@ -69,7 +69,7 @@ Objects may have optional properties, that need not be present on all instances 
 type Spaceship = {
   name: string;
   speed: number;
-  weapons?: number;
+  weapons?: number; // [!code highlight]
 };
 ```
 
@@ -77,6 +77,7 @@ In code, we can check for the presence of a property:
 
 ```typescript
 function attack(ship: Spaceship, target: Spaceship) {
+  // [!code highlight]
   if (!ship.weapons) {
     throw new Error("Your ship has no weapons! Flee immediately!");
   } else {
@@ -168,14 +169,14 @@ Unions of objects with a _discriminant property_ are called _discriminated union
 
 ```typescript
 type MultipleChoiceLesson = {
-  kind: "multiple-choice"; // Discriminant property
+  kind: "multiple-choice"; // Discriminant property [!code highlight]
   question: string;
   studentAnswer: string;
   correctAnswer: string;
 };
 
 type CodingLesson = {
-  kind: "coding"; // Discriminant property
+  kind: "coding"; // Discriminant property [!code highlight]
   studentCode: string;
   solutionCode: string;
 };
@@ -183,6 +184,7 @@ type CodingLesson = {
 type Lesson = MultipleChoiceLesson | CodingLesson;
 
 function isCorrect(lesson: Lesson): boolean {
+  // [!code highlight]
   switch (lesson.kind) {
     case "multiple-choice":
       return lesson.studentAnswer === lesson.correctAnswer;
@@ -214,8 +216,8 @@ const colors = {
   green: "#00FF00",
   blue: "#0000FF",
 
-  // "classic Lane-style typo" - Allan
-  yelow: "#FFFF00",
+  // TypeScript will miss the typo
+  yelow: "#FFFF00", // [!code highlight]
 };
 ```
 
@@ -234,7 +236,7 @@ const colorsTyped: ColorMap = {
   green: "#00FF00",
   blue: "#0000FF",
   // Error: "yelow" is not in type ColorMap
-  yelow: "#FFFF00",
+  yelow: "#FFFF00", // [!code error]
 };
 
 // RedHex is any 'string'
@@ -259,17 +261,17 @@ const colorsSatisfies = {
   yellow: "#FFFF00",
   // Error: "yelow" is not in type ColorMap
   // yelow: "#FFFF00"
-} satisfies ColorMap;
+} satisfies ColorMap; // [!code highlight]
 
 // We keep the literal types!
-type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000"
+type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000" [!code highlight]
 ```
 
 ## Intersection Types
 
 We can use the `&` operator to create an intersection type, which will have all the properties of both original objects.
 
-```typescript
+```typescript{6-8}
 type Point2D = {
   x: number;
   y: number;
@@ -286,7 +288,7 @@ Intersection types also narrow down, if we use them with [union types](./unions)
 ```typescript
 type Hero = Warrior | Wizard | Sorcerer | Bard;
 type Magician = Wizard | Sorcerer | Witch | Necromancer;
-type MagicianHero = Hero & Magician;
+type MagicianHero = Hero & Magician; // [!code highlight]
 // Wizard | Sorcerer
 ```
 
@@ -299,22 +301,22 @@ If we take the intersection of incompatible types, the type of the intersection 
 ```typescript
 type SupportAgent = {
   id: number;
-  role: "agent";
+  role: "agent"; // [!code warning]
   assignedTickets: number;
 };
 
 type EndUser = {
   id: number;
-  role: "customer";
+  role: "customer"; // [!code warning]
   submittedTickets: number;
 };
 
-type UserAgent = SupportAgent & EndUser;
+type UserAgent = SupportAgent & EndUser; // [!code warning]
 ```
 
 ### Intersections and unions
 
 Intersections and [unions](./unions) both combine multiple types.
 
-- We use intersections to tell TypeScript, that something is _both_ type one _AND_ type two. Intersections **narrow** the resulting type, so fewer possible values will satisfy these.
-- Unions are used to tell TypeScript, that in that place _either_ type one _OR_ type two is acceptable. Unions **widen** the resulting type, so more possible values will satisfy these.
+- We use intersections to tell TypeScript, that something is _both_ type one _AND_ type two. Intersections _**narrow**_ the resulting type, so fewer possible values will satisfy these.
+- Unions are used to tell TypeScript, that in that place _either_ type one _OR_ type two is acceptable. Unions _**widen**_ the resulting type, so more possible values will satisfy these.

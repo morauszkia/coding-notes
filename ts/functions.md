@@ -62,7 +62,7 @@ let greetFunction: (name: string, greeting: string) => string;
 
 If a function receives an argument that can be of [different types](./unions), a type guard can be used to [narrow down](./type-narrowing), what type the value that was passed in actually has, and perform operations based on this. The compiler is really smart, and used with an IDE can show warnings if we try to perform an invalid operation.
 
-```typescript
+```typescript{2}
 function safeSquare(val: string | number): number {
   if (typeof val === "string") {
     val = parseInt(val, 10);
@@ -90,7 +90,7 @@ Of course, default values can also be used, and in this case, the argument does 
 
 The type of `title` will be `string | undefined` inside the function.
 
-```typescript
+```typescript{1}
 function greet(name: string, title?: string): string {
   if (title) {
     return `Hello, ${title} ${name}!`;
@@ -106,8 +106,8 @@ greet("Gandalf", "Wizard"); // "Hello, Wizard Gandalf!"
 
 In this case the parameter type can be _inferred_ automatically, but you can specify it, and you _should_ if you want to use a _wider_ (e.g. [union](./unions)) or _more restricted_ (e.g. [literal](./unions#literal-types)) type.
 
-```typescript
-function newCharacter(name: string, role: Class = "warrior"): string {
+```typescript{1}
+function newCharacter(name: string, role: CharacterClass = "warrior"): string {
   return `${name} is a ${role}`;
 }
 
@@ -127,7 +127,8 @@ If a function can be called in multiple ways, because of optional parameteres, w
 Function overloads need to be declared above the implementation itself.
 :::
 
-```typescript
+```typescript{2-7}
+// Function overloads
 function formatEmployeeMessage(employee: Employee): string;
 function formatEmployeeMessage(
   employee: Employee,
@@ -135,6 +136,7 @@ function formatEmployeeMessage(
   onBoardedDate: Date
 ): string;
 
+// Implementation starts here
 function formatEmployeeMessage(
   employee: Employee,
   isNew?: boolean,
@@ -156,7 +158,7 @@ If we specify the function signatures this way, the function cannot be called wi
 
 Function overloads can also be used, if the functions can receive arguments of different types, but only certain combinations are valid.
 
-```typescript
+```typescript{1-2}
 function add(a: number, b: number): number;
 function add(a: string, b: string): string;
 

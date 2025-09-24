@@ -45,7 +45,7 @@ enum StatusCode {
 }
 
 enum Direction2 {
-  Up = 1,
+  Up = 1, // [!code highlight]
   Down, // 2
   Left, // 3
   Right, // 4
@@ -124,6 +124,7 @@ const enum FavoriteActor {
   BradPitt = "Brad Pitt",
   AngelinaJolie = "Angelina Jolie",
   // this is okay, it references enum members
+  // [!code highlight]
   BestCouple = FavoriteActor.BradPitt + " and " + FavoriteActor.AngelinaJolie,
 }
 
@@ -132,6 +133,7 @@ const enum FavoriteActor {
   AngelinaJolie = "Angelina Jolie",
   // this is not okay
   // const enum member initializers must be constant expressions
+  // [!code error]
   BestCouple = getBestCouple(),
 }
 
@@ -152,10 +154,10 @@ const directionValue = Direction.West;
 
 // This errors:
 // A const enum member can only be accessed using a string literal.(2476)
-const directionName = Direction[directionValue];
+const directionName = Direction[directionValue]; // [!code error]
 
 // and if you do use a string literal, it just returns the value again
-const directionValueAgain = Direction["West"];
+const directionValueAgain = Direction["West"]; // [!code warning]
 // 3
 ```
 

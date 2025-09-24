@@ -40,14 +40,14 @@ interface Pokemon {
   name: string;
   types: PokemonType[];
   health: number;
-  attack(opponent: Pokemon): void;
+  attack(opponent: Pokemon): void; // [!code highlight]
 }
 
 interface Digimon {
   name: string;
   types: DigimonType[];
   health: number;
-  attack: (opponent: Digimon) => void;
+  attack: (opponent: Digimon) => void; // [!code highlight]
 }
 ```
 
@@ -67,14 +67,14 @@ You can have optional and readonly properties also if you declare the type of an
 
 ```typescript
 interface Spaceship {
-  readonly id: string;
+  readonly id: string; // [!code highlight]
   name: string;
   speed: number;
   weapons?: number;
 }
 
 interface Query {
-  [param: string]: string | string[];
+  [param: string]: string | string[]; // [!code highlight]
 }
 ```
 
@@ -90,6 +90,7 @@ interface Character {
   level: number;
 }
 
+// [!code highlight]
 interface Wizard extends Character {
   spellbook: string[];
   mana: number;
@@ -98,7 +99,7 @@ interface Wizard extends Character {
 
 With types, you would use an [intersection](./objects#intersection-types) for this.
 
-```typescript
+```typescript{6-9}
 type Character = {
   name: string;
   level: number;
@@ -134,6 +135,7 @@ interface Physical {
   attack(): void;
 }
 
+// [!code highlight]
 interface BattleMage extends Character, Magical, Physical {
   combineAttacks(): void;
 }
@@ -145,13 +147,13 @@ You can even override properties of the interface you want to extend, but only u
 
 ```typescript
 interface Character {
-  rank: string | number;
+  rank: string | number; // [!code highlight]
   name: string;
   level: number;
 }
 
 interface Wizard extends Character {
-  rank: number;
+  rank: number; // [!code highlight]
   mana: number;
 }
 ```

@@ -27,7 +27,7 @@ type User = {
 
 function updateUser(
     userId: string;
-    userInfo: Partial<User>;
+    userInfo: Partial<User>; // [!code highlight]
 ) {
     // Implementation
 }
@@ -55,14 +55,14 @@ type User = {
   avatar?: string;
 };
 
-type CompleteUser = Required<User>;
+type CompleteUser = Required<User>; // [!code highlight]
 ```
 
 ## `Readonly`
 
 As the name suggests, the `Readonly<T>` type makes all top-level properties of a type [`readonly`](./objects#readonly-properties-and-as-const).
 
-```typescript
+```typescript{1}
 function importConfig(config: Config): Readonly<Config> {
   return config;
 }
@@ -72,7 +72,7 @@ function importConfig(config: Config): Readonly<Config> {
 
 You can easily create the shape of an object with the `Record<K, T>` utility type, which defines a type of an object with keys of type `K` and values of type `T`.
 
-```typescript
+```typescript{1}
 type StringKeyDictionary = Record<string, number>;
 
 const mountainHeights: StringKeyDictionary = {
@@ -87,6 +87,7 @@ Records can be used to ensure that are values of a union are present as keys in 
 ```typescript
 type Status = "pending" | "success" | "failure";
 
+// [!code highlight]
 const statusMessageMap: Record<Status, string> = {
   pending: "Your data are being processed.",
   success: "Data successfully sent.",
@@ -95,6 +96,7 @@ const statusMessageMap: Record<Status, string> = {
 
 type HttpStatusCode = 200 | 201 | 400 | 401 | 403 | 404 | 500;
 
+// [!code highlight]
 const statusMessages: Record<HttpStatusCode, string> = {
   200: "OK",
   201: "Created",
@@ -110,7 +112,7 @@ const statusMessages: Record<HttpStatusCode, string> = {
 
 If you don't need all keys from an object in a function, you can quickly create a type holding only a certain set of properties using `Pick<T, K>`.
 
-```typescript
+```typescript{16-19}
 interface BlogPost {
   id: string;
   title: string;
@@ -146,5 +148,6 @@ interface DatabaseUser {
   updatedAt: Date;
 }
 
+// [!code highlight]
 type PublicUser = Omit<DatabaseUser, "passwordHash" | "updatedAt">;
 ```

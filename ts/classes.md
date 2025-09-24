@@ -65,7 +65,7 @@ Classes can have optional properties, similarly to [objects](./objects#optional-
 
 ```typescript
 class Person {
-  name?: string,
+  name?: string, // [!code highlight]
   age = 30;
 
   constructor(name?: string) {
@@ -89,7 +89,7 @@ You can use JavaScript's `#` to indicate that a class member is private (only ac
 class Department {
   id: string;
   name: string;
-  #employees: string[] = [];
+  #employees: string[] = []; // [!code highlight]
 
   constructor(id: string, name: string) {
     this.id = id;
@@ -152,11 +152,13 @@ class Fighter extends Character {
 const fighter = new Fighter(100);
 fighter.fight(30);
 
-// Error: Property 'health' is protected and only accessible within class 'Character' and its subclasses
-console.log(fighter.health);
+// Error: Property 'health' is protected and only accessible
+// within class 'Character' and its subclasses
+console.log(fighter.health); // [!code error]
 
-// Error: Property 'takeDamage' is protected and only accessible within class 'Character' and its subclasses
-fighter.takeDamage(10);
+// Error: Property 'takeDamage' is protected and only
+// accessible within class 'Character' and its subclasses
+fighter.takeDamage(10); // [!code error]
 ```
 
 ### Readonly properties
@@ -174,7 +176,7 @@ If you then try to change such a property, the compiler will warn you.
 
 ```typescript
 function moveX(p: Point, offset: number): Point {
-  p.x += offset; [!code error]
+  p.x += offset; // [!code error]
   return p;
 }
 ```
@@ -211,8 +213,8 @@ Abstract classes may have regular methods and properties that are implemented on
 :::
 
 ```typescript
+// [!code highlight]
 abstract class Shape {
-  // [!code highlight]
   size: "small" | "medium" | "large";
   constructor(size: "small" | "medium" | "large") {
     this.size = size;
@@ -235,6 +237,7 @@ Abstract classes are used to enforce certain rules at compile time, but are remo
 As in JavaScript, subclasses can inherit from parent classes with the `extends` keyword. Subclasses can extend regular or abstract classes, but only one class.
 
 ```typescript
+// [!code highlight]
 class Circle extends Shape {
   radius: number;
   constructor(size: "small" | "medium" | "large") {
@@ -268,6 +271,7 @@ interface Magician {
   castSpell(cost: number): void;
 }
 
+// [!code highlight]
 class Wizard implements Hero, Magician {
   name: string;
   health: number;
@@ -292,7 +296,7 @@ class Wizard implements Hero, Magician {
 
 TypeScript is typically good at inferring the type of `this` correctly. However, you can add the `this` parameter to your methods. This way we can indicate, that a method can be called on an object of the specified Class. This can be useful, because methods can be copied to other objects that are not instances of the same class. TypeScript will warn us, if we do so.
 
-```typescript{8-10}
+```typescript{9-11}
 class Department {
   name: string;
   private employees: string[] = [];

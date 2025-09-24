@@ -150,7 +150,7 @@ function handleStatusCode(code: 200 | 404 | 500) {
     return;
   }
   // Type '500' is not assignable to type 'never'.
-  const err: never = code;
+  const err: never = code; // [!code error]
   return err;
 }
 ```
@@ -172,7 +172,7 @@ function handleStatusCode(code: 200 | 404 | 500) {
     return;
   }
   // no errors! code is never
-  const err: never = code;
+  const err: never = code; // [!code highlight]
   return err;
 }
 ```

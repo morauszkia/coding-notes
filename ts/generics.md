@@ -28,7 +28,7 @@ const bracketsStack = new Stack<bracket>();
 
 Another useful case is a fetch function that is used with various endpoints to fetch data of user, comments, posts, etc. Without generics you would get a `Promise<any>` return type by default, which is not too useful. With generics you can specify, what value you are expecting to get from a successful fetch request.
 
-```typescript
+```typescript{1,14-16}
 async function fetchFromAPI<T>(url: string): Promise<T | undefined> {
   try {
     const response = await fetch(url);
@@ -49,7 +49,7 @@ const posts = await fetchFromAPI<Post[]>("https://api.example.com/posts");
 
 You can have multiple type parameters. For example, you can have a type parameter for your input and one for your output, or you can have type parameters for your function parameters.
 
-```typescript
+```typescript{1,9}
 function zipArrays<T, U>(arr1: T[], arr2: U[]): [T, U][] {
   const output: [T, U][] = [];
   for (let i = 0; i < Math.min(arr1.length, arr2.length); i++) {
@@ -72,10 +72,12 @@ interface hasId {
   id: string | number;
 }
 
+// [!code highlight]
 function fetchFromApi<T extends hasId>(url: string): Promise<T | undefined> {
   // fetching logic
 }
 
+// [!code highlight]
 function extractEmails<T extends { email: string }>(users: T[]): string[] {
   // do something
 }
@@ -86,8 +88,8 @@ function extractEmails<T extends { email: string }>(users: T[]): string[] {
 Type parameters are not limited to be used with functions or methods. You can create generic types either using an `interface` or a _type alias_. Then you can create an object that can safely implement the given type, and functions that can safely work with it.
 
 ```typescript
+// [!code highlight]
 interface Store<T> {
-  // [!code highlight]
   get(id: string): T;
   save(id: string, item: T): void;
   list(): T[];

@@ -16,7 +16,7 @@ Array types are commonly declared by specifying what type of values they contain
 ```typescript
 let numbersToAdd: number[];
 let myFavoriteBooks: string[];
-let userIds: UserId[];
+let users: User[];
 ```
 
 Another way is to declare Array types using the `Array<T>` notation (where `T` stands for the type of values in the Array).
@@ -24,7 +24,7 @@ Another way is to declare Array types using the `Array<T>` notation (where `T` s
 ```typescript
 let numbersToAdd: Array<number>;
 let myFavoriteBooks: Array<string>;
-let userIds: Array<UserId>;
+let users: Array<User>;
 ```
 
 ### Nesting
@@ -85,13 +85,13 @@ function getConfig() {
   // config: string[]
   config.push(8080);
   // config: (string | number)[]
-  return config;
+  return config; // [!code highlight]
 }
 
-let config = getConfig();
+let config = getConfig(); // [!code highlight]
 // config: (string | number)[]
 
-config.push(false);
+config.push(false); // [!code error]
 /* 
 Error: Argument of type 'boolean' is not assignable 
 to parameter of type 'string | number'
@@ -135,17 +135,17 @@ Tuples are useful if we want to return multiple values from a function, which is
 ```typescript
 function getName(fullName: string): [string, string] {
   const parts = fullName.split(" ");
-  return [parts[0], parts[1]];
+  return [parts[0], parts[1]]; // [!code highlight]
 }
 
 const [firstName, lastName] = getName("Frodo Baggins");
-
-type UserWithAddress = [string, { city: string; country: string }];
 ```
 
 With nested destructuring it looks like this:
 
 ```typescript
+type UserWithAddress = [string, { city: string; country: string }];
+
 const userData: UserWithAddress = [
   "Aragorn",
   { city: "Minas Tirith", country: "Gondor" },
@@ -166,7 +166,7 @@ type UserDataLabeled = [name: string, age: number, isAdmin: boolean];
 
 As with objects and functions, you can make tuple elements optional using the `?` modifier. Optional values must come last. However, there can be several optional values. These get `undefined` unioned to their type.
 
-```typescript
+```typescript{1}
 type HttpResponse = [statusCode: number, data: string, error?: string];
 
 // Both of these work!
@@ -178,7 +178,7 @@ const errorResponse: HttpResponse = [404, "", "Resource not found"];
 
 You can use the rest pattern to have your tuple have a variable number of elements of a specific type. While this is getting really close to being a simple array, it defines the type more narrowly.
 
-```typescript
+```typescript{1}
 type Command = [name: string, ...args: string[]];
 
 const gitCommit: Command = ["git", "commit", "-m", "Add new feature"];

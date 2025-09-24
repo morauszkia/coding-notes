@@ -35,6 +35,7 @@ export type Customer = RegularCustomer | PremiumCustomer;
 
 export function openTicket(customer: Customer): number {
   // TypeScript will know, that the customer is of the type RegularCustomer if his plan is "regular"
+  // [!code highlight]
   if (customer.plan === "regular" && customer.aboveLimit) {
     return -1;
   }
@@ -50,6 +51,7 @@ TypeScript is even smart enough to narrow down types based on the equality of va
 
 ```typescript
 function example(x: string | number, y: string | boolean) {
+  // [!code highlight]
   if (x === y) {
     // We can now call any 'string' method on 'x' or 'y'.
     console.log(x.toUpperCase());
@@ -84,12 +86,15 @@ type VideoMessage = {
 type Message = TextMessage | ImageMessage | VideoMessage;
 
 function displayMessage(message: Message) {
+  // [!code highlight]
   if ("content" in message) {
     // TypeScript will know it is a TextMessage
     console.log(`Text content is: ${message.content}`);
+    // [!code highlight]
   } else if ("caption" in message) {
     // TypeScript knows this is an ImageMessage
     console.log(`Image caption is ${message.caption}`);
+    // [!code highlight]
   } else {
     // TypeScript knows this is a VideoMessage
     console.log(`Video length is ${message.duration}`);
@@ -108,10 +113,12 @@ TypeScript allows you to create your own type guards. We create a function that
 ```typescript
 type Pet = Fish | Bird;
 
+// [!code highlight]
 function isFish(pet: Pet): pet is Fish {
   return "swim" in pet;
 }
 
+// [!code highlight]
 function isBird(pet: Pet): pet is Bird {
   return "fly" in pet;
 }
