@@ -60,3 +60,104 @@ function zipArrays<T, U>(arr1: T[], arr2: U[]): [T, U][] {
 
 const studentsWithTasks = zipArrays<string, string>(students, tasks);
 ```
+
+## Generic Constraints
+
+We can give TypeScript additional information about the type parameter and constrain it to have certain properties by making it _extend an interface_. For example we can tell, that the results of an API call will have unique ids on them. Or indicate that a function can be used with any type that has certain properties.
+
+The extended type can be defined separately or where it is used in a constraint.
+
+```typescript
+interface hasId {
+  id: string | number;
+}
+
+function fetchFromApi<T extends hasId>(url: string): Promise<T | undefined> {
+  // fetching logic
+}
+
+function extractEmails<T extends { email: string }>(users: T[]): string[] {
+  // do something
+}
+```
+
+## Generic Types
+
+Type parameters are not limited to be used with functions or methods. You can create generic types either using an `interface` or a _type alias_. Then you can create an object that can safely implement the given type, and functions that can safely work with it.
+
+```typescript
+interface Store<T> {
+  // [!code highlight]
+  get(id: string): T;
+  save(id: string, item: T): void;
+  list(): T[];
+}
+// Alternatively
+// type Store<T> = { ... }
+
+type Product = {
+  name: string;
+  price: number;
+};
+
+const productStore = {
+  products: {} as Record<string, Product>,
+  get(id: string): Product {
+    return this.products[id];
+  },
+  save(id: string, item: Product): void {
+    this.products[id] = item;
+  },
+  list(): Product[] {
+    return Object.values(this.products);
+  },
+};
+
+// [!code highlight]
+function addAndGetItems<T>(store: Store<T>, id: string, newItem: T): T[] {
+  store.save(id, newItem);
+  return store.list();
+}
+```
+
+(Source: boot.dev TypeScript course)
+
+## Generic Classes
+
+As it was already shown with the `Stack` class above, classes can be generic, too.
+
+::: info Complex type parameters
+Type parameters can be quite complex as in the example below: a generic class can use a constrained type and implement a generic interface at the same time.
+:::
+
+```typescript
+interface Repository<T> {
+  getAll(): T[];
+  getById(id: string): T | undefined;
+  save(item: T): void;
+}
+
+// [!code highlight]
+class InMemoryRepository<T extends { id: string }> implements Repository<T> {
+  private items: T[] = [];
+
+  getAll(): T[] {
+    return [...this.items];
+  }
+
+  getById(id: string): T | undefined {
+    return this.items.find((item) => item.id === id);
+  }
+
+  save(item: T): void {
+    const index = this.items.findIndex((i) => i.id === item.id);
+    if (index >= 0) {
+      this.items[index] = item;
+    } else {
+      this.items.push(item);
+    }
+  }
+}
+```
+
+(Source: boot.dev TypeScript course)
