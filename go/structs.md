@@ -38,5 +38,5 @@ lotr.title = "Lord of the Rings"
 lotr.author = "J. R. R. Tolkien"
 
 invitation := message{}
-message.sender.name = "Peter Jackson"
+invitation.sender.name = "Peter Jackson"
 ```

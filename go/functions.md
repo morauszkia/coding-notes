@@ -1,7 +1,10 @@
 ---
 prev:
   text: "Program Flow"
-  link: "./program-flow.md"
+  link: "./program-flow"
+next:
+  text: "Structs"
+  link: "./structs"
 ---
 
 # Functions
@@ -45,7 +48,7 @@ func getPoint() (x int, y int) {
 }
 
 // ignore y value
-x, _ := getPoint()
+x, _ := getPoint() // [!code highlight]
 ```
 
 ### Named return values and naked returns
@@ -54,9 +57,10 @@ Return values may be given names, and if they are, these are treated as if these
 
 This way, we can document the purpose of the returned values. We know, what is returned directly from the signature. This is especially useful, if the function returns multiple values.
 
-A **naked return** is a `return` statement without the name of the returned variables, or values. In this case, the function will return variables that were named in the function signature. It is advised to only use naked returns in short functions, because these can harm the readibility of longer functions.
+A **naked return** is a `return` statement without the name of the returned variables, or values. In this case, the function will return variables that were named in the function signature. It is advised to only use naked returns in short functions, because these can harm the readability of longer functions.
 
 ```go
+// [!code highlight]
 func yearsUntilEvents(age int) (yearsUntilAdult, yearsUntilDrinking, yearsUntilCarRental int) {
     yearsUntilAdult = 18 - age
     if yearsUntilAdult < 0 {
@@ -70,7 +74,7 @@ func yearsUntilEvents(age int) (yearsUntilAdult, yearsUntilDrinking, yearsUntilC
     if yearsUntilCarRental < 0 {
         yearsUntilCarRental = 0
     }
-    return
+    return  // [!code highlight]
 }
 ```
 
@@ -83,6 +87,7 @@ Go supports early returns in functions. This can be used in _guard clauses_, whi
 ```go
 func divide(dividend, divisor int) (int, error) {
     if divisor == 0 {
+        // [!code highlight]
         return 0, errors.New("can't divide by zero")
     }
     return dividend/divisor, nil
@@ -106,6 +111,7 @@ func mul(x, y int) int {
     return x * y
 }
 
+// [!code highlight]
 func aggregate(a, b, c int, arithmetic func(int, int) int) int {
   firstResult := arithmetic(a, b)
   secondResult := arithmetic(firstResult, c)
@@ -128,9 +134,10 @@ func main() {
     // newX is 2, newY is 4, newZ is 6
 
     // using an anonymous function
+    // [!code highlight]
     newX, newY, newZ = conversions(func(a int) int {
-        return a + a
-    }, 1, 2, 3)
+        return a + a // [!code highlight]
+    }, 1, 2, 3) // [!code highlight]
     // newX is 2, newY is 4, newZ is 6
 }
 ```
@@ -147,7 +154,7 @@ The only difference is, that instead of the function name, we use the `func` key
 
 ## Defer execution
 
-We can use the `defer` keyword in front of a line, to defer the execution of the code until the function returns. This is especially usefull, if the function has multiple return statements, and we want to run a line of code regardless of which return statement will be executed.
+We can use the `defer` keyword in front of a line, to defer the execution of the code until the function returns. This is especially useful, if the function has multiple return statements, and we want to run a line of code regardless of which return statement will be executed.
 
 The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns.
 
@@ -161,15 +168,15 @@ func GetUsername(dstName, srcName string) (username string, err error) {
     , _ := db.Open(srcName)
 
     // Close the connection *anywhere* the GetUsername function returns
-    defer conn.Close()
+    defer conn.Close() // [!code highlight]
 
     username, err = db.FetchUser()
     if err != nil {
         // The defer statement is auto-executed if we return here
-        return "", err
+        return "", err // [!code highlight]
     }
 
     // The defer statement is auto-executed if we return here
-    return username, nil
+    return username, nil // [!code highlight]
 }
 ```

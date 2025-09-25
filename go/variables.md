@@ -82,9 +82,11 @@ Go is also strongly typed, which means, variables are not coerced automatically 
 name := "John"  // string
 age := 29      // int
 
+// [!code error]
 age = "way too old" // Error: cannot use string for int value
 
 // Will throw error
+// [!code error]
 message := "Hi, my name is " + name + " and I am " + age " years old"
 
 ageStr := string(age)
@@ -93,6 +95,7 @@ message := "Hi, my name is " + name + " and I am " + ageStr " years old"
 
 nine := 9
 
+// [!code error]
 fmt.Println(math.Sqrt(nine))  // Error: Sqrt expects float64
 fmt.Println(math.SQRT(float64(nine)))  // 3.0
 ```
