@@ -81,6 +81,7 @@ const friends = ["John", "Peter", "Kate"];
 friends.push("Jane"); // ["John", "Peter", "Kate", "Jane"];
 
 // BUT
+// [!code error]
 friends = ["Susan", "Tom", "Bob"]; // Error: reassingment to const
 
 const player = {
@@ -91,10 +92,11 @@ player.points = 1;
 player.avatar = "./images/magnus-avatar.jpg";
 
 // BUT
+// [!code error]
 player = {
-  name: "greg",
-  points: 0,
-}; // Error: not reassignable!
+  name: "greg", // [!code error]
+  points: 0, // [!code error]
+}; // Error: not reassignable! [!code error]
 ```
 
 ## Variable Types
@@ -166,10 +168,11 @@ const value1 = "5";
 const value2 = 9;
 let sum = value1 + value2;
 
+// [!code warning]
 console.log(sum); // "59"
 
 const numString = "18";
-const numNumber = --numString;
+const numNumber = --numString; // [!code highlight]
 console.log(typeof numNumber); // Number
 ```
 
