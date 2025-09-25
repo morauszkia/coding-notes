@@ -95,6 +95,7 @@ export default defineConfig({
             { text: "Classes", link: `${tsPath}/classes` },
             { text: "Utility Types", link: `${tsPath}/utility-types` },
             { text: "Generics", link: `${tsPath}/generics` },
+            { text: "Advanced Topics", link: `${tsPath}/advanced` },
           ],
         },
         mainNav,

@@ -2,6 +2,9 @@
 prev:
   text: "Utility Types"
   link: "./utility-types"
+next:
+  text: "Advanced Topics"
+  link: "./advanced"
 ---
 
 # Generics
