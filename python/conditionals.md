@@ -99,7 +99,7 @@ if user:
     print(user.name)
 
 if not password:
-    raise Exception("Pleas provide your password!")
+    raise Exception("Please provide your password!")
 ```
 
 ## If-else statements
@@ -266,23 +266,17 @@ def location(point):
 Patterns can be also nested e.g. inside a list
 
 ```python
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-def location(point):
-    match point:
-        case Point(x=0, y=0):
-            print("Origin is the point's location.")
-        case Point(x=0, y=y):
-            print(f"Y={y} and the point is on the y-axis.")
-        case Point(x=x, y=0):
-            print(f"X={x} and the point is on the x-axis.")
-        case Point():
-            print("The point is located somewhere else on the plane.")
-        case _:
-            print("Not a point")
+match points:
+    case []:
+        print("No points in the list.")
+    case [Point(0, 0)]:
+        print("The origin is the only point in the list.")
+    case [Point(x, y)]:
+        print(f"A single point {x}, {y} is in the list.")
+    case [Point(0, y1), Point(0, y2)]:
+        print(f"Two points on the Y axis at {y1}, {y2} are in the list.")
+    case _:
+        print("Something else is found in the list.")
 ```
 
 Patterns of lists or tuples can be matched this way, and combining the various possibilities (if clauses, alternatives, binding to variables, wildcard) enables us to match complex patterns, which makes `match` a powerful tool for pattern matching.
@@ -315,7 +309,7 @@ def describe(seq):
         case ["🐸", *_, "🦋", "🌼"]: return "Starts with frog and ends with a flower, with a butterfly in between"
         case ["🐸", *_, "🦋"]: return "Starts with frog and ends with a butterfly"
         case [*_, "🦋"]: return "Ends with a butterfly"
-        case ["🐸", *_, "🌼"]: return "Starts with frog"
+        case ["🐸", *_, "🌼"]: return "Starts with frog and ends with flower"
         case ["🐸", *_]: return "Starts with frog"
         case []: return "An empty sequence"
         case [*_]: return "A sequence of things"

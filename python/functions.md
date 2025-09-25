@@ -23,13 +23,14 @@ According to the PEP8 style guide 2 lines are left blank before and after a func
 
 Functions are called by writing the function name with the necessary [argument](#arguments) values in parentheses. If the function needs no arguments, an empty set of parentheses is used.
 
-::: warning
+::: warning Necessary Arguments
 If you do not provide the necessary number of arguments, the program will raise an Exception and crash.
 
 ```python
 def multiply(x, y):
   return x * y
 
+# [!code error]
 print(multiply(7)) # Error: we didn't provide the necessary arguments
 ```
 
@@ -60,6 +61,7 @@ Default arguments must come after required arguments. Another option is to use k
 Arguments are passed in order. If we want to skip a default argument, but want to pass a value to the next default argument, we need to tell Python, to which argument we are passing the value.
 
 ```python
+# [!code highlight]
 def greet(name, greeting="Hello, "):
   print(greeting + name)
 
@@ -67,6 +69,7 @@ def greet(name, greeting="Hello, "):
 greet("Thomas") # Hello, Thomas
 greet("Mr. Dursley", "Good morning, ") # Good morning, Mr. Dursley
 
+# [!code highlight]
 def student(firstname, lastname ='Mark', standard ='Fifth'):
      print(firstname, lastname, 'studies in', standard, 'Standard')
 
@@ -106,6 +109,7 @@ peter_parker = get_full_name(last_name="Parker", first_name="Peter")
 In some cases we do not know in advance, how many arguments we want to pass in. In this case we can use the `*arg` syntax. The values passed in will be packed in a _tuple_, which we can iterate over to access the individual values. These are also called _var-positional_ arguments.
 
 ```python
+# [!code highlight]
 def sum_numbers(*numbers: float) -> float:
     """Sum the numbers given as argument."""
     result = 0
@@ -115,7 +119,7 @@ def sum_numbers(*numbers: float) -> float:
     return result
 ```
 
-::: info
+::: info Order of arguments
 Only keyword arguments can follow \*args in a function declaration. We can also use _\*kwargs_ (variable number of keyword arguments). These will be packed into a dictionary.
 
 ```python
@@ -151,11 +155,11 @@ A function declaration may contain multiple `return` statements. However, the ex
 ```python
 def get_price("product"):
   if product == "book":
-    return 12.99
+    return 12.99 # [!code highlight]
   if product == "ferrari":
-    return 400000
+    return 400000 # [!code highlight]
   if product == "clean air":
-    return 0
+    return 0 # [!code highlight]
 ```
 
 ## Function scope
@@ -167,8 +171,10 @@ greeting = "Hello!"
 
 def say_goodbye():
   greeting = "Goodbye!"
+  # [!code highlight]
   print(greeting)   # Goodbye!
 
+# [!code highlight]
 print(greeting)  # Hello!
 ```
 

@@ -62,7 +62,7 @@ While loops are used to run a block of code based on a condition. While the cond
 ```python
 health = INITIAL_HEALTH
 
-while health > 0 and enemy_health > 0:
+while health > 0 and enemy_health > 0: # [!code highlight]
     damage_dealt = random.randint(1, 10)
     print(f"You attack and deal {damage_dealt} to your enemy.")
     enemy_health -= damage_dealt
@@ -75,7 +75,7 @@ while health > 0 and enemy_health > 0:
         if health <= 0:
             print("You died! GAME OVER")
 
-while True:
+while True: # [!code highlight]
     print("You have the following options:")
     for i in range(len(options)):
         print(f"{i + 1}: {options[i]}")
@@ -95,12 +95,14 @@ shopping_list = ["milk", "pasta", "eggs", "spam", "bread", "rice"]
 
 for item in shopping_list:
     if item == "spam":
+        # [!code highlight]
         continue    # Skips the execution of the following lines and continues straight to the next value
 
     print("Buy " + item) # prints for "milk", "pasta", "eggs", "bread" and "rice"
 
 for item in shopping_list:
     if item == "spam":
+        # [!code highlight]
         break    # Breaks out of the loop entirely
 
     print("Buy " + item) # prints only for "milk", "pasta", and "eggs"
@@ -120,6 +122,7 @@ for number in numbers:
         # reject the list
         print("The numbers are unacceptable")
         break
+# [!code highlight]
 else:    # Only if there was no number that is divisible by 8
     print("All those numbers are fine")
 
@@ -131,6 +134,7 @@ while chosen_exit not in available_exits:
     if chosen_exit.casefold() == "quit":
         print("Game over")
         break
+# [!code highlight]
 else: # This does not run if we quit
     print("aren't you glad you got out of there")
 ```
