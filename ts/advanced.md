@@ -77,3 +77,52 @@ export function resetForm<T>(form: T): Blank<T> {
   return emptyForm;
 }
 ```
+
+### Mapped types with conditionals
+
+You can combine the two: add conditionals to mapped types. E.g. you might want to only copy properties that are of type `string`. You can assign the new types conditionally. Properties that evaluate to `never` are excluded. You can use both the true and the false branch, and have generic types.
+
+```typescript
+type FilteredSoldier = {
+  [K in keyof Soldier]: Soldier[K] extends string ? Soldier[K] : never;
+};
+
+type EditableFields<T> = {
+  [K in keyof T]: T[K] extends object ? never : T[K];
+};
+```
+
+### Extracting keys conditionally
+
+Mapped types can also be used to extract keys. We create a type with the fields that we want to extract based on some condition, and assign the key names as types for the keys. Then we can index into the type using its keys, and create a union of its values.
+
+```typescript
+type StringKeys<T> = {
+  // We extract string-like properties
+  // [!code highlight]
+  [K in keyof T]: T[K] extends string ? K : never;
+};
+
+/*
+The result will be:
+type Result = {
+  name: "name";
+  age: never;
+  branch: "branch";
+};
+*/
+
+// [!code highlight]
+type StringKeyUnion<T> = StringKeys<T>[keyof T];
+
+type Keys = StringKeyUnion<Soldier>;
+// "name" | "branch"
+```
+
+You can do this task in a single step:
+
+```typescript
+type NumberKeys<T> = {
+  [K in keyof T]: T[K] extends number ? K : never;
+}[keyof T];
+```
