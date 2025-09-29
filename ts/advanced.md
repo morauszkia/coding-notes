@@ -1,7 +1,10 @@
 ---
 prev:
   text: "Generics"
-  link: ":/generics"
+  link: "./generics"
+next:
+  text: "Local Development with TS"
+  link: "./local-development"
 ---
 
 # Advanced Topics
