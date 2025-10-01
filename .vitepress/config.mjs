@@ -109,6 +109,7 @@ export default defineConfig({
             { text: "Program flow", link: `${goPath}/program-flow` },
             { text: "Functions", link: `${goPath}/functions` },
             { text: "Structs", link: `${goPath}/structs` },
+            { text: "Interfaces", link: `${goPath}/interfaces` },
           ],
         },
         mainNav,

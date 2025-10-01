@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Functions"
+  link: "./functions"
+next:
+  text: "Interfaces"
+  link: "./interfaces"
+---
+
 # Structs
 
 Structs are Go's equivalent of a Python dictionary or a JavaScript object or similar data types. They are used to store variables that belong together.
