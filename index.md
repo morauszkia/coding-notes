@@ -21,17 +21,34 @@ features:
     details: From JavaScript through Python to Gleam - Varietas delectat
     link: "languages"
   - icon:
-      light: "/assets/icons/Browser.svg"
-      dark: "assets/icons/Browser-dark.svg"
-      alt: "Browser icon"
-    title: Frontend Development
-    details: From the fundamental building blocks of the web to frameworks that make our lives easier
-    link: "frontend"
+      light: "/assets/icons/WebDev.svg"
+      dark: "/assets/icons/WebDev-dark.svg"
+      alt: "Globe icon"
+    title: Web Development
+    details: Notes about web development - webpages, applications, front end, back end, networking protocols, ...
+    link: "web-dev"
   - icon:
-      light: "/assets/icons/Server.svg"
-      dark: "assets/icons/Server-dark.svg"
-      alt: "Server icon"
-    title: Backend Development
-    details: From back end runtimes and frameworks through APIs to databases
-    link: "backend"
+      light: "/assets/icons/Map.svg"
+      dark: "/assets/icons/Map-dark.svg"
+      alt: "Map logo"
+    title: Development Practices
+    details: Testing, documentation, project architecture, design principles, CI/CD (COMING SOON)
+  - icon:
+      light: "/assets/icons/Security.svg"
+      dark: "/assets/icons/Security-dark.svg"
+      alt: "Shield icon"
+    title: Security
+    details: Encryption, authentication, authorization, best practices (COMING SOON)
+  - icon:
+      light: "/assets/icons/Tools.svg"
+      dark: "/assets/icons/Tools-dark.svg"
+      alt: "Wrench and screwdriver icon"
+    title: Tools & Infrastructure
+    details: Package managers, build tools, containers, etc. (COMING SOON)
+  - icon:
+      light: "/assets/icons/Data.svg"
+      dark: "/assets/icons/Data-dark.svg"
+      alt: "File icon"
+    title: Data Handling
+    details: Files, formats, databases, caching (COMING SOON)
 ---

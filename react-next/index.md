@@ -29,6 +29,8 @@ Here are some key aspects of React.js:
 
 Next.js is a powerful open-source React framework developed by Vercel, designed for building modern web applications with features that enhance both development and performance. It is a comprehensive framework that enhances the capabilities of React by providing features for building high-performance, scalable web applications.
 
+Next.js builds upon and enhances the capabilities of React.js, enabling developers to build full-stack applications with React.
+
 You can learn more about Next.js [on the project's website.](https://nextjs.org/)
 
 Key aspects of Next.js:

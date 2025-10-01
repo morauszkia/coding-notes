@@ -17,12 +17,17 @@ const mainNav = {
       link: "/languages",
     },
     {
-      text: "Frontend Development",
-      link: "/frontend",
-    },
-    {
-      text: "Backend Development",
-      link: "/backend",
+      text: "Web Development",
+      items: [
+        {
+          text: "Frontend Development",
+          link: "/frontend",
+        },
+        {
+          text: "Backend Development",
+          link: "/backend",
+        },
+      ],
     },
   ],
 };
@@ -45,8 +50,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Concepts", link: "/concepts" },
       { text: "Languages", link: "/languages" },
-      { text: "Frontend", link: "/frontend" },
-      { text: "Backend", link: "/backend" },
+      { text: "Web Development", link: "/web-dev" },
     ],
 
     sidebar: {
