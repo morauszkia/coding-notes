@@ -93,3 +93,58 @@ default:
   fmt.Println("Good evening.")
 }
 ```
+
+## Loops
+
+The basic `for` loop follows more or less a C-like syntax.
+
+```go
+for i := 0; i < 10; i++ {
+  // do something
+}
+```
+
+You can also omit the condition (2nd part) to create an infinite loop. You need to break out of such a loop (e.g. `return` something) to make it stop.
+
+There is no `while` loop in Go. You can use a `for` loop with only the condition instead.
+
+```go
+for health > 0 {
+  damage = getDamage()
+  fmt.Printf("Your character took %v damage", damage)
+  health -= damage
+}
+fmt.Printf("Your character died.")
+```
+
+### continue and break
+
+You can use the `continue` and `break` keywords to change the flow of your loop. As in other languages, `continue` stops the current iteration of the loop and moves on to the next iteration, and `break` stops the current iteration and exits the loop.
+
+```go
+func printPrimes(max int) {
+  for n := 2; n <= max; n++ {
+    if n == 2 {
+      fmt.Println(n)
+      // will move on to the next iteration of the loop
+      continue // [!code highlight]
+    }
+    if n % 2 == 0 {
+      continue // [!code highlight]
+    }
+
+    isPrime := true
+    for i := 3; i * i <= n; i += 2 {
+      if n % i == 0 {
+        isPrime = false
+        // will break from inner loop and continue with the code of the outer loop
+        break // [!code highlight]
+      }
+    }
+
+    if isPrime {
+      fmt.Println(n)
+    }
+  }
+}
+```
