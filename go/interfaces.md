@@ -116,10 +116,95 @@ type error interface {
 }
 ```
 
+::: info Just another value
+
+Unlike other programming languages, Go treats errors just like any other values. You can handle them in your code just like any other value.
+
+:::
+
 When something can go wrong in a function, that function should return an `error` as the last return value. If everything went alright, it should return a `nil` error. A `nil` error means success, a non-nil error means failure. Code that calls this function should always check if the `error` is or isn't `nil`.
 
 ::: info Return values
 
 If you return a non-nil error, it is the convention to return the zero values for all other return values. E.g. `""` for `string`, `0` for `int`, etc.
+
+:::
+
+As with other interfaces, you can create your own structs that implement the `error` interface.
+
+```go
+type divideError struct {
+    dividend float64
+}
+
+func (de divideError) Error() string {
+    return fmt.Sprintf("can not divide %v by zero", de.dividend)
+}
+
+func divide(dividend, divisor float64) (float64, error) {
+    if divisor == 0 {
+        return 0, divideError{dividend: dividend}
+    }
+    return dividend / divisor, nil
+}
+```
+
+### The errors package
+
+Go has an "errors" package, which simplifies working with errors. It has a `errors.New()` function that returns an error that formats as the given test.
+
+```go
+import (
+    "errors"
+)
+
+func divide(x, y float64) (float64, error) {
+    if y == 0 {
+        return 0, errors.New("no dividing by 0")
+    }
+    return x / y, nil
+}
+```
+
+### Panic
+
+Using the `error` interface is the proper way of handling errors in Go.
+
+```go
+func enrichUser(userID string) (User, error) {
+    user, err := getUser(userID)
+    if err != nil {
+        // fmt.Errorf wraps an error with additional context
+        return User{}, fmt.Errorf("failed to get user: %w", err)
+    }
+    return user, nil
+}
+```
+
+However, there is a `panic` function, which makes the program crash and print a stack trace. In general, this shouldn't be used. It goes up the call stack until it reaches a function that defers a `recover`. If there is no such function, the goroutine crashes.
+
+::: warning Don't do this!
+
+```go
+func enrichUser(userID string) User {
+    user, err := getUser(userID)
+    if err != nil {
+        panic(err)
+    }
+    return user
+}
+
+func main() {
+    defer func() {
+        if r := recover(); r != nil {
+            fmt.Println("recovered from panic:", r)
+        }
+    }()
+
+    enrichUser("123")
+}
+```
+
+`log.Fatal()` is a good alternative to cleanly exit in an unrecoverable way.
 
 :::
