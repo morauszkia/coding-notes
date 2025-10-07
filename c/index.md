@@ -15,4 +15,4 @@ C and C++ are closely related general-purpose programming languages.
 
 **C++** started as a superset of C, adding [object-oriented programming](../advanced-concepts/oop) features, exception handling, templating and a more extensive standard library. It was developed by Bjarne Stroustrup, and published in 1985. It supports both procedural and object-oriented programming. Over the years, both languages have evolved in parallel.
 
-They are distinct from [C#](../csharp), which has similar syntax, but is a high-level, modern, object-oriented and garbage-collected language designed for application development.
+They are distinct from [C#](/csharp/), which has similar syntax, but is a high-level, modern, object-oriented and garbage-collected language designed for application development.
