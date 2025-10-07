@@ -36,6 +36,11 @@ features:
     details: An open-source, statically typed, compiled programming language aimed at simplicity, efficiency, and reliability
     link: "go"
   - icon:
+      src: "/assets/icons/C++.svg"
+    title: C/C++
+    details: Two closely related general-purpose programming languages, which are efficient and fast, and provide low-level access to memory
+    link: "c"
+  - icon:
       src: "/assets/icons/Csharp.svg"
     title: C#
     details: A statically-typed object-oriented general purpose language used for web development, applications for any platform, games and other purposes
@@ -60,8 +65,4 @@ features:
       src: "/assets/icons/Ruby.svg"
     title: Ruby
     details: A dynamic, open-source programming language with a focus on simplicity and productivity, known for its elegant syntax (COMING SOON)
-  - icon:
-      src: "/assets/icons/C++.svg"
-    title: C/C++
-    details: Two closely related general-purpose programming languages, which are efficient and fast, and provide low-level access to memory(COMING SOON)
 ---
