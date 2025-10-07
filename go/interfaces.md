@@ -2,6 +2,9 @@
 prev:
   text: "Structs"
   link: "./structs"
+next:
+  text: "Arrays"
+  link: "./arrays"
 ---
 
 # Interfaces

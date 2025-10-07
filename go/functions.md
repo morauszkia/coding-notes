@@ -94,6 +94,31 @@ func divide(dividend, divisor int) (int, error) {
 }
 ```
 
+## Variadic functions
+
+In Go some function accept an arbitrary number of _final_ arguments. For this, we use the `...` syntax in _the function signature_. The _variadic_ arguments are passed in as a [slice](./arrays#slices).
+
+```go
+// [!code highlight]
+func sum(nums ...int) int {
+    sum := 0
+    for i := 0; i < len(nums); i++ {
+        sum += nums[i]
+    }
+    return sum
+}
+```
+
+We can pass in the values of a slice to a variadic function using the _spread_ operator: three dots following the slice in the function call
+
+```go
+func main() {
+    myNums := []int{5, 8, 10, 3, 9}
+    fmt.Println(sum(myNums...)) // [!code highlight]
+}
+
+```
+
 ## Higher order functions
 
 In Go functions are first-class citizens, which means that they can be passed around as values, e.g. as arguments to functions.
