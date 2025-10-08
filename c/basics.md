@@ -40,6 +40,21 @@ The `#include` statement at the top makes the `stdio` library available to your 
 
 C is a _compiled_ language, therefore, if there is a bug in the code, it crashes at compile time.
 
+## Pragma Once
+
+In a complex program, you might end up with including the same header file in multiple places. To avoid issues, you can tell the compiler to only include the file once, even if it's referenced multiple times. Add the line `#pragma once` to the top of your header file.
+
+Another way would be to use include guards.
+
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+// some cool code
+
+#endif
+```
+
 ## Comments
 
 In C, inline comments start with `//`, and multi-line comments can be written between `/*` and `*/`.
@@ -90,6 +105,25 @@ a = b = c = 42;
 
 C is statically typed, therefore, changing the type of an existing variable is not allowed.
 
+### Type sizes
+
+Different types occupy different amount of memory. For example, a `char` has the size of 1 byte. A `float` (single-precision floating-point number) is typically 4 bytes, while a `double` (double-precision floating-point number) takes up 8 bytes. However, the size of some types also depends on your system's architecture. An `int` is typically 4 bytes on a 32-bit system and 8 bytes on a 64-bit system. You can use the `sizeof` operator to determine the actual size of a type.
+
+```c
+#include <stdbool.h>
+#include <stdio.h>
+
+int main() {
+  // Use %zu is for printing `sizeof` result
+  printf("sizeof(char)   = %zu\n", sizeof(char));
+  printf("sizeof(bool)   = %zu\n", sizeof(bool));
+  printf("sizeof(int)    = %zu\n", sizeof(int));
+  printf("sizeof(float)  = %zu\n", sizeof(float));
+  printf("sizeof(double) = %zu\n", sizeof(double));
+  printf("sizeof(size_t) = %zu\n", sizeof(size_t));
+}
+```
+
 ### Constants
 
 You can use the `const` qualifier to create constants.
@@ -120,4 +154,43 @@ Common format specifiers are
 
 ```c
 printf("My name is %s, and I am %d years old.\n", name, age)
+```
+
+### Casting
+
+You can cast values to other types
+
+## Operators
+
+C has the usual arithmetic operators, and also knows the augmented assignment operators. Furthermore, C uses the increment and decrement operator as a prefix or as a suffix.
+
+The arithmetic operators if performed with two `int`s will return an `int`. To get a `float`, at least on of the operands must be a `float`.
+
+```c
+int x = 7, y = 2;
+int z;
+float w;
+
+// Arithmetic
+z = x + y;  // z = 9
+z = x - y;  // z = 5
+z = x * y;  // z = 14
+z = x / y;  // z = 3
+z = x % y;  // z = 1
+w = (float)x / y; // w = 3.5
+
+// Augmented assignment
+x += 2;   // x = 9
+x -= 3;   // x = 6
+x *= 2;   // x = 12
+x /= 4;   // x = 3
+x %= 4;   // x = 3
+
+// Increment/decrement
+x++       // x = 4
+x--       // x = 3
+y = x++   // x = 4, y = 3 (assign, then increment)
+y = ++x   // x = 5, y = 5 (increment, then assign)
+y = x--   // x = 4, y = 5
+y = --x   // x = 3, y = 3
 ```

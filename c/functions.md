@@ -2,6 +2,9 @@
 prev:
   text: "Basics"
   link: "./basics"
+next:
+  text: "Program Flow"
+  link: "./flow"
 ---
 
 # Functions
