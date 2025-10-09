@@ -13,6 +13,29 @@ next:
 
 Oftentimes we want to run a code (on run different commands) based on a condition. Go, similarly to most programming languages offers if-else statements and switch statements to achieve this.
 
+### Operators
+
+To achieve this, Go offers the use of the usual comparison and logical operators.
+
+Comparison operators:
+
+| Operator | Meaning                  |
+| :------: | ------------------------ |
+|   `==`   | equal to                 |
+|   `!=`   | not equal                |
+|   `>`    | greater than             |
+|   `>=`   | greater than or equal to |
+|   `<`    | less than                |
+|   `<=`   | less than or equal to    |
+
+Logical operators:
+
+| Operator | Name        | Returned value                                                  |
+| :------: | ----------- | --------------------------------------------------------------- |
+|   `&&`   | Logical AND | True if both statements are true, false otherwise               |
+|  `\|\|`  | Logical OR  | True if at least one of the statements is true, otherwise false |
+|   `!`    | Logical NOT | True if original statement was false, otherwise false           |
+
 ### If-else
 
 In go you can use an `if` statement to run a block of code only if a condition is met. The syntax is:
