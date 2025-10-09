@@ -2,6 +2,9 @@
 prev:
   text: "Interfaces"
   link: "./interfaces"
+next:
+  text: "Maps"
+  link: "./maps"
 ---
 
 # Arrays and Slices
