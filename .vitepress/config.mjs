@@ -37,6 +37,7 @@ const jsPath = "/js";
 const pythonPath = "/python";
 const goPath = "/go";
 const dsaPath = "/dsa";
+const cPath = "/c";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -116,6 +117,19 @@ export default defineConfig({
             { text: "Interfaces", link: `${goPath}/interfaces` },
             { text: "Arrays and Slices", link: `${goPath}/arrays` },
             { text: "Maps", link: `${goPath}/maps` },
+          ],
+        },
+        mainNav,
+      ],
+      [cPath]: [
+        {
+          text: "C",
+          items: [
+            { text: "Intro to C", link: `${cPath}/` },
+            { text: "C Basics", link: `${cPath}/basics` },
+            { text: "C Functions", link: `${cPath}/functions` },
+            { text: "C Program Flow", link: `${cPath}/flow` },
+            { text: "C Structs", link: `${cPath}/structs` },
           ],
         },
         mainNav,
