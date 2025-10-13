@@ -2,6 +2,9 @@
 prev:
   text: "Arrays & Slices"
   link: "./arrays"
+next:
+    text: "Pointers"
+    link: "./pointers"
 ---
 
 # Maps

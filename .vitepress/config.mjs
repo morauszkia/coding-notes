@@ -117,6 +117,7 @@ export default defineConfig({
             { text: "Interfaces", link: `${goPath}/interfaces` },
             { text: "Arrays and Slices", link: `${goPath}/arrays` },
             { text: "Maps", link: `${goPath}/maps` },
+            { text: "Pointers", link: `${goPath}/pointers` },
           ],
         },
         mainNav,
