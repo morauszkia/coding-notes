@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Maps"
+  link: "./maps"
+next:
+  text: "Packages"
+  link: "./packages"
+---
+
 # Pointers
 
 Variables are named memory locations. If we assign a value to a variable, we store it somewhere in memory.
