@@ -127,11 +127,12 @@ export default defineConfig({
         {
           text: "C",
           items: [
-            { text: "Intro to C", link: `${cPath}/` },
-            { text: "C Basics", link: `${cPath}/basics` },
-            { text: "C Functions", link: `${cPath}/functions` },
-            { text: "C Program Flow", link: `${cPath}/flow` },
-            { text: "C Structs", link: `${cPath}/structs` },
+            { text: "Intro", link: `${cPath}/` },
+            { text: "Basics", link: `${cPath}/basics` },
+            { text: "Functions", link: `${cPath}/functions` },
+            { text: "Program Flow", link: `${cPath}/flow` },
+            { text: "Structs", link: `${cPath}/structs` },
+            { text: "Pointers", link: `${cPath}/pointers` },
           ],
         },
         mainNav,
