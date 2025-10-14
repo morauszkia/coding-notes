@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Project Structure"
+  link: "./project-structure"
+next:
+  text: "Markdown Files"
+  link: "./markdown-files"
+---
+
 # Building Blocks of Astro Files
 
 Astro files consist of a frontmatter and a content. Astro files can be used to create Astro pages, layouts and components.
@@ -49,12 +58,12 @@ Components can receive props: a `Social` component can receive the `platform` an
 
 Components can be styled in the same way as pages, using the `<style>` tag.
 
-The Social component below accesses props passed down, defines a HTML template and scoped styles that only apply to this component.
+The Social component below accesses props passed down (_line 2_), defines a HTML template (_line 5_) and scoped styles that only apply to this component (_lines 7-14_).
 
-```astro
+```astro:line-numbers
 ---
-const { platform, username } = Astro.props;
----
+
+## const { platform, username } = Astro.props;
 
 <a href={`https://www.${platform}.com/${username}`}>{platform}</a>
 
@@ -77,9 +86,9 @@ These can also be nested, like any other Astro component, and can receive conten
 
 Page specific values can be passed to the layout (the same way as to components) as props, and accessed via `Astro.props`. In the case of Markdown files, you can access the properties of the Markdown frontmatter via the `frontmatter` property of `Astro.props`.
 
-The layout below imports a global stylesheet, accesses page specific data via props, uses imported components, imported client-side JavaScript, and renders content to a `slot`.
+The layout below imports a global stylesheet (_line 4_), accesses page specific data via props (_line 5_), uses imported components (_lines 17 & 20_), imported client-side JavaScript (_line 22_), and renders content to a `slot` (_line 19_).
 
-```astro
+```astro:line-numbers
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -130,9 +139,9 @@ Layouts can be imported in the [frontmatter](#frontmatter) of your pages, and us
 
 ## Example Page
 
-The page below imports a layout, and passes data to it via props. It also uses variables declared in the frontmatter, and JavaScript inserted into the HTML template, including conditional rendering, looping through an array, interpolation, and using variables in the `<style>` tag.
+The page below imports a layout, and passes data to it via props (_line 23_). It also uses variables declared in the frontmatter (e.g. _line 38_), and JavaScript inserted into the HTML template, including conditional rendering (_lines 42-48_), looping through an array (_52_), interpolation (_59-65_), and using variables in the `<style>` tag (_68_).
 
-```astro
+```astro:line-numbers {23,38,40,42-48,52,55,57,59-65,68,74-76}
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "About Me";

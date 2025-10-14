@@ -2,6 +2,9 @@
 prev:
   text: "Intro"
   link: "./index"
+next:
+  text: "Astro Files"
+  link: "./building-blocks"
 ---
 
 # Project structure
@@ -46,13 +49,18 @@ Astro uses file-based routing. Every supported page file (`.astro`, `.md`, `.js`
 
 The pages named `index.astro` will be opened, if we navigate to that folder. E.g. the `index.astro` page that is within `src/pages/`, will be our main page. The `index.astro` page of `src/pages/contact/` will be opened, if we navigate to `https://ourwebsite.com/contact/` or `https://ourwebsite.com/contact/index.html`.
 
+Learn more about
+
+- [Astro Files](./building-blocks)
+- [Markdown Pages](./markdown-files)
+
 ### The layouts folder
 
 Files within the `layouts` folder function as the layouts for your pages. Code, that is shared between multiple pages (e.g. main navigation, metadata) can be written in the layout files. We can use multiple layouts in the project, and layouts can also be nested within each other.
 
 ### The components folder
 
-Code for smaller reusable components can be written inside the `components` folder. We can choose from many supported front-end libraries and frameworks, or use Astro's own files to create reusable components. Components can be used in the pages, layouts or other components.
+Code for smaller reusable components can be written inside the `components` folder. We can choose from many supported front-end libraries and frameworks, or use [Astro's own files](./building-blocks) to create reusable components. Components can be used in the pages, layouts or other components.
 
 ### Other folders
 

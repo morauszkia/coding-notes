@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Astro Files"
+  link: "./building-blocks"
+next:
+  text: "Local Files"
+  link: "./local-files"
+---
+
 # Creating Pages using Markdown
 
 Content-heavy pages can be easily created using Markdown (`.md`) files. If these are created within the `pages` folder, static pages will be rendered based on these.

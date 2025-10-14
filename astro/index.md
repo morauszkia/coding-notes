@@ -2,6 +2,9 @@
 prev:
   text: "Home"
   link: "/"
+next:
+  text: "Project Structure"
+  link: "./project-structure"
 ---
 
 # Introduction to Astro
