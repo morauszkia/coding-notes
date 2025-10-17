@@ -45,13 +45,56 @@ It was recommended to work in the `$GOPATH/src` directory, but it is no longer r
 
 You can initialize a go module using the `go mod` command. You can quickly compile and run your program using `go run` without saving the compiled binary to your project folder. This is great for local testing and debugging.
 
-For production build you run the `go build` command, which compiles your go code into a single, statically linked executable program. You can then ship this executable file to end users without them having installed the Go toolchain.
+For production build you run the `go build` command, which, if you have a `main.go` and `func main()` in your source code, compiles your go code into a single, statically linked executable program. You can then ship this executable file to end users without them having installed the Go toolchain. In case of library packages, `go build` will compile and save the package to your local build cache. It's useful for checking for compile errors.
+
+With `go install` you can compile and install packages on local machine (in the GOBIN directory) for personal usage. You should have your GOBIN directory in your PATH.
 
 ```bash
 go mod init {REMOTE}/{USERNAME}/{MODULE}
 # e.g. github.com/my_username/hellogo
 
-go run main.go
+go run main.go # For testing
+go build # For production
+go install # Install package to use on local machine
+```
 
-go build
+You can import from other modules. To make functions, types and variables accessible to other packages, you need to start their name with a _Capital letter_.
+
+::: warning Public vs. private
+
+In Go only capitalized names are public, uncapitalized names are private and are only accessible within the package.
+
+:::
+
+Importing other modules is done by using the module's import path. You should include your dependencies in your `go.mod` file as well. If you are using a local module, you need to tell go, where to look for it. This is useful to get started with a project, but the _proper_ way to import modules is to publish them to a remote repository. After you do that you can drop the `replace` part from `go.mod`
+
+To download a remote package, you can use `go get`. This will include the dependency in the `go.mod` file automatically.
+
+```go
+package main
+
+import {
+  "fmt"
+
+  // [!code highlight]
+  "{REMOTE}/{USER}/{MODULE}"
+
+  func main() {
+    // Do something
+  }
+}
+```
+
+```text
+module example.com/username/modulename
+
+go 1.25.1
+
+replace example.com/username/another_module v0.0.0 => ../another_module
+
+require example.com/username/another_module v0.0.0
+```
+
+```bash
+go get example.com/username/module_name
 ```
