@@ -98,3 +98,23 @@ require example.com/username/another_module v0.0.0
 ```bash
 go get example.com/username/module_name
 ```
+
+## Clean Packages
+
+When it comes to packages, some rules of thumb help keep the code more organized
+
+### Hide internal logic
+
+Similarly to [OOP's encapsulation](/advanced-concepts/oop#core-principles), not everything in a package must be public. The functions doing the actual dirty work can remain private, and we expose some public API functions that can be called from outside to run the logic.
+
+### Don't change APIs
+
+The private functions can and should change often for testing, refactoring and bug fixing. However, the API functions should be stable so we don't introduce breaking changes with each update. In practice this means that we should avoid changing the public function signatures.
+
+### Don't export functions from the main package
+
+A `package main` is not a library, so we shouldn't export functions from it.
+
+### Packages shouldn't know about their dependents
+
+A package should never have specific knowledge about a particular application that uses it.
