@@ -119,6 +119,7 @@ export default defineConfig({
             { text: "Maps", link: `${goPath}/maps` },
             { text: "Pointers", link: `${goPath}/pointers` },
             { text: "Packages", link: `${goPath}/packages` },
+            { text: "Concurrency", link: `${goPath}/concurrency` },
           ],
         },
         mainNav,

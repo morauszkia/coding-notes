@@ -2,6 +2,9 @@
 prev:
   text: "Pointers"
   link: "./pointers"
+next:
+  text: "Concurrency"
+  link: "./concurrency"
 ---
 
 # Packages and Local Development
