@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Packages and Local Development"
+  link: "./packages"
+next:
+  text: "Mutexes"
+  link: "./mutexes"
+---
+
 # Concurrency
 
 Go was designed to be concurrent, and it excels at performing tasks in parallel safely. It has a simple syntax to spawn concurrent execution. You can use the `go` keyword when calling a function to spawn a new _goroutine_, and execute code concurrently with the rest of the code.

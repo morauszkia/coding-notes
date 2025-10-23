@@ -120,6 +120,7 @@ export default defineConfig({
             { text: "Pointers", link: `${goPath}/pointers` },
             { text: "Packages", link: `${goPath}/packages` },
             { text: "Concurrency", link: `${goPath}/concurrency` },
+            { text: "Mutexes", link: `${goPath}/mutexes` },
           ],
         },
         mainNav,
