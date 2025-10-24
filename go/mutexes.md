@@ -2,6 +2,9 @@
 prev:
   text: "Concurrency"
   link: "./concurrency"
+next:
+  text: "Generics"
+  link: "./generics"
 ---
 
 # Mutexes
