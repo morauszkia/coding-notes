@@ -122,6 +122,7 @@ export default defineConfig({
             { text: "Concurrency", link: `${goPath}/concurrency` },
             { text: "Mutexes", link: `${goPath}/mutexes` },
             { text: "Generics", link: `${goPath}/generics` },
+            { text: "Limitations", link: `${goPath}/limitations` },
           ],
         },
         mainNav,

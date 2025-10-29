@@ -2,6 +2,9 @@
 prev:
   text: "Mutexes"
   link: "./mutexes"
+next:
+  text: "Limitations"
+  link: "./limitations"
 ---
 
 # Generics
