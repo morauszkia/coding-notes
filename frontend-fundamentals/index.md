@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Front-end Development"
+  link: "/frontend"
+next:
+  text: "HTML"
+  link: "./html"
+---
+
 # Front-end Development Fundamentals
 
 Front-end development is the practice of building the user interface and experience of websites and web applications. It focuses on everything users see and interact with in their browsers: the content, the styling and user interaction.
