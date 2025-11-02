@@ -3,8 +3,8 @@ prev:
   text: "Arrays & Slices"
   link: "./arrays"
 next:
-    text: "Pointers"
-    link: "./pointers"
+  text: "Pointers"
+  link: "./pointers"
 ---
 
 # Maps
@@ -55,6 +55,22 @@ The `len()` function returns the number of key-value pairs in the map.
 ```go
 len(rivers) // 3
 ```
+
+## Iterating over Maps
+
+You can use `range` in a `for` loop to iterate over the keys and values of a map.
+
+```go
+for river, length := range rivers {
+    fmt.Printf("%s is %d km long", river, length)
+}
+```
+
+::: warning Maps are unsorted
+
+Maps are unsorted in Go, so the iteration will return the keys and values in a random order.
+
+:::
 
 ## Map Keys
 
