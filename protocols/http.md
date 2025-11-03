@@ -55,9 +55,11 @@ func getProjects() ([]byte, error) {
 
 :::
 
-## URLs
+::: info URLs
 
 The _URL_ (Uniform Resource Locator) is the address of another computer. It consists of several parts: the `http://` at the beginning specifies the protocol used for communication. Other protocols use URLs as well.
+
+:::
 
 ## JSON
 

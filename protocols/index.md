@@ -24,5 +24,5 @@ Use these topics to understand:
 - REST APIs
 - GraphQL
 - gRPC & WebSockets
-- DNS & TCP/IP
+- [DNS & TCP/IP](./dns)
 - CORS & Browser Networking
