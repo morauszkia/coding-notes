@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Introduction to Protocols"
+  link: "./"
+next:
+  text: "DNS & IP"
+  link: "./dns"
+---
+
 # HTTP
 
 Modern applications need to communicate and share information between devices on the internet. For this they need a common language: a set of rules that govern their communication. The most popular _protocol_ for web communication is _HTTP_, which stands for _Hypertext Transfer Protocol_
@@ -20,13 +29,8 @@ The most common HTTP request is GET
 
 == GO
 
-In Go the `net/http` package can be used. We can send a `GET` request using the `Get` method, and passing in a string. The method returns a response and an error. We can handle the error, and if it `nil` we can use the `io` package's `ReadAll` method on the response's `Body`.
-
-::: warning Close the Body
-
+In Go the `net/http` package can be used. We can send a `GET` request using the `Get` method, and passing in a string. The method returns a response and an error. We can handle the error, and if it `nil` we can use the `io` package's `ReadAll` method on the response's `Body` to convert it to a string. There are also other ways to process the response, which is typically in [JSON](#json).
 The `Body` must be closed at the end of the function execution. It is often written as a deferred command.
-
-:::
 
 ```go
 import (
@@ -50,6 +54,19 @@ func getProjects() ([]byte, error) {
         return nil, fmt.Errorf("error reading response: %w", err)
     }
     return data, nil
+}
+```
+
+== JavaScript/TypeScript
+
+In JavaScript (and TypeScript) the `fetch` API can be used to make HTTP requests. In the browser the `fetch()` function is available to us. The function takes a [URL](./uri) as its first parameter, and a `settings` object as the second parameter. By default `fetch` will send a `GET` request. The response can be parsed using the `.json()` method. These are asynchronous functions, therefore `.then()` or `await` should be used to wait until the Promises are resolved.
+
+```javascript
+function getProjects() {
+    const response = await fetch("https://api.jello.com/projects")
+    const responseData = await response.json();
+
+    return responseData.projects
 }
 ```
 
@@ -194,6 +211,15 @@ func getIssues(url string) ([]Issue, error) {
 }
 ```
 
+== JavaScript/TypeScript
+
+In JavaScript or TypeScript you can use the response's `.json()` method to parse the response into a JavaScript object.
+
+```javascript
+const response = await fetch("https://api.jello.com/users");
+const responseData = await response.json();
+```
+
 :::
 
 ### Converting to JSON
@@ -225,6 +251,10 @@ func marshalAll[T any](items []T) ([][]byte, error) {
     return result, nil
 }
 ```
+
+== JavaScript/TypeScript
+
+In JavaScript/TypeScript the `JSON.stringify()` static method can convert a JavaScript value (e.g. an object) to a JSON string.
 
 :::
 
