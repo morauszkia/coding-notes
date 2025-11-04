@@ -102,5 +102,17 @@ for i, friend := range friends {
 You can create slices with other nested slices as elements. For example, you can create matrices by creating a slice of rows.
 
 ```go
+package main
 
+func createMatrix(rows, cols int) [][]int {
+  matrix := [][]int{}
+  for i := 0; i < rows; i++ {
+    row := []int{}
+    for j := 0; j < cols; j++ {
+      row = append(row, i * j)
+    }
+    matrix = append(matrix, row)
+  }
+  return matrix
+}
 ```
