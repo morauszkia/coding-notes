@@ -59,15 +59,19 @@ func getProjects() ([]byte, error) {
 
 == JavaScript/TypeScript
 
-In JavaScript (and TypeScript) the `fetch` API can be used to make HTTP requests. In the browser the `fetch()` function is available to us. The function takes a [URL](./uri) as its first parameter, and a `settings` object as the second parameter. By default `fetch` will send a `GET` request. The response can be parsed using the `.json()` method. These are asynchronous functions, therefore `.then()` or `await` should be used to wait until the Promises are resolved.
+In JavaScript (and TypeScript) the `fetch` API can be used to make HTTP requests. In the browser the `fetch()` function is available to us. The function takes a [URL](./uri) as its first parameter, and a `settings` object as the second parameter. By default `fetch` will send a `GET` request. The response can be parsed using the `.json()` method. These are asynchronous functions, therefore `.then()` with a callback function that receives the resolved Promise, or `await` should be used to wait until the Promises are resolved.
+
+Http requests can run into errors (e.g. if a server is down), so you should handle potential errors in your code, e.g. with `try/catch` blocks. If you use the `.then` syntax for handling promises, `.catch()` can be used with a callback function to handle potential errors.
 
 ```javascript
-function getProjects() {
-    const response = await fetch("https://api.jello.com/projects")
-    const responseData = await response.json();
-
-    return responseData.projects
-}
+async function getProjects() {
+    try {
+        const response = await fetch("https://api.jello.com/projects")
+        const responseData = await response.json();
+        return responseData.projects;
+    } catch (err) {
+        console.log(`Error fetching data: ${err.message}`);
+    }
 ```
 
 :::
@@ -216,8 +220,12 @@ func getIssues(url string) ([]Issue, error) {
 In JavaScript or TypeScript you can use the response's `.json()` method to parse the response into a JavaScript object.
 
 ```javascript
-const response = await fetch("https://api.jello.com/users");
-const responseData = await response.json();
+try {
+  const response = await fetch("https://api.jello.com/users");
+  const responseData = await response.json();
+} catch (err) {
+  console.log(`Error fetching data: ${err.message}`);
+}
 ```
 
 :::

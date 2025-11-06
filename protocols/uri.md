@@ -17,14 +17,14 @@ There are two types of URIs:
 
 URLs are potentially complex character sequences with several sections. They can consist of
 
-- protocol (required)
+- protocol (required): protocol or scheme defines the rules by which the data being communicated is displayed, encoded and formatted. This can be `http`, `https`, `ftp` (file transfer), `mailto`, etc.
 - username
 - password
 - domain (required)
-- port (defaults to 80 or 443)
-- path (defaults to `/`)
-- query (e.g. `page=1`)
-- fragment (e.g. `#id`)
+- port: optional, defaults to 80 (`http`) or 443 (`https`), but other ports as well can be used to connect to the host (e.g. `3000` or `8080` is often used for development servers)
+- path (defaults to `/`): typically mirrors the server's filesystem hierarchy, but this is just a convention, the server can be configured otherwise
+- query (e.g. `page=1`): typically do not change which page is served, but are often used for marketing analytics or for changing a variable on the page, e.g. search query, page, ordering, etc.
+- fragment (e.g. `#id`): can be used to scroll to some point within the page with the specified id value.
 
 ::: tabs
 
