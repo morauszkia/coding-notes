@@ -21,7 +21,7 @@ The other computer, called _server_ sends back a _response_ with the requested i
 
 A computer can act as a client, a server, both, or neither.
 
-### Sending a request
+### Sending requests & reading responses
 
 The most common HTTP request is GET
 
@@ -29,7 +29,7 @@ The most common HTTP request is GET
 
 == GO
 
-In Go the `net/http` package can be used. We can send a `GET` request using the `Get` method, and passing in a string. The method returns a response and an error. We can handle the error, and if it `nil` we can use the `io` package's `ReadAll` method on the response's `Body` to convert it to a string. There are also other ways to process the response, which is typically in [JSON](#json).
+In Go the `net/http` package can be used. We can send a `GET` request using the `Get` method, and passing in a string. The method returns a response and an error. We can handle the error, and if it `nil` we can use the `io` package's `ReadAll` method on the response's `Body` to convert it to a string. There are also other ways to process the response, which is typically in [JSON](./data#json).
 The `Body` must be closed at the end of the function execution. It is often written as a deferred command.
 
 ```go
@@ -59,7 +59,7 @@ func getProjects() ([]byte, error) {
 
 == JavaScript/TypeScript
 
-In JavaScript (and TypeScript) the `fetch` API can be used to make HTTP requests. In the browser the `fetch()` function is available to us. The function takes a [URL](./uri) as its first parameter, and a `settings` object as the second parameter. By default `fetch` will send a `GET` request. The response can be parsed using the `.json()` method. These are asynchronous functions, therefore `.then()` with a callback function that receives the resolved Promise, or `await` should be used to wait until the Promises are resolved.
+In JavaScript (and TypeScript) the `fetch` API can be used to make HTTP requests. In the browser the `fetch()` function is available to us. The function takes a [URL](./uri) as its first parameter, and a `settings` object as the second parameter. By default `fetch` will send a `GET` request. The response, which is typically in [JSON](./data#json) can be parsed using the `.json()` method. These are asynchronous functions, therefore `.then()` with a callback function that receives the resolved Promise, or `await` should be used to wait until the Promises are resolved.
 
 Http requests can run into errors (e.g. if a server is down), so you should handle potential errors in your code, e.g. with `try/catch` blocks. If you use the `.then` syntax for handling promises, `.catch()` can be used with a callback function to handle potential errors.
 
@@ -82,199 +82,76 @@ The _URL_ (Uniform Resource Locator) is the address of another computer. It cons
 
 :::
 
-## JSON
+### HTTP Headers
 
-_JSON_ (JavaScript Object Notation) is a standard for representing structured data, which is based on JavaScript objects. It is in fact a stringified JavaScript object. It is commonly used to transmit data via HTTP not only in JavaScript. It is supported by every major programming language.
+An _HTTP header_ allows to pass additional information with the request or response. Headers are _case-insesitive_ key-value pairs that store metadata: e.g. type of client, operaring system, preferred language, API keys for authentication, content type, etc.
 
-JSON is used for
+::: tip DevTools
 
-- request and response bodies
-- for configuration files
-- in NoSQL databases (e.g. MongoDB, Firestore)
-
-JSON supports
-
-- strings
-- numbers
-- booleans
-- null
-- arrays
-- object literals
-
-The keys are always strings, and the values can be any data type of the above.
-
-::: details JSON example
-
-```json
-{
-  "countries": [
-    {
-      "country": "Hungary",
-      "capital": "Budapest",
-      "region": "Europe",
-      "population": 9700000,
-      "area_km2": 93030,
-      "major_cities": ["Budapest", "Debrecen", "Szeged", "Miskolc", "Pécs"],
-      "visited": false
-    },
-    {
-      "country": "Germany",
-      "capital": "Berlin",
-      "region": "Europe",
-      "population": 84000000,
-      "area_km2": 357588,
-      "major_cities": ["Berlin", "Munich", "Hamburg", "Cologne", "Frankfurt"],
-      "visited": true
-    }
-  ]
-}
-```
+The browser's Developer Tools can be used the examine the requests and responses, including the headers.
 
 :::
-
-### Parsing JSON data
-
-While JSON data can be treated as a string, it is typically parsed or decoded.
 
 ::: tabs
 
 == Go
 
-In Go the `encoding/json` package provides tools to encode and decode JSON files into structs. For this we need to know the JSON fields and their types. Struct fields must be exported (capitalized) to decode JSON.
+In Go you can use the tools provided by the `net/http` package, to work with the headers. Both the `http.Request` and `http.Response` types have a `Header` field, which is of type `Header`. This has useful methods to work with the headers.
 
-If the structure of the JSON data is unknown, a `map[string]interface{}` can be used as type for the parsed data.
-
-For the decoding we create an empty slice and then use the `&` "address of" operator to mutate it with a `Decoder`. We create a JSON `Decoder` with the `NewDecoder` method and pass in the response's `Body`.
-
-```go
-package main
-
-import (
-    "fmt"
-    "net/http"
-    "encoding/json"
-)
-
-type Issue struct {
-    Title    string `json:"title"`
-    Estimate int    `json:"estimate"`
-}
-
-func getIssues(url string) ([]Issue, error) {
-    res, err := http.Get(url)
-    if err != nil {
-        return nil, fmt.Errorf("error creating request: %w", err)
-    }
-    defer res.Body.Close()
-
-    // [!code highlight]
-    var issues []Issue
-    // [!code highlight]
-    // var issues []map[string]interface{}
-    // [!code highlight]
-    decoder := json.NewDecoder(res.Body)
-    // [!code highlight]
-    if err := decoder.Decode(&issues); err != nil {
-        return nil, fmt.Errorf("error decoding response body")
-    }
-
-    return issues, nil
-}
-```
-
-You can also use `Unmarshal` for smaller JSON files, that you already converted to `[]byte` with `io.ReadAll`
+- `Add(key, value string)` will add the key-value pair to the header: if the key already exists, it _appends_ the value
+- `Set(key, value string)` will set the field associated with key in the header to value: if the key already exists, it _replaces_ the current value
+- `Del(key string)` will delete a key-value pair from the header
+- `Get(key string)` will return the value associated with key
 
 ```go
-package main
-
-import (
-    "encoding/json"
-    "fmt"
-    "io"
-    "net/http"
-)
-
-func getIssues(url string) ([]Issue, error) {
-    res, err := http.Get(url)
-    if err != nil {
-    return nil, fmt.Errorf("error creating request: %w", err)
-    }
-    defer res.Body.Close()
-
-    data, err := io.ReadAll(res.Body)
-    if err != nil {
-    return nil, err
-    }
-
-    var issues []Issue
-    // [!code highlight]
-    if err := json.Unmarshal(data, &issues); err != nil {
-    return nil, err
-    }
-    return issues, nil
+// creating a new request
+req, err := http.NewRequest("GET", "https://api.example.com/users", nil)
+if err != nil {
+    fmt.Println("error creating request: ", err)
+    return
 }
+
+// setting a header on the new request
+req.Header.Set("x-api-key", "123456789")
+
+// making the request
+client := http.Client{} // or &http.Client{}
+res, err := client.Do(req)
+if err != nil {
+    fmt.Println("error making request: ", err)
+    return
+}
+defer res.Body.Close()
+
+// reading a header from the response
+header := res.Header.Get("last-modified")
+fmt.Println("last modified: ", header)
+
+// deleting a header from the response
+res.Header.Del("last-modified")
 ```
 
-== JavaScript/TypeScript
+== JS/TS
 
-In JavaScript or TypeScript you can use the response's `.json()` method to parse the response into a JavaScript object.
+In JavaScript/TypeScript you can set the headers of a request by passing in an options object to `fetch`. This can have a `headers` option, which is another object, with string keys corresponding to the header we want to set and string values we want to set fot the particular headers.
+
+Similarly responses have a `header` property that contains the headers as key-value pairs of an object.
 
 ```javascript
-try {
-  const response = await fetch("https://api.jello.com/users");
-  const responseData = await response.json();
-} catch (err) {
-  console.log(`Error fetching data: ${err.message}`);
-}
+const requestUsers = async function () {
+  try {
+    const res = await fetch("https://api.example.com/users", {
+      method: "GET",
+      headers: {
+        "X-Api-Key": "123456789",
+      },
+    });
+    const data = await res.json();
+    console.log(res.headers["last-modified"]);
+  } catch (err) {
+    console.log(`Error fetching users: ${err.message}`);
+  }
+};
 ```
 
 :::
-
-### Converting to JSON
-
-Data is converted, stringified to JSON.
-
-::: tabs
-
-== Go
-
-In Go the `encoding/json` package's `Marshal` method is used to convert a struct to a JSON string.
-
-```go
-package main
-
-import (
-    "encoding/json"
-)
-
-func marshalAll[T any](items []T) ([][]byte, error) {
-    var result [][]byte
-    for _, item := range items {
-        data, err := json.Marshal(item)
-        if err != nil {
-            return nil, err
-        }
-        result = append(result, data)
-    }
-    return result, nil
-}
-```
-
-== JavaScript/TypeScript
-
-In JavaScript/TypeScript the `JSON.stringify()` static method can convert a JavaScript value (e.g. an object) to a JSON string.
-
-:::
-
-## XML
-
-XML is another file type used to store data. It is similar to HTML: it uses tags, but its tags are not predefined. XML can serve similar purposes as JSON. Nowadays, JSON is used more often, because it is smaller, easier to read, and is supported by all major programming languages.
-
-```xml
-<root>
-  <id>1</id>
-  <genre>Action</genre>
-  <title>Iron Man</title>
-  <director>Jon Favreau</director>
-</root>
-```
