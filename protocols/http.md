@@ -19,6 +19,12 @@ The other computer, called _server_ sends back a _response_ with the requested i
 
 A computer can act as a client, a server, both, or neither.
 
+::: info URLs
+
+The _URL_ (Uniform Resource Locator) is the address of another computer. It consists of several parts: the `http://` at the beginning specifies the protocol used for communication. Other protocols use URLs as well.
+
+:::
+
 ## Sending requests
 
 ### Request Methods
@@ -105,9 +111,94 @@ async function getProjects(apiKey: string): Promise<Project[]> {
 
 :::
 
-::: info URLs
+#### 2. POST
 
-The _URL_ (Uniform Resource Locator) is the address of another computer. It consists of several parts: the `http://` at the beginning specifies the protocol used for communication. Other protocols use URLs as well.
+A `POST` request sends data to a server, typically to create a new resource (e.g. register a user, add a blog post, comment, etc.). In the case of a `POST` request, the `body` of the request is used to send the payload. The `Content-Type` header is used to tell the format of the body (e.g. `application/json`). A `POST` request is generally _not safe_ to call multiple times, and _not idempotent_, because calling them multiple times would likely create multiple resources.
+
+::: tabs
+
+== Go
+
+In Go, similarly to `Get`, the `http` package has a `Post` function to send simple `POST` requests, but for more complex cases you need to create a client and a `http.NewRequest`, and send it with your client.
+
+You can use `bytes.NewBuffer()` to create an `io.Reader` from the stringified JSON data.
+
+```go
+type Comment struct {
+  Id      string `json:"id"`
+  UserId  string `json:"user_id"`
+  Comment string `json:"comment"`
+}
+
+func createComment(url, apiKey string, commentStruct Comment) (Comment, error) {
+  // encode our comment as json
+  jsonData, err := json.Marshal(commentStruct)
+  if err != nil {
+    return Comment{}, err
+  }
+
+  // create a new request
+  // [!code highlight]
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+    return Comment{}, err
+  }
+
+  // set request headers
+  // [!code highlight]
+  req.Header.Set("Content-Type", "application/json")
+  // [!code highlight]
+  req.Header.Set("X-API-Key", apiKey)
+
+  // create a new client and make the request
+  client := &http.Client{}
+  // [!code highlight]
+  res, err := client.Do(req)
+  if err != nil {
+    return Comment{}, err
+  }
+  defer res.Body.Close()
+
+  // decode the json data from the response
+  // into a new Comment struct
+  var comment Comment
+  decoder := json.NewDecoder(res.Body)
+  err = decoder.Decode(&comment)
+  if err != nil {
+    return Comment{}, err
+  }
+
+  return comment, nil
+}
+```
+
+== JavaScript/TypeScript
+
+In JS/TS you use the same `fetch` function with `method` set to `POST`. You can add the payload to the `body` of the `init` object, and specify the `headers`.
+
+```typescript
+async function createComment(
+  url: string,
+  apiKey: string,
+  data: Comment
+): Promise<Comment> {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+      },
+      body: JSON.stringify(data),
+    });
+    const comment = await res.json();
+    return comment;
+  } catch (err) {
+    // handle error
+  }
+}
+```
 
 :::
 

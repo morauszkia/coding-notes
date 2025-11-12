@@ -60,6 +60,8 @@ While JSON data can be treated as a string, it is typically parsed or decoded.
 
 In Go the `encoding/json` package provides tools to encode and decode JSON files into structs. For this we need to know the JSON fields and their types. Struct fields must be exported (capitalized) to decode JSON.
 
+You can use _Struct tags_ that the `encoding/json` package will examine and use in the encoded `.json` file as field names.
+
 If the structure of the JSON data is unknown, a `map[string]interface{}` can be used as type for the parsed data.
 
 For the decoding we create an empty slice and then use the `&` "address of" operator to mutate it with a `Decoder`. We create a JSON `Decoder` with the `NewDecoder` method and pass in the response's `Body`.
