@@ -260,6 +260,52 @@ async function getProjects() {
 
 :::
 
+### Status Codes
+
+Responses have status codes that inform the client whether or not a request was fulfilled by the server. They are 3-digit numbers grouped into categories:
+
+- 100-199: Informational responses
+- 200-299: Success
+- 300-399: Redirection
+- 400-499: Client errors
+- 500-599: Server errors
+
+The most common status codes are
+
+- `200` - OK: everything worked as expected
+- `201` - Created: resource was created successfully
+- `301` - Moved permanently: the response will include, where the resource was moved (used for example for domain name changes)
+- `400` - Bad request: a general client error
+- `401` - Unauthorized: client doesn't have correct permissions (we get this for instance, if we didn't add an authorization header)
+- `404` - Not found: the resource doesn't exist (in the specified location)
+- `500` - Internal server error
+
+::: tabs
+
+== Go
+
+The `http.Response` struct has a `StatusCode` property with the status code of the response
+
+```go
+if res.StatusCode == "200" {
+  // do something
+} else {
+  // do something else
+}
+```
+
+== JavaScript/TypeScript
+
+Responses have a `status` property that contains the status code of the response.
+
+```typescript
+if (res.status === "200") {
+  // do something
+} else {
+  // do something else
+}
+```
+
 ## HTTP Headers
 
 An _HTTP header_ allows to pass additional information with the request or response. Headers are _case-insesitive_ key-value pairs that store metadata: e.g. type of client, operaring system, preferred language, API keys for authentication, content type, etc.
