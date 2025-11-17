@@ -113,7 +113,7 @@ async function getProjects(apiKey: string): Promise<Project[]> {
 
 #### 2. POST
 
-A `POST` request sends data to a server, typically to create a new resource (e.g. register a user, add a blog post, comment, etc.). In the case of a `POST` request, the `body` of the request is used to send the payload. The `Content-Type` header is used to tell the format of the body (e.g. `application/json`). A `POST` request is generally _not safe_ to call multiple times, and _not idempotent_, because calling them multiple times would likely create multiple resources.
+A `POST` request sends data to a server, typically to create a new resource (e.g. register a user, add a blog post, comment, etc.). It corresponds to CRUD's _Create_. In the case of a `POST` request, the `body` of the request is used to send the payload. The `Content-Type` header is used to tell the format of the body (e.g. `application/json`). A `POST` request is generally _not safe_ to call multiple times, and _not idempotent_, because calling them multiple times would likely create multiple resources.
 
 ::: tabs
 
@@ -199,6 +199,139 @@ async function createComment(
   }
 }
 ```
+
+:::
+
+#### 3. PUT/PATCH
+
+The `PUT` and `PATCH` methods are typically used to update the target resource with the contents of the request's body. They correspond to the CRUD action _Update_. Unlike `POST`, `PUT` and `PATCH` are used to update resources and are _idempotent_.
+
+::: info PUT vs. PATCH
+
+:::
+
+::: info Idempotency
+
+If used with a nonexistent resource, `PUT` will create the resource, similarly to `POST`, but calling it with an existing resource would only update it with potentially new data, but wouldn't create duplicate resources like `POST` would.
+
+:::
+
+::: tabs
+
+== Go
+
+There is _no_ `http.Put` function, so in this case, a new `http.NewRequest` needs to be created and sent using `http.Client`&apos;s `Do` method.
+
+```go
+func updateUser(url, apiKey string, userStruct User) (User, error) {
+  // encode our comment as json
+  jsonData, err := json.Marshal(userStruct)
+  if err != nil {
+    return User{}, err
+  }
+
+  // create a new request
+  // [!code highlight]
+  req, err := http.NewRequest("PUT", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+    return User{}, err
+  }
+
+  // set request headers
+  // [!code highlight]
+  req.Header.Set("Content-Type", "application/json")
+  // [!code highlight]
+  req.Header.Set("X-API-Key", apiKey)
+
+  // create a new client and make the request
+  client := &http.Client{}
+  // [!code highlight]
+  res, err := client.Do(req)
+  if err != nil {
+    return User{}, err
+  }
+  defer res.Body.Close()
+
+  // decode the json data from the response
+  // into a new User struct
+  var user User
+  decoder := json.NewDecoder(res.Body)
+  err = decoder.Decode(&user)
+  if err != nil {
+    return User{}, err
+  }
+
+  return user, nil
+}
+```
+
+== JavaScript/TypeScript
+
+You can set the method to `PUT` to send a `PUT` request using the `fetch` API. As in the case of a `POST` request, you can add the payload to the body.
+
+```typescript
+async function updateUser(
+  url: string,
+  apiKey: string,
+  data: Comment
+): Promise<Comment> {
+  try {
+    const res = await fetch(url, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+      },
+      body: JSON.stringify(data),
+    });
+    const user = await res.json();
+    return user;
+  } catch (err) {
+    // handle error
+  }
+}
+```
+
+:::
+
+#### 4. DELETE
+
+Finally, a `DELETE` request corresponds to the CRUD action _Delete_, and is used to delete a resource.
+
+::: tabs
+
+== Go
+
+You need to create a `http.NewRequest` to delete a specified resource, and `Do` it with a `http.Client`.
+
+```go
+func deleteUser(baseURL, id, apiKey string) error {
+  fullURL := baseURL + "/" + id
+
+  req, err := http.NewRequest("DELETE", fullURL, nil)
+  if err != nil {
+    return err
+  }
+
+  req.Header.Set("X-API-Key", apiKey)
+
+  client := &http.Client{}
+  res, err := client.Do(req)
+  if err != nil {
+    return err
+  }
+  defer res.Body.Close()
+
+  if res.StatusCode > 299 {
+    return fmt.Errorf("Server responded with status code %v", res.StatusCode)
+  }
+
+  return nil
+}
+```
+
+== JavaScript/TypeScript
 
 :::
 
