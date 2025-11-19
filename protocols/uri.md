@@ -2,6 +2,9 @@
 prev:
   text: "DNS & IP"
   link: "./dns"
+next:
+  text: "REST"
+  link: "./rest"
 ---
 
 # URIs
@@ -22,8 +25,8 @@ URLs are potentially complex character sequences with several sections. They can
 - password
 - domain (required)
 - port: optional, defaults to 80 (`http`) or 443 (`https`), but other ports as well can be used to connect to the host (e.g. `3000` or `8080` is often used for development servers)
-- path (defaults to `/`): typically mirrors the server's filesystem hierarchy, but this is just a convention, the server can be configured otherwise
-- query (e.g. `page=1`): typically do not change which page is served, but are often used for marketing analytics or for changing a variable on the page, e.g. search query, page, ordering, etc.
+- path (defaults to `/`): typically mirrors the server's filesystem hierarchy, but this is just a convention, the server can be configured otherwise, and paths can be used to pass in parameters (e.g. id, slug), API version, type of requested resource to a server serving a dynamic web application
+- query (e.g. `?page=1&sort=population`): are optional key-value pairs, that typically do not change which page is served, but are often used for marketing analytics or for changing a variable on the page, e.g. search query, page, ordering, etc. Query parameteres start with a `?` and the key-value pairs are separated by `&`
 - fragment (e.g. `#id`): can be used to scroll to some point within the page with the specified id value.
 
 ::: tabs
