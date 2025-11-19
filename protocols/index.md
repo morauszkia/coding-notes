@@ -21,8 +21,8 @@ Use these topics to understand:
 ## Subtopics
 
 - [HTTP & HTTPS](./http)
-- REST APIs
+- [DNS & TCP/IP](./dns)
+- [REST APIs](./rest)
 - GraphQL
 - gRPC & WebSockets
-- [DNS & TCP/IP](./dns)
 - CORS & Browser Networking
