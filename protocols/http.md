@@ -379,6 +379,8 @@ The response, which is typically in [JSON](./data#json) can be parsed using the 
 
 Http requests can run into errors (e.g. if a server is down), so you should handle potential errors in your code, e.g. with `try/catch` blocks. If you use the `.then` syntax for handling promises, `.catch()` can be used with a callback function to handle potential errors.
 
+The value of a parsed JSON will be of type `any` by default. TypeScript won't be able to perform type checking on the parsed data. You need to manually validate that the data has all the required fields, or if you trust the API you can assert the type of the parsed data.
+
 ```javascript
 async function getProjects() {
     try {
@@ -512,3 +514,9 @@ const requestUsers = async function () {
 ```
 
 :::
+
+## HTTPS
+
+HTTPS is an extension of the HTTP protocol, which secures data transfer between the client and the server by encrypting the communication. This makes it possible to safely share sensitive information (e.g. credit card data, passwords) through an HTTP request. The client will use SSL or TLS encryption to protect the information in the request.
+
+HTTPS encrypts the information sent in the request and response, but does not protect your identity. For added privacy you need to use additional tools, such as VPNs. However, HTTPS ensures that you are talking to the server that you think you are. HTTPS uses digital signatures for this.

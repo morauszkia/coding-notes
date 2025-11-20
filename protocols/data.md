@@ -141,6 +141,8 @@ In JavaScript or TypeScript you can use the response's `.json()` method to parse
 
 In TypeScript a parsed JSON resolves to type `any` because the compiler has no way to know the type of data being requested. You can explicitly set the return type of the function, or use [type assertion](/ts/type-assertion) to tell the compiler what type you expect to get if everything goes according to plan.
 
+If you don't trust the server enough or are unsure if the server will always return the data in the desired format, you can add manual runtime validation to ensure that the parsed data has all the necessary properties.
+
 ```typescript
 async function getUsers() {
   try {
