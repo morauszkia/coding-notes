@@ -81,11 +81,12 @@ import {
 
   // [!code highlight]
   "{REMOTE}/{USER}/{MODULE}"
-
-  func main() {
-    // Do something
-  }
 }
+
+func main() {
+  // Do something
+}
+
 ```
 
 ```text
