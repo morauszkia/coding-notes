@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Frontend Development"
+  name: "Front-end Development"
   tagline: "From the basic building blocks of every website: HTML+CSS+JavaScript to various frameworks"
 
 features:
@@ -11,6 +11,7 @@ features:
       src: "/assets/icons/HTML5.svg"
     title: HTML, CSS & Responsive Web Development
     details: The fundamental technologies for building and styling web pages
+    link: "frontend-fundamentals"
   - icon:
       src: "/assets/icons/JavaScript.svg"
       alt: "JavaScript logo"
