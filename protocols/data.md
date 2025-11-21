@@ -143,6 +143,8 @@ In TypeScript a parsed JSON resolves to type `any` because the compiler has no w
 
 If you don't trust the server enough or are unsure if the server will always return the data in the desired format, you can add manual runtime validation to ensure that the parsed data has all the necessary properties.
 
+You can also use [data validation libraries](../js/libraries/zod). A runtime validation creates a boundary between untrusted external data (beside APIs, user input or database entries) and typed code. You can handle failed validation gracefully using data validation, instead of the program crashing.
+
 ```typescript
 async function getUsers() {
   try {
