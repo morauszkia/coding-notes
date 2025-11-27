@@ -137,6 +137,8 @@ export default defineConfig({
             { text: "Program Flow", link: `${cPath}/flow` },
             { text: "Structs", link: `${cPath}/structs` },
             { text: "Pointers", link: `${cPath}/pointers` },
+            { text: "Arrays", link: `${cPath}/arrays` },
+            { text: "Strings", link: `${cPath}/strings` },
           ],
         },
         mainNav,
