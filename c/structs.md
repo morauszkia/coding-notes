@@ -2,6 +2,9 @@
 prev:
   text: "Program Flow"
   link: "./flow"
+next:
+  text: "Pointers"
+  link: "./pointers"
 ---
 
 # Structs

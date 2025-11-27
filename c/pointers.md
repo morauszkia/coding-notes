@@ -2,6 +2,9 @@
 prev:
   text: "Structs"
   link: "./structs"
+next:
+  text: "Arrays"
+  link: "./arrays"
 ---
 
 # Pointers
@@ -64,3 +67,7 @@ coordinate_t *ptrToPoint = &point;
 printf("X: %d\n", ptrToPoint->x); // X: 10
 // same as (*ptrToPoint).x
 ```
+
+## Pointer Size
+
+As a pointer is only a reference to a location in the memory, its size does not depend on the type of data it is pointing to. Its size only depends on the system's architecture.
