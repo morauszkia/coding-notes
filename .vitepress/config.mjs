@@ -139,6 +139,7 @@ export default defineConfig({
             { text: "Pointers", link: `${cPath}/pointers` },
             { text: "Arrays", link: `${cPath}/arrays` },
             { text: "Strings", link: `${cPath}/strings` },
+            { text: "Enums", link: `${cPath}/enums` },
           ],
         },
         mainNav,

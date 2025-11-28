@@ -2,6 +2,9 @@
 prev:
   text: "Arrays"
   link: "./arrays"
+next:
+  text: "Enums"
+  link: "./enums"
 ---
 
 # Strings

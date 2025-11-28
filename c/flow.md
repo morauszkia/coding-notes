@@ -41,6 +41,60 @@ Simpler conditional statements can be written with the ternary operator.
 int max = a > b ? a : b;
 ```
 
+### Switch statements
+
+C has a switch statement, which can be used to run code conditionally. The indivudal `case`s are executed if the value of the variable on which the switch is based is equal to the specified. At the end you can add a `default` case to execute if neither of the previous cases was executed.
+
+::: tip Enums
+
+[Enums](./enums) are really useful for switch cases, because they help you avoid _magic numbers_, and use descriptive names instead, and also, the IDE might give you warnings, if you didn't handle all possible cases.
+
+:::
+
+```c
+switch (logLevel) {
+  case LOG_DEBUG:
+    printf("Debug logging enabled\n");
+    break;
+  case LOG_INFO:
+    printf("Info logging enabled\n");
+    break;
+  case LOG_WARN:
+    printf("Warning logging enabled\n");
+    break;
+  case LOG_ERROR:
+    printf("Error logging enabled\n");
+    break;
+  default:
+    printf("Unknown log level: %d\n", logLevel);
+    break;
+}
+```
+
+::: warning break
+
+You need to use `break` (or `return`) to terminate the branch, otherwise it _falls through_ to the next case. Sometimes this is what you want, but be cautious, because forgetting a `break` may easily lead to bugs.
+
+:::
+
+```c
+switch (day) {
+  case MONDAY:
+  case TUESDAY:
+  case WEDNESDAY:
+    printf("Oh, no, another workday!");
+    break;
+  case THURSDAY:
+  case FRIDAY:
+    printf("Hold out, it is almost weekend");
+    break;
+  case SATURDAY:
+  case SUNDAY:
+    printf("Enjoy your weekend");
+    break;
+}
+```
+
 ## Loops
 
 To execute code repeatedly you can use loops. C offers two kinds of loops: for loops to loop for a specified number of times, and while loops, to continue looping while a condition is met.
