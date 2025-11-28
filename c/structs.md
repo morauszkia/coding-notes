@@ -56,11 +56,12 @@ You can use the `typedef` keyword to create an alias for the type and use that w
 ```c
 // .h file
 
+// [!code highlight]
 typedef struct Coordinate {
     int x;
     int y;
     int z;
-} coordinate_t;
+} coordinate_t; // [!code highlight]
 
 // .c file
 int main() {
@@ -77,3 +78,35 @@ int main() {
 Structs are stored contiguously in memory one field after the other. In the case of mixed type structs, C inserts padding to maintain data alignment. As a rule of thumb, ordering fields from largest to smallest will help the compiler minimize padding.
 
 :::
+
+## Forward Declaration
+
+Sometimes structs need to reference themselves. For example, in a Linked List a Node struct may have a pointer to another Node struct. To make this possible, we can add a forward declaration of the struct.
+
+```c
+// [!code highlight]
+typedef struct Node node_t;
+
+typedef struct Node {
+    int value;
+    // [!code highlight]
+    note_t *next;
+} note_t;
+```
+
+These can also be used for circular reference, when two structs reference each other. For example a Person might own a Computer, and a Computer may have a Person as its owner.
+
+```c{1-2,6,11}
+typedef struct Computer computer_t;
+typedef struct Person person_t;
+
+struct Person {
+  char *name;
+  computer_t *computer;
+};
+
+struct Computer {
+  char *brand;
+  person_t *owner;
+};
+```
