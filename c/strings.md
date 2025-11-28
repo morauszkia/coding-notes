@@ -50,3 +50,22 @@ void concat_strings(char *str1, const char *str2) {
   *next_char = '\0';
 }
 ```
+
+## C String Library
+
+The C standard library provides a set of functions to manipulate strings in the `<string.h>` header file.
+
+- `strcpy(dest, src)` copies one string (`src`) to another (`dest`) - starts at the beginning, overwrites what was there
+- `strncpy(dest, src, n)` copies a specified number `n` of characters from one string to another
+- `strcat(dest, src)` appends one string to another (starts at the end of the first string)
+- `strncat(dest, src, n)` concatenates a specified number of characters
+- `strlen(src)` returns the length of a string (excluding the null terminator)
+- `strcmp(str1, str2)` compares two strings lexicographically
+- `strchr(str, char)` finds first occurrence of character in a string, and returns pointer to that character
+- `strstr(str1, str2)` finds first occurrence of substring `str2` in string `str1`, and returns pointer to first character
+
+::: warning Null terminator
+
+When working with strings in C, you must account for the null terminator. While it is not included in string length, it needs to be allocated space in memory.
+
+:::
