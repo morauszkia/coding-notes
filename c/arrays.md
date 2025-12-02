@@ -11,11 +11,18 @@ next:
 
 An array in C is a fixed-size, ordered collection of elements. The elements are indexed by integers, starting at zero. Unlike array implementations in some other languages (e.g. Python Lists or JavaScript Arrays), C arrays can only hold elements of the same type.
 
+Arrays are written in the following form
+
+```c
+// type name[size] = {values}
+int numbers[5] = {1, 2, 3, 4, 5};
+```
+
 Arrays are stored in contiguous memory.
 
 You can access elements in the array using square brackets, and you can reassign this way, too.
 
-```c
+```c{2-3}
 int numbers[5] = {1, 2, 3, 4, 5};
 int first_number = numbers[0];
 numbers[4] = 10;
@@ -35,6 +42,7 @@ An array name acts as a [pointer](./pointers) to the first element. This means, 
 int numbers[5] = {1, 2, 3, 4, 5};
 int three = numbers[2];
 // another way to access elements
+// [!code highlight]
 int five = *(numbers + 4);
 ```
 
@@ -48,7 +56,7 @@ As both arrays and structs are contiguous in memory, we can even cast an array o
 
 ## Iterate over Arrays
 
-In C the only way to iterate over arrays is using a [for lopp](./flow#for-loop) with an index or some other conditional loop.
+In C the only way to iterate over arrays is using a [for loop](./flow#for-loop) with an index or some other conditional loop.
 
 ```c
 #include <stdio.h>
