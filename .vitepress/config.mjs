@@ -140,6 +140,7 @@ export default defineConfig({
             { text: "Arrays", link: `${cPath}/arrays` },
             { text: "Strings", link: `${cPath}/strings` },
             { text: "Enums", link: `${cPath}/enums` },
+            { text: "Unions", link: `${cPath}/unions` },
           ],
         },
         mainNav,

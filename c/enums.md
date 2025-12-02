@@ -2,6 +2,9 @@
 prev:
   text: "Strings"
   link: "./strings"
+next:
+  text: "Unions"
+  link: "./unions"
 ---
 
 # Enums
