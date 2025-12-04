@@ -10,7 +10,7 @@ next:
 # Pointers
 
 **Variables** are _named references_ to some data in memory.
-**Memory** is a big _array of bytes_, in which data is stored.
+[**Memory**](./memory) is a big _array of bytes_, in which data is stored.
 A **memory address** is an index into the big array of bytes. It is just a large number, written in _hexadecimal_ format.
 A **Pointer** is just a _variable_ that stores a memory address.
 

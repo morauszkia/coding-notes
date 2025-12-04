@@ -2,6 +2,9 @@
 prev:
   text: "Enums"
   link: "./enums"
+next:
+  text: "Memory"
+  link: "./memory"
 ---
 
 # Unions
@@ -35,7 +38,7 @@ In the example above a `SnekObject struct` can hold either an integer on its `.d
 
 ## Memory Usage
 
-The C compiler allocates memory to a `union` based on the largest potential memory requirement, and the alternative members share this allocated memory. In the case above, this memory would either hold an integer or a string, in the same location. So, if we access this part of the memory, we need to make sure to check the type of data stored: for example, by using some tag member, like `.kind` in the example.
+The C compiler allocates [memory](./memory) to a `union` based on the largest potential memory requirement, and the alternative members share this allocated memory. In the case above, this memory would either hold an integer or a string, in the same location. So, if we access this part of the memory, we need to make sure to check the type of data stored: for example, by using some tag member, like `.kind` in the example.
 
 In the example below we use a `switch` on the `.kind` member to determine, how the data stored in the memory can be accessed.
 
@@ -83,7 +86,7 @@ Using union types may be incredibly inefficient. For example a union may hold an
 
 ## Helper Fields
 
-An interesting trich is using unions to create "helpers" for accessing different parts of a piece of memory. For example you might use the union below to make it possible to access the whole rgba value or its individual components by allowing them to share the same memory location.
+An interesting trick is using unions to create "helpers" for accessing different parts of a piece of memory. For example you might use the union below to make it possible to access the whole rgba value or its individual components by allowing them to share the same memory location.
 
 ```c
 typedef union Color {

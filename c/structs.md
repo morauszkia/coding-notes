@@ -73,7 +73,7 @@ int main() {
 }
 ```
 
-::: info Structs in Memory
+::: info Structs in [Memory](./memory)
 
 Structs are stored contiguously in memory one field after the other. In the case of mixed type structs, C inserts padding to maintain data alignment. As a rule of thumb, ordering fields from largest to smallest will help the compiler minimize padding.
 

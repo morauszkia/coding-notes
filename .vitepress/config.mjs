@@ -141,6 +141,7 @@ export default defineConfig({
             { text: "Strings", link: `${cPath}/strings` },
             { text: "Enums", link: `${cPath}/enums` },
             { text: "Unions", link: `${cPath}/unions` },
+            { text: "Memory", link: `${cPath}/memory` },
           ],
         },
         mainNav,

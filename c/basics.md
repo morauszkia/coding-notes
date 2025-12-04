@@ -107,7 +107,7 @@ C is statically typed, therefore, changing the type of an existing variable is n
 
 ### Type sizes
 
-Different types occupy different amount of memory. For example, a `char` has the size of 1 byte. A `float` (single-precision floating-point number) is typically 4 bytes, while a `double` (double-precision floating-point number) takes up 8 bytes. However, the size of some types also depends on your system's architecture. An `int` is typically 4 bytes on a 32-bit system and 8 bytes on a 64-bit system. You can use the `sizeof` operator to determine the actual size of a type.
+Different types occupy different amount of [memory](./memory). For example, a `char` has the size of 1 byte. A `float` (single-precision floating-point number) is typically 4 bytes, while a `double` (double-precision floating-point number) takes up 8 bytes. However, the size of some types also depends on your system's architecture. An `int` is typically 4 bytes on a 32-bit system and 8 bytes on a 64-bit system. You can use the `sizeof` operator to determine the actual size of a type.
 
 ```c
 #include <stdbool.h>

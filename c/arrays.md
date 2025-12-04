@@ -18,7 +18,7 @@ Arrays are written in the following form
 int numbers[5] = {1, 2, 3, 4, 5};
 ```
 
-Arrays are stored in contiguous memory.
+Arrays are stored in [contiguous memory](./memory).
 
 You can access elements in the array using square brackets, and you can reassign this way, too.
 
