@@ -47,3 +47,44 @@ The stack is only safe to use within the context of the current function. Access
 Returning structs from functions instead of pointers to structs forces the compiler to copy the struct to the `main` functions stack frame, making the memory safe to access.
 
 :::
+
+## The Heap
+
+C always needs to know, how large the data will be, and where it should be put. For simple data, and variables that we only need inside a function are allocated to the stack. However, if we don't know ahead of time what size the data will be, and if we use variables that we want to persist after a function returns, these can be allocated to the heap. Heap is a pool of long-lived memory shared across the entire program. It is slower and more complex to work with, but it allows us to create more complex data structures.
+
+In C the `malloc` (*m*emory *alloc*ation) function is used to allocate memory on the heap.
+
+```c
+void* malloc(size size_t);
+```
+
+It takes a number of bytes to allocate as its argument and returns a pointer to the allocated memory. The pointer can be cast to the necessary type of pointer. If the allocation fails, it returns `NULL`.
+
+```c
+// Allocates memory for an array of 4 integers
+int *ptr = (int *)malloc(4 * sizeof(int));
+if (ptr == NULL) {
+  // Handle memory allocation failure
+  printf("Memory allocation failed\n");
+  exit(1);
+}
+// use the memory here
+// ...
+free(ptr);
+```
+
+The new memory is _uninitialized_, and contains the data that was previously stored at that location. It is the programmers responsibility to _initialize_ the data properly before it is accessed, and to eventually deallocate it using `free` to avoid memory leaks. If the memory isn't freed, it is never (at least not until the program exits) returned to the operating system to be used by other programs. It is a waste of resources, and if the program does not free up memory that it doesn't use anymore, but continues to allocate new memory, it may run out of memory and crash.
+
+::: warning free
+
+`free` does not change the value stored in the memory, and neither does it change the address stored in the pointer. It simply informs the operating system that the memory is free to be used again by other programs.
+
+:::
+
+The `calloc` function can be used to allocate the specified amount of bytes _and_ to initialize the memory to zero.
+
+::: info Big and Little Endian
+
+Endianness is the order in which bytes are stored in memory. A big-endian systems store the most significant byte ("the biggest part of the number") first, while little-endian systems store the least significant byte first. Most modern systems use little-endian, and the compiler takes care of how data is stored and accessed, so we don't have to worry (at least) about this.
+
+:::
