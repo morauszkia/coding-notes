@@ -71,3 +71,75 @@ printf("X: %d\n", ptrToPoint->x); // X: 10
 ## Pointer Size
 
 As a pointer is only a reference to a location in the memory, its size does not depend on the type of data it is pointing to. Its size only depends on the system's architecture.
+
+## Pointer-pointers
+
+Pointers can store the address of values (pointers), or even store pointers to pointers to pointers, etc. This can be useful for example, if you want to have an array of pointers. Type declaration and dereferencing works by adding the necessary number of asterisks to get to the level you want.
+
+```c
+int value = 42;
+int *pointer = &value;
+int **pointer_pointer;
+// pointer_pointer will hold the address of the value
+*pointer_pointer = pointer;
+
+// set new value
+**pointer_pointer = 13;
+```
+
+As strings are represented as pointers to chars in C, an array of strings [on the heap](./memory#the-heap) is accessed using a pointer to the pointers (strings).
+
+```c
+char **string_array = malloc(sizeof(char *) * 3);
+```
+
+## Void Pointers
+
+A `void *` pointer, for example that returned by [`malloc`](./memory#the-heap) tells the compiler, that this pointer can point to _anything_. These are also known as _generic pointers_. They cannot be directly dereferenced or used in pointer arithmetic without casting them to another pointer type first.
+
+```c
+int number = 42;
+void *generic_ptr = &number;
+
+// This doesn't work
+printf("Value of number: %d\n", *generic_ptr);
+
+// This works: Cast to appropriate type before dereferencing
+printf("Value of number: %d\n", *(int*)generic_ptr);
+```
+
+It is a common pattern to store the value of generic data in one variable and its type in another to be used by functions that can process variables whose type we don't know in advance.
+
+```c
+typedef enum DATA_TYPE {
+  INT,
+  FLOAT
+} data_type_t;
+
+void printValue(void *ptr, data_type_t type) {
+  if (type == INT) {
+    printf("Value: %d\n", *(int*)ptr);
+  } else if (type == FLOAT) {
+    printf("Value: %f\n", *(float*)ptr);
+  }
+}
+
+int number = 42;
+printValue(&number, INT);
+
+float decimal = 3.14;
+printValue(&decimal, FLOAT);
+```
+
+::: warning Casting&Dereferencing
+
+When casting and dereferencing pointers, parentheses determine what is cast:
+
+```c
+// casting applied to ptr
+((some_struct_t*)ptr)->field
+// casting applied to field
+(some_struct_t*)ptr->field
+```
+
+:::
