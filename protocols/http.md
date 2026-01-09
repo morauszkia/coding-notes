@@ -7,7 +7,7 @@ next:
   link: "./dns"
 ---
 
-# HTTP
+# HTTP Clients
 
 Modern applications need to communicate and share information between devices on the internet. For this they need a common language: a set of rules that govern their communication. The most popular _protocol_ for web communication is _HTTP_, which stands for _Hypertext Transfer Protocol_
 
@@ -18,6 +18,12 @@ The _client_ computer is sending a _request_ to another computer. A client can b
 The other computer, called _server_ sends back a _response_ with the requested information. Most websites use a server to store, and manipulate data, that is used by the web page or application. This way the data can be persistent and last longer than a single session. The server is _listening_ for incoming requests constantly, so that it can respond to them. In web development we call servers the _back end_. Like clients, these are just computers, but typically computers designed to be up and running constantly are used to act as servers.
 
 A computer can act as a client, a server, both, or neither.
+
+::: info Clients and Servers
+
+This page deals with the HTTP protocol from the viewpoint of the client. To learn more about HTTP Servers, [visit this page](./server)
+
+:::
 
 ::: info URLs
 

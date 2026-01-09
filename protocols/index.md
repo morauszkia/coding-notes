@@ -3,7 +3,7 @@ prev:
   text: "Web Development"
   link: "/web-dev"
 next:
-  text: "HTTP & HTTPS"
+  text: "HTTP Clients & HTTPS"
   link: "./http"
 ---
 

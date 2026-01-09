@@ -1,6 +1,6 @@
 ---
 prev:
-  text: "HTTP & HTTPS"
+  text: "HTTP Clients & HTTPS"
   link: "./http"
 next:
   text: "URIs"
