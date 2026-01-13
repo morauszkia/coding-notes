@@ -218,5 +218,141 @@ func main() {
 
 ## Monoliths and Decoupled Architectures
 
-Web applications can either contain both the back end and the front end code and functionality, or these can be separated into different codebases. Monoliths may contain a REST API for hosting the raw data (e.g. in JSON format) from a subpath, such as `/api/`. In other cases, data is injected into the HTML and the complete pages are served. The advantage of a separate data endpoint is, that they can be consumed by any client. On the other hand, injection is more performant.
-In the decoupled case they the front end and the back end can be served from the same domain, or from different domains or subdomains.
+Web applications can either be _monoliths_ and contain both the back end and the front end code and functionality, or these can be separated into different codebases (_decoupled_).
+
+Monoliths are simpler to get started with. They may contain a REST API for hosting the raw data (e.g. in JSON format) from a subpath, such as `/api/` or data can be injected into the HTML and the complete pages are served. The advantage of a separate data endpoint is, that they can be consumed by any client. On the other hand, injection is more performant and therefore result in better UX, and better SEO. In the case of monoliths the deployment of new versions as easier because the front end and the back end are always in sync.
+
+The decoupled architectures are easier and cheaper to scale as traffic grows. The separation of concerns is easier, too. In the decoupled case the the front end and the back end can be served from the same domain, or from different domains or subdomains. If hosted on different servers, decoupled architectures can benefit from using separate technologies. Embedding data in HTML is more complicated but not impossible with pre-rendered pages.
+
+An application can start as a monolith but with logically decoupled API and front-end, and later migrated to a fully decoupled architecture.
+
+Server architecture influences your deployment choices. Monoliths are, of course, deployed as a single application, for example to a VPS in the cloud. In the case of decoupled applications, the front end and beck end code can be deployed separately. Some options are more suitable for the front end (e.g. hosting static files on a CDN, or GitHub Pages, Netlify, etc.), some for the back end. You can host both in the cloud on a VPS or a physical server.
+
+## Testing the Server
+
+Servers are built to be accessed by [HTTP Clients](./http). If you want to test your server, you would use some client to send requests to your server, running on some free port on your computer.
+
+You could use a browser for [`GET`](./http#1-get) requests, however, for other [methods](./http#request-methods) you will need some tool that makes sending such requests easy. Some examples would be [cURL](https://curl.se/), [Postman](https://www.postman.com/), [Postman for VS Code](https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode) or [Rest Client for VS Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). These let you create the request with any method, and add the desired headers and body, and also to check the returned response.
+
+## Parsing Requests
+
+Requests often contain data, typically in the [JSON](./data#json) format. This data needs to be parsed.
+
+::: tabs
+
+== Go
+
+In Go the parsing of JSON files on the server is done in the [same way as on the front end](./http#reading-responses). You would define the struct corresponding to the data with struct tags. The struct fields should be exported for parsing. Then you can use a `decoder` to decode the incoming data.
+
+Decoder will validate the incoming data, and will return an error, if the data are invalid or have wrong types. Missing fields will have zero values.
+
+```go
+func handler(w http.ResponseWriter, r *http.Request) {
+    type parameters struct {
+        Name string `json:"name"`
+        Age int `json:"age"`
+        IsAdmin bool `json:"admin"`
+    }
+
+    decoder := json.NewDecoder(r.Body)
+    params := parameters{}
+    err := decoder.Decode(&params)
+    if err != nil {
+        log.Printf("Error decoding parameters: %s", err)
+        w.WriteHeader(500)
+        return
+    }
+    // params now contains the data
+}
+```
+
+== JavaScript/TypeScript
+
+The incoming JSON data can be parsed manually in Node using streams: the incoming data chunks can be appended to a body string, and the `end` event can trigger a `JSON.parse`, but Express.js also has a convenient [middleware](#middleware) to parse JSON request bodies.
+
+```typescript
+function handlerValidation(req: Request, res: Response) {
+  let reqBody = "";
+
+  req.on("data", (chunk) => {
+    reqBody += chunk;
+  });
+
+  req.on("end", () => {
+    try {
+      // [!code highlight]
+      const parsedReq = JSON.parse(reqBody);
+
+      // validate incoming data
+    } catch (e) {
+      // handle errors with incoming data
+    }
+  });
+}
+```
+
+With middleware you will access the parsed body on the request's `body` property.
+
+```typescript
+app.use(express.json());
+
+function handlerValidation(req: Request, res: Response) {
+  const body = req.body;
+
+  // validate body
+}
+```
+
+:::
+
+## Encoding Responses
+
+After decoding the requests, the responses will be typically sent in JSON format, too. For this the data needs to be encoded.
+
+::: tabs
+
+== Go
+
+As in the case of decoding, we use structs with struct tags to encode data to JSON. After defining and instantiating the struct, we can use `json.Marshal()` to encode the data, and the `.Write()` it to the `ResponseWriter`.
+
+```go
+func handler(w http.ResponseWriter, r *http.Request) {
+    type responseValues struct {
+        Id int `json:"id"`
+        CreatedAt time.Time `json."created_at"`
+    }
+
+    respBody := responseValues{
+        Id: 12345,
+        CreatedAt: time.Now(),
+    }
+
+    encodedData, err := json.Marshal(respBody)
+    if err != nil {
+        log.Printf("Encoding failed: %s", err)
+        w.WriteHeader(500)
+        return
+    }
+    w.Header.Set("Content-Type", "application/json")
+    w.WriteHeader(200)
+    w.Write(encodedData)
+}
+```
+
+== JavaScript/TypeScript
+
+In JS/TS after constructing your response body as an object, you can use `JSON.stringify()` to encode it as JSON. In Express you can use the `.send()` method on the request to send the stringified data. Before this you can set a status code with `.status()`
+
+```typescript
+const handler = (req: Request, res: Response) => {
+  const responseBody = {
+    id: 1234,
+    createdAt: new Date(),
+  };
+
+  res.header("Content-Type", "application/json");
+  res.status(200).send(JSON.stringify(responseBody));
+};
+```
+
+:::
