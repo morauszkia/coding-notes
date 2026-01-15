@@ -2,6 +2,9 @@
 prev:
   text: "Unions"
   link: "./unions"
+next:
+  text: "Advanced Data Structures"
+  link: "./objects"
 ---
 
 # Memory: Stack and Heap
@@ -50,7 +53,7 @@ Returning structs from functions instead of pointers to structs forces the compi
 
 ## The Heap
 
-C always needs to know, how large the data will be, and where it should be put. For simple data, and variables that we only need inside a function are allocated to the stack. However, if we don't know ahead of time what size the data will be, and if we use variables that we want to persist after a function returns, these can be allocated to the heap. Heap is a pool of long-lived memory shared across the entire program. It is slower and more complex to work with, but it allows us to create more complex data structures.
+C always needs to know, how large the data will be, and where it should be put. For simple data, and variables that we only need inside a function are allocated to the stack. However, if we don't know ahead of time what size the data will be, and if we use variables that we want to persist after a function returns, these can be allocated to the heap. Heap is a pool of long-lived memory shared across the entire program. It is slower and more complex to work with, but it allows us to create [more complex data structures](./objects).
 
 In C the `malloc` (*m*emory *alloc*ation) function is used to allocate memory on the heap.
 
@@ -86,5 +89,15 @@ The `calloc` function can be used to allocate the specified amount of bytes _and
 ::: info Big and Little Endian
 
 Endianness is the order in which bytes are stored in memory. A big-endian systems store the most significant byte ("the biggest part of the number") first, while little-endian systems store the least significant byte first. Most modern systems use little-endian, and the compiler takes care of how data is stored and accessed, so we don't have to worry (at least) about this.
+
+:::
+
+### Reallocation
+
+The `realloc` function is used to resize a previously allocated block of memory without losing its contents. It enables dynamic resizing based on the changing program requirements. It takes the pointer to the current data as the first, and the new size as the second argument, and returns a pointer to the new memory location. If the reallocation fails, for example due to insufficient memory, a NULL pointer is returned.
+
+::: warning Old data
+
+To prevent losing access to the existing data, you should use temporary variables to store the new pointer, and only replace the old pointer to the data in memory, if the reallocation was successful!
 
 :::
