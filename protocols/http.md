@@ -80,7 +80,7 @@ func getProjects() ([]byte, error) {
   }
 
   // [!code highlight]
-  req, err := http.NewRequest("GET", "https://api.jello.com/projects")
+  req, err := http.NewRequest("GET", "https://api.jello.com/projects", nil)
   if err != nil {
     // handle error
   }
@@ -186,7 +186,7 @@ In JS/TS you use the same `fetch` function with `method` set to `POST`. You can 
 async function createComment(
   url: string,
   apiKey: string,
-  data: Comment
+  data: Comment,
 ): Promise<Comment> {
   try {
     const res = await fetch(url, {
@@ -279,7 +279,7 @@ You can set the method to `PUT` to send a `PUT` request using the `fetch` API. A
 async function updateUser(
   url: string,
   apiKey: string,
-  data: Comment
+  data: Comment,
 ): Promise<Comment> {
   try {
     const res = await fetch(url, {
