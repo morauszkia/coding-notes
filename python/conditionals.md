@@ -1,19 +1,21 @@
 ---
 prev:
-  text: "Basics"
-  link: "./basics"
+    text: "Basics"
+    link: "./basics"
 next:
-  text: "Loops"
-  link: "./loops"
+    text: "Loops"
+    link: "./loops"
 ---
 
 # Conditional Logic
+
+Like other programming languages, Python has a `bool` type, which can be either `True` or `False`.
 
 Conditional statements serve to run certain lines of code only if the condition we specify is true. To define our conditions, we use comparison and logical operators to express a potentially complex condition
 
 ## Comparison and Logical operators {#operators}
 
-Python uses the usual operators to compare values.
+Python uses the usual operators to compare values. These return a boolean value as a result.
 
 ```python
 a == b          # equality
@@ -36,7 +38,8 @@ role == "admin" or department == "hr"
 not isLoggedIn
 ```
 
-::: info
+::: info Chaining
+
 In Python comparison, identity and membership operators can also be chained, so the following comparisons are also valid
 
 ```python
@@ -45,6 +48,7 @@ height_mblanc < height_everest > height_kilimanjaro
 ```
 
 However, chaining should be used for clarity and to improve readability, so don't overdo it
+
 :::
 
 Python also has identity operators, that do not compare the equality, but the identity of objects (if they are the same object, stored at the same memory location).
@@ -54,7 +58,7 @@ x is y
 x is not z
 ```
 
-FInally, membership operators are an easy way to check if a value is present in a sequence (e.g. a List or a string)
+Finally, membership operators are an easy way to check if a value is present in a sequence (e.g. a List or a string)
 
 ```python
 "e" in "Peter"                              # True
@@ -62,6 +66,7 @@ FInally, membership operators are an easy way to check if a value is present in 
 ```
 
 ::: info Precedence
+
 In terms of operator precedence, comparison operators are evaluated first (after mathematical and bitwise operators), followed by `not`, `and` and finally `or`
 
 ```python
@@ -73,8 +78,16 @@ not(a and (b or c))
 :::
 
 ::: tip Best practice
+
 Use parentheses when mixing comparison and logical operators for clarity.
 Be careful when mixing `and` and `or` operators without parentheses!
+
+:::
+
+::: info Short circuiting
+
+In Python `and` and `or` short circuit: if the first operand of `and` is false, it gets returned, and if the first operand of `or` is True, it is returned, and the second operand is not evaluated.
+
 :::
 
 ## Truthy and Falsy values
@@ -107,6 +120,12 @@ if not password:
 The classic way to run conditional logic is to use an _if/else_ statement. In Python the indentation distinguishes the if/else blocks from the code that runs outside the if/else statements.
 
 The code indented after the `if` statement only runs, if the condition evaluates to `True`. If it evaluates to `False` the executions moves on to the code after the `if` block. If the block consists of a single line of code, we can write it right after the colon.
+
+::: info Indentation
+
+You can use any number of spaces for indentation, but the Python style guides recommends using four spaces.
+
+:::
 
 ```python
 if age >= 18: print("You may vote!")
