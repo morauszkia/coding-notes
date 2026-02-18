@@ -49,14 +49,14 @@ anotherSlice := make([]int, 5)
 If you want to create the slice with a specific set of values, you can use a slice literal. The difference from an array literal, is that you don't specify the size in the square brackets.
 
 ```go
-mySlice := []string("I", "love", "Go")
+mySlice := []string{"I", "love", "Go"}
 ```
 
 The _length_ of a slice is the number of its elements, while the _capacity_ is the number of elements in the underlying array, counting from the first element of the slice. You don't have to worry about the capacity of a slice, because it will grow as needed.
 You can access and assign elements of a slice with _indexing_.
 
 ```go
-mySlice := []string("I", "love", "Go")
+mySlice := []string{"I", "love", "Go"}
 fmt.Println(len(mySlice))   // 3
 fmt.Println(cap(mySlice))   // 3
 fmt.Println(mySlice[2])     // Go
