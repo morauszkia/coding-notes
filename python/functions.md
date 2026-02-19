@@ -2,9 +2,6 @@
 prev:
     text: "Loops"
     link: "./loops"
-next:
-    text: "String"
-    link: "./strings"
 ---
 
 # Functions
