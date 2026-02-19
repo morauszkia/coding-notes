@@ -3,8 +3,8 @@ prev:
     text: Strings
     link: "./strings"
 next:
-    text: Conditionals
-    link: "./conditionals"
+    text: Lists
+    link: "./lists"
 ---
 
 # Numbers

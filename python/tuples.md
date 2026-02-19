@@ -2,6 +2,9 @@
 prev:
     text: "Lists"
     link: "./lists"
+next:
+    text: "Conditionals"
+    link: "./conditionals"
 ---
 
 # Tuples
