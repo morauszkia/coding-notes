@@ -5,7 +5,6 @@ prev:
 next:
     text: Numbers
     link: "./numbers"
-
 ---
 
 # Strings
@@ -94,4 +93,12 @@ my_str[::-1] # "!dlrow ,olleH"
 
 ### Common string methods
 
-upper, lower, casefold, capitalize, title strip, split, join, startswith, endswith, find, count, isupper, islower, replace
+For common tasks involving strings there are methods defined on the string class. The most important are
+
+- `upper`: returns a string where all characters are in upper case
+- `lower` and `casefold`: return a string with all characters in lower case
+- `capitalize`: returns the string where the first character is in upper case and all the others are in lower case
+- `title`: returns a string where the first character of every word is in upper case
+- `strip`, `lstrip` and `rstrip`: remove characters from the ends of strings (defaults to empty space, but other characters can be passed in as a string)
+- `split`, join, startswith, endswith, find, count, isupper, islower, replace
+  translate()
