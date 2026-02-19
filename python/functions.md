@@ -3,8 +3,8 @@ prev:
     text: "Loops"
     link: "./loops"
 next:
-    text: "String"
-    link: "./strings"
+    text: "Lists"
+    link: "./lists"
 ---
 
 # Functions

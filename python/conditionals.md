@@ -1,7 +1,7 @@
 ---
 prev:
-    text: "Basics"
-    link: "./basics"
+    text: "Numbers"
+    link: "./numbers"
 next:
     text: "Loops"
     link: "./loops"
