@@ -155,3 +155,85 @@ print(friends.index("Kate"))    # 1
 orders = ["Salad", "Pasta", "Fish", "Pasta", "Pizza", "Hamburger"]
 print(orders.count("Pasta"))    # 2
 ```
+
+### Advanced list manipulation: filter, map and reduce
+
+The two built-in functions `filter()` and `map()` are higher order functions that take a function and a list as their arguments.
+
+- `filter()` will filter a list based on a function that returns `True` or `False` for every element of a list, and it will return a list with all the elements for which the function returns `True`.
+- `map()` applies the function to every element of the list, and returns a list of the results.
+
+`reduce()` is a useful function from the `functools` package, that takes a function and a list, and applies the function cumulatively to the list. It can accept an optional initializer as its third argument, which it puts before the first element of the list.
+
+```python
+from functools import reduce
+
+
+def is_even(num):
+    return num % 2 == 0
+
+
+def square(num):
+    return num ** 2
+
+
+def multiply(a, b):
+    return a * b
+
+
+numbers = [1, 2, 3, 4, 5]
+
+# [!code highlight]
+even_numbers = filter(is_even, numbers)
+# [!code highlight]
+squares = map(square, numbers)
+# [!code highlight]
+product = reduce(multiply, numbers)
+```
+
+## List Comprehension
+
+::: tip Loops and Conditionals
+
+Before reading this section get familiar with the basic `for` loop and conditional (`if`/`else`) statements.
+
+:::
+
+You can create, filter and modify lists using list comprehensions as well. These follow the `[expression for element in iterable]` format, sometimes with additional conditional checks, ternaries, etc.
+
+**Expression** is any function or operation or even constant that you want to use for every element in the iterable.
+The **iterable** can be a string, a list, a tuple, or a range. It can also be a function call or expression that returns an iterable.
+
+For example you could create a list of squares from an original list using a regular for loop or `map()`
+
+::: info Lambda function
+
+The example below uses a lambda function. You can learn more about these [here](./functions#lambda-functions).
+
+:::
+
+```python
+numbers = [1, 2, 3]
+squares_for = []
+
+for num in numbers:
+    squares_for.append(num ** 2)
+
+
+# or, with map() and a lambda function
+squares_map = map(lambda x: x ** 2, numbers)
+```
+
+But you can also use a list comprehension
+
+```python
+squares_comp = [x ** 2 for x in numbers]
+```
+
+You can also use list comprehensions for one-line filtering or any other types of manipulation with ternaries or conditional checks.
+
+```python
+even_numbers = [x for x in numbers if x % 2 == 0]
+even_or_odd = ["even" if x % 2 == 0 else "odd" for x in numbers]
+full_names = [first + " " + last for first, last in zip(first_names, last_names)]
+```

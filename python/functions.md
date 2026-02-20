@@ -226,3 +226,11 @@ print(another_global) # 20
 ```
 
 :::
+
+## Lambda Functions
+
+In [higher order functions](/advanced-concepts/functional#first-class-and-higher-order-functions) you will often encounter anonymous inline functions. These can be created where you call the function with the `lambda` syntax. For example you could define a simple function that returns the square of a number and use it in `map()` like this:
+
+```python
+squared_numbers = map(lambda x: x ** 2, [1, 2, 3])
+```
