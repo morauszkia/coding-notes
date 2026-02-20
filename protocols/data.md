@@ -211,6 +211,8 @@ Data is converted, stringified to JSON.
 
 In Go the `encoding/json` package's `Marshal` method is used to convert a struct to a JSON string.
 
+Just as in the case of decoding, struct tags are used to tell the encoder, into what fields it should encode the data.
+
 ```go
 package main
 
@@ -266,3 +268,43 @@ XML is another file type used to store data. It is similar to HTML: it uses tags
   <director>Jon Favreau</director>
 </root>
 ```
+
+### RSS
+
+RSS (Really Simple Syndication) is a web feed format used by users and apps to pull updates from websites in a standardized XML structure. Websites publish an RSS feed file listing recent content, including links to the articles, podcasts, videos, etc. RSS aggregator software is used (apps, browser extensions, desktop or mobile programs) that fetches these feeds automatically and displays updates. Users can subscribe to the RSS feeds.
+
+Example RSS content:
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <title>RSS Title</title>
+ <description>This is an example of an RSS feed</description>
+ <link>http://www.example.com/main.html</link>
+ <copyright>2020 Example.com All rights reserved</copyright>
+ <lastBuildDate>Mon, 6 Sep 2010 00:01:00 +0000</lastBuildDate>
+ <pubDate>Sun, 6 Sep 2009 16:20:00 +0000</pubDate>
+ <ttl>1800</ttl>
+
+ <item>
+  <title>Example entry</title>
+  <description>Here is some text containing an interesting description.</description>
+  <link>http://www.example.com/blog/post/1</link>
+  <guid isPermaLink="false">7bd204c6-1655-4c27-aeee-53f933c5395f</guid>
+  <pubDate>Sun, 6 Sep 2009 16:20:00 +0000</pubDate>
+ </item>
+
+</channel>
+</rss>
+```
+
+### Parsing XML
+
+::: tabs
+
+== Go
+
+Just as in the case of JSON, you need to create the structs into which you want to decode the XML data. Struct tags tell the decoder, which XML tag should be decoded into which struct field. The parser will discard fields that are missing from the structs.
+
+:::

@@ -1,7 +1,7 @@
 ---
 prev:
-  text: "Loops"
-  link: "./loops"
+    text: "Loops"
+    link: "./loops"
 ---
 
 # Functions
@@ -21,7 +21,7 @@ According to the PEP8 style guide 2 lines are left blank before and after a func
 
 ## Calling a function
 
-Functions are called by writing the function name with the necessary [argument](#arguments) values in parentheses. If the function needs no arguments, an empty set of parentheses is used.
+Functions are called by writing the function name with the necessary [argument](#parameters) values in parentheses. If the function needs no arguments, an empty set of parentheses is used.
 
 ::: warning Necessary Arguments
 If you do not provide the necessary number of arguments, the program will raise an Exception and crash.
@@ -46,15 +46,13 @@ print(subtract(10, 3))
 
 Functions can be called on the top level of a file, or within other functions or code blocks.
 
-## Arguments
+## Parameters
 
-Functions can have zero or more arguments. These make it possible, to rerun the function each time with different values passed in.
-
-Functions can have zero or one return value: this is the value, that we get if we run the function. It can be stored in a variable, used in another function, printed to the console, etc. Functions with zero return values typically perform some side effect: print to the console, mutate some variable value in place, access a database, etc.
+Functions can have zero or more **parameters**. Parameters are placeholders for values. These make it possible, to rerun the function each time with different values passed in. The values that we pass in are called **arguments**.
 
 ### Default arguments
 
-Some arguments have reasonable defaults. These can be specified in the definition of the function. If we want to run a function with the default values, we do not pass values to these arguments. A function can have zero or more default arguments.
+Some arguments have reasonable defaults. These can be specified in the definition of the function. If we want to run a function with the default values, we do not pass values to these parameters. A function can have zero or more default arguments.
 
 Default arguments must come after required arguments. Another option is to use keyword arguments when calling the function, that is explicitly say, to which argument we want to pass the value.
 
@@ -166,6 +164,17 @@ def get_price("product"):
 
 The arguments and all variables declared within functions can be accessed within the function body, they are _function scoped_. If a variable within the scope of a function has the same name as another variable outside the function scope, the variable will have the value declared within the scope of the function inside the function and the other outside of the function. This way, clashing of variable names is avoided
 
+::: info LEGB
+
+Python uses the LEGB rule to determine the value of a variable. It will look in the following scopes in this order:
+
+- Local scope: it will first look for a variable defined in the function or class
+- Enclosing scope: variables defined in enclosing functions
+- Global scope: variables defined at the top level of the module or file
+- Built-in scope: reserved names for predefined functions, modules, keywords, objects
+
+:::
+
 ```python
 greeting = "Hello!"
 
@@ -178,6 +187,50 @@ def say_goodbye():
 print(greeting)  # Hello!
 ```
 
-::: info global
-Variables declared within functions can be made accessible in the global scope using the `global` keyword
+::: info global and nonlocal
+
+Variables declared within functions can be made accessible in the global scope or reassign global variables using the `global` keyword, and in the enclosing scopes by initializing them in the enclosing scope and then marking them as `nonlocal` and assigning a value to them in the inner function.
+
+```python
+global_var = 10
+
+def outer_func():
+  outer_var = 5
+  nonlocal_var = ""
+
+  def inner_func():
+    # [!code highlight]
+    global another_global
+    another_global = 20
+
+    # [!code highlight]
+    nonlocal nonlocal_var
+    nonlocal_var = "This will be accessible by outer func"
+
+    local_var = "This will not be accessible outside inner func"
+    outer_var = "Won't reassign variable from the outer scope"
+
+    # [!code highlight]
+    print(global_var)   # This is ok, global variables are accessible anywhere
+    print(outer_var)    # Won't reassign...
+
+  # [!code error]
+  print(local_var)  # Not accessible outside inner func
+  # [!code highlight]
+  print(nonlocal_var) # This will be accessible...
+  # [!code highlight]
+  print(outer_var)    # Still 5
+
+print(another_global) # 20
+
+```
+
 :::
+
+## Lambda Functions
+
+In [higher order functions](/advanced-concepts/functional#first-class-and-higher-order-functions) you will often encounter anonymous inline functions. These can be created where you call the function with the `lambda` syntax. For example you could define a simple function that returns the square of a number and use it in `map()` like this:
+
+```python
+squared_numbers = map(lambda x: x ** 2, [1, 2, 3])
+```
