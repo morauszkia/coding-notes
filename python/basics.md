@@ -1,10 +1,10 @@
 ---
 prev:
-    text: Intro
-    link: "../python"
+  text: Intro
+  link: "../python"
 next:
-    text: Strings
-    link: "./strings"
+  text: Strings
+  link: "./strings"
 ---
 
 # Python Programming Basics
@@ -67,7 +67,7 @@ Print can accept multiple arguments, and it would print them separated by space.
 print("Hello", "world")
 print("a", "b", "c", sep="-")
 print("First part.", end=" ")
-print("This will continue in the same line")
+print("This will continue on the same line")
 ```
 
 Printing is also useful for debugging purposes. If the program behaves unexpectedly, and produces strange results, a way to debug is to print the results of individual steps to the console.
