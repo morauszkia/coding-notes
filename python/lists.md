@@ -1,10 +1,10 @@
 ---
 prev:
-    text: Functions
-    link: "./functions"
+  text: Functions
+  link: "./functions"
 next:
-    text: Tuples
-    link: "./tuples"
+  text: Tuples
+  link: "./tuples"
 ---
 
 # Lists
@@ -14,6 +14,7 @@ Lists are one of the basic sequence types used in Python. They are ordered seque
 The basic syntax for creating a list can be seen below. If a list is too long to fit on a single line, you can break the list into multiple lines. In such cases it is customary to add a trailing comma after the last element of the list, and to break the line right after the opening square bracket and place the closing bracket on a new line as well.
 
 ```python
+empty = []
 friends = ["Peter", "Kate", "Alice", "Simon"]
 rivers = ["Danube", "Nile", "Amazonas"]
 cities = [
@@ -199,16 +200,19 @@ Before reading this section get familiar with the basic `for` loop and condition
 
 :::
 
-You can create, filter and modify lists using list comprehensions as well. These follow the `[expression for element in iterable]` format, sometimes with additional conditional checks, ternaries, etc.
+You can create and transform lists using list comprehensions as well. List comprehensions follow the general format `[expression for element in iterable if condition]`. The expression can include conditional (ternary) expressions or other operations.
 
-**Expression** is any function or operation or even constant that you want to use for every element in the iterable.
+A list comprehension always creates and returns a new list.
+
+The **expression** is operation, function call, or constant evaluated for every element in the iterable. You can use ternaries in the expression for conditional logic.
 The **iterable** can be a string, a list, a tuple, or a range. It can also be a function call or expression that returns an iterable.
+The **condition** filters elements by including only those for which the condition evaluates to `True`. You can use complex conditions using `not`, `and` or `or`. You can chain multiple conditions to apply them sequentially.
 
 For example you could create a list of squares from an original list using a regular for loop or `map()`
 
 ::: info Lambda function
 
-The example below uses a lambda function. You can learn more about these [here](./functions#lambda-functions).
+The example below uses a lambda function. You can learn more about these [in the section on functions](./functions#lambda-functions).
 
 :::
 
@@ -221,7 +225,7 @@ for num in numbers:
 
 
 # or, with map() and a lambda function
-squares_map = map(lambda x: x ** 2, numbers)
+squares_map = list(map(lambda x: x ** 2, numbers))
 ```
 
 But you can also use a list comprehension
@@ -237,3 +241,87 @@ even_numbers = [x for x in numbers if x % 2 == 0]
 even_or_odd = ["even" if x % 2 == 0 else "odd" for x in numbers]
 full_names = [first + " " + last for first, last in zip(first_names, last_names)]
 ```
+
+### Nested list comprehensions
+
+For more complex situations that you could solve with nested loops, you can use nested list comprehensions.
+
+You can create a nested list to represent a 2D matrix using the following list comprehension:
+
+```python
+matrix = [[e for e in range(5)] for row in range(3)]
+# [[0, 1, 2, 3, 4],
+#  [0, 1, 2, 3, 4],
+#  [0, 1, 2, 3, 4]]
+```
+
+This creates a list for each row. In this form, the outer comprehension creates one list per iteration, resulting in a list of lists.
+
+```python
+numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]]
+evens = [[num for num in num_list if num % 2 == 0] for num_list in numbers]
+# [[2], [4, 6], [8, 10]]
+```
+
+This is the same as:
+
+```python
+evens = []
+for num_list in numbers:
+    evens_in_sublist = []
+    for num in num_list:
+        if num % 2 == 0:
+            evens_in_sublist.append(num)
+    evens.append(evens_in_sublist)
+```
+
+If you want a flat list, you can chain the iteration parts of the list comprehension. You can use it to flatten a list of lists or to flatten and filter in a single step.
+
+::: tip Order
+
+Notice how the iterations and filtering conditions in the list comprehension follow the same order as they would in a nested loop with an if-clause.
+
+:::
+
+A chained list comprehension can be used instead of nested `for` loops for various tasks.
+
+::: tabs
+
+== List comprehension
+
+```python
+# FLATTEN LIST
+all_nums = [num for num_list in numbers for num in num_list]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# FLATTEN AND FILTER
+evens = [num for num_list in numbers for num in num_list if num % 2 == 0]
+# [2, 4, 6, 8, 10]
+
+# CREATE TUPLES OF PAIRS
+pairs = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+# [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+```
+
+== Nested loops
+
+```python
+all_nums = []
+for num_list in numbers:
+    for num in num_list:
+        all_nums.append(num)
+
+evens = []
+for num_list in numbers:
+    for num in num_list:
+        if num % 2 == 0:
+            evens.append(num)
+
+pairs = []
+for x in [1, 2, 3]:
+    for y in [3, 1, 4]:
+        if x != y:
+            pairs.append((x, y))
+```
+
+:::
