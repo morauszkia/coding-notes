@@ -39,6 +39,49 @@ The `list()` function can be used to split a string into a list of its character
 print(list("Hello")) # ['H', 'e', 'l', 'l', 'o']
 ```
 
+::: info Heterogeneous lists
+
+Python lists can store values of different types. Unlike some other languages (for example, R vectors), Python does not require all elements of a list to have the same type.
+
+:::
+
+## Reference types
+
+[Variables in Python](./basics#reference-types) store **references** to objects. This behavior is not specific to lists - all Python variables store references to objects.
+
+With immutable objects, operations that appear to modify the object actually create a new object and rebind the variable.
+
+Lists are **mutable** objects. When you assign a list to a variable, the variable refers to that list object in memory. If you assign the same list to multiple variables, all will refer to the same underlying object. If you modify the list (e.g., add or change an item), all variables referring to it will see the modification.
+
+```python
+a = b = []
+a.append("Hello")
+print(b)    # ['Hello']
+```
+
+In contrast, creating two empty lists separately will create two independent references to different objects.
+
+```python
+a = []
+b = a  # referring to same object
+c = [] # independent list
+
+a.append("spam")
+print(b)    # ['spam']
+print(c)    # []
+```
+
+To create a new list with the same elements as an existing list, you can use `.copy()`.
+
+```python
+a = [1, 2, 3]
+b = a.copy()
+a.append(4)
+
+print(a)    # [1, 2, 3, 4]
+print(b)    # [1, 2, 3]
+```
+
 ## Working with Lists
 
 The most important operations on lists include accessing elements or slices, modifying, adding or removing elements, and changing their order. More advanced operations include filtering elements, applying functions to elements, and reducing the list to a single value using an aggregating function.
@@ -113,7 +156,7 @@ best_friend, *other_friends = friends
 print(other_friends)    # ['Kate', 'Alice', 'Simon']
 ```
 
-### List methods
+### List methods and functions
 
 The most important list methods for adding and removing elements are
 
@@ -123,6 +166,24 @@ The most important list methods for adding and removing elements are
 - `remove(element)`: removes the first occurrence of an element from the list based on the value
 - `pop(index)`: removes and returns an element at the specified index, the index defaults to the last element
 - `clear()`: empties the list
+
+```python
+my_list = []
+
+# Adding elements
+my_list.append("spam")  # ['spam']
+my_list.extend(["eggs", "bacon", "cheese"])   # ['spam', 'eggs', 'bacon', 'cheese']
+my_list.insert(0, "beef")   # ['beef', 'spam', 'eggs', 'bacon', 'cheese']
+
+# Modifying elements
+my_list[-1] = "salad" # ['beef', 'spam', 'eggs', 'bacon', 'salad']
+
+# Removing elements
+my_list.remove("spam")  # ['beef', 'eggs', 'bacon', 'salad']
+last = my_list.pop()   # last = 'salad'  my_list = ['beef', 'eggs', 'bacon']
+del my_list[0]  # ['eggs', 'bacon']
+my_list.clear() # []
+```
 
 You can sort the elements of a list using either the `sort()` method or the `sorted()` function. The `sort()` method sorts the list in place, so that it mutates the original list. In contrast, `sorted()` takes an iterable and returns a _new_ sorted list instead of modifying the original.
 
@@ -162,7 +223,7 @@ print(orders.count("Pasta"))    # 2
 The two built-in functions `filter()` and `map()` are higher order functions that take a function and a list as their arguments.
 
 - `filter()` will filter a list based on a function that returns `True` or `False` for every element of a list, and it will return a list with all the elements for which the function returns `True`.
-- `map()` applies the function to every element of the list, and returns a list of the results.
+- `map()` applies the function to every element of the list, and returns map object of the results, which can be converted to a list.
 
 `reduce()` is a useful function from the `functools` package, that takes a function and a list, and applies the function cumulatively to the list. It can accept an optional initializer as its third argument, which it puts before the first element of the list.
 

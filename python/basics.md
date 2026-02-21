@@ -192,3 +192,24 @@ age_string = str(25)   # the string "25"
 age_int = int(age_string) # the int 25
 age_float = float(age_int)  # the float 25.0
 ```
+
+## Reference types
+
+Variables in Python store **references** to objects.
+
+- With **immutable** objects (`int`, `float`, `bool`, `str`), operations that appear to modify the object actually create a new object and rebind the variable to that new object.
+- With **mutable** objects (`list`, `dict`, etc.), modifying the object affects all variables that refer to that same object.
+
+This reference model applies to _all_ Python objects.
+
+```python
+a = 5
+b = a   # b now points to the same object
+a += 1  # a will now point to a different object
+print(b)  # 5
+
+list_a = []
+list_b = list_a # list_b now points to the same object
+list_a.append("something")  # this modifies the same object
+print(list_b)  # ['something']
+```
