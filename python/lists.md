@@ -71,15 +71,21 @@ print(b)    # ['spam']
 print(c)    # []
 ```
 
-To create a new list with the same elements as an existing list, you can use `.copy()`.
+To create a new list with the same elements as an existing list, you can use `.copy()`, the `list()` function on the original list, or a slice (`[:]`).
 
 ```python
 a = [1, 2, 3]
+# [!code highlight]
 b = a.copy()
 a.append(4)
 
 print(a)    # [1, 2, 3, 4]
 print(b)    # [1, 2, 3]
+
+# [!code highlight]
+c = a[:]
+# [!code highlight]
+d = list(a)
 ```
 
 ## Working with Lists
@@ -111,8 +117,14 @@ friends[::2]    # ['Peter', 'Alice', 'John', 'Jim']
 
 ```
 
-Indexing can be used to replace the existing value in the list with another value. You can also use indexing to delete an element from the list using the `del` keyword.
+Indexing and slicing can be used to replace the existing values in the list with another values. You can also use indexing and slicing to delete one or more elements from the list using the `del` keyword.
 However, you cannot use indexing to set new elements, because using an index that is out of bounds results in an `IndexError`.
+
+::: info Replacing a slice
+
+If you want to modify a slice of the list, you need to provide a list. The slice and the list _needn't_ be equally long.
+
+:::
 
 ```python
 friends = ["Peter", "Kate", "Alice", "Simon"]
@@ -124,7 +136,37 @@ print(friends)  # ['John', 'Kate', 'Simon']
 
 # [!code error]
 friends[3] = "Susan"
+
+friends.extend(["Jim", "Greg", "Susan", "Beth", "Carol"])
+
+# [!code highlight]
+friends[2:4] = ["Sam"] # replaces ['Simon', 'Jim'] with ['Sam']
+# ['John', 'Kate', 'Sam', 'Greg', 'Susan', 'Beth', 'Carol']
+
+# [!code highlight]
+del friends[3::2] # deletes 'Greg' and 'Beth'
+
+print(friends) # ['John', 'Kate', 'Sam', 'Susan', 'Carol']
 ```
+
+::: warning Deleting elements
+
+Deleting elements using `del` will result in the indices of the remaining elements to shift. Looping over the indices of the list may lead to bugs, if you don't take this into consideration: the iteration will skip elements, because they moved to a lower index. One solution may be to iterate backwards, or use a `reversed()` list instead.
+
+The code below iterates over a list, and deletes elements, that are not between `min_valid` and `max_valid`. The first example uses a negative step value. The second example uses enumerate and a reversed list.
+
+```python
+for index in range(len(data) - 1, -1, -1):
+    if data[index] < min_valid or data[index] > max_valid:
+        del data[index]
+
+top_index = len(data) - 1
+for index, value in enumerate(reversed(data)):
+    if value < min_valid or value > max_valid:
+        del data[top_index - index]
+```
+
+:::
 
 You can check whether an element is part of the list with the membership operator `in`
 
@@ -189,7 +231,9 @@ You can sort the elements of a list using either the `sort()` method or the `sor
 
 Both can accept an optional `key` argument, which can be a function using which the values are sorted. You can use a predefined function or define a lambda function to use with each element. Both accept a `reverse` argument (`True` or `False`) to switch between descending and ascending order.
 
-You can also reverse the order of a list in place using the `reverse()` method.
+You can also reverse the order of a list in place using the `reverse()` method, or the `reversed()` function. The former reverses the list in place, while the latter returns a new list.
+
+You can find the smallest element in a list using `min()`, and the largest with `max()`. Both accept an optional sorting function on the `key` parameter.
 
 ```python
 numbers = [2, 5, 3, 10, 7]
