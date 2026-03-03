@@ -71,6 +71,10 @@ export default defineConfig({
                         },
                         { text: "Loops", link: `${pythonPath}/loops` },
                         { text: "Functions", link: `${pythonPath}/functions` },
+                        {
+                            text: "Dictionaries",
+                            link: `${pythonPath}/dictionaries`,
+                        },
                     ],
                 },
                 mainNav,
