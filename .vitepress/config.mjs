@@ -75,6 +75,7 @@ export default defineConfig({
                             text: "Dictionaries",
                             link: `${pythonPath}/dictionaries`,
                         },
+                        { text: "Sets", link: `${pythonPath}/sets` },
                     ],
                 },
                 mainNav,
