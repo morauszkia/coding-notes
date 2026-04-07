@@ -1,10 +1,10 @@
 ---
 prev:
-    text: Functions
-    link: "./functions"
+  text: Functions
+  link: "./functions"
 next:
-    text: Tuples
-    link: "./tuples"
+  text: Tuples
+  link: "./tuples"
 ---
 
 # Lists
@@ -14,6 +14,7 @@ Lists are one of the basic sequence types used in Python. They are ordered seque
 The basic syntax for creating a list can be seen below. If a list is too long to fit on a single line, you can break the list into multiple lines. In such cases it is customary to add a trailing comma after the last element of the list, and to break the line right after the opening square bracket and place the closing bracket on a new line as well.
 
 ```python
+empty = []
 friends = ["Peter", "Kate", "Alice", "Simon"]
 rivers = ["Danube", "Nile", "Amazonas"]
 cities = [
@@ -36,6 +37,55 @@ The `list()` function can be used to split a string into a list of its character
 
 ```python
 print(list("Hello")) # ['H', 'e', 'l', 'l', 'o']
+```
+
+::: info Heterogeneous lists
+
+Python lists can store values of different types. Unlike some other languages (for example, R vectors), Python does not require all elements of a list to have the same type.
+
+:::
+
+## Reference types
+
+[Variables in Python](./basics#reference-types) store **references** to objects. This behavior is not specific to lists - all Python variables store references to objects.
+
+With immutable objects, operations that appear to modify the object actually create a new object and rebind the variable.
+
+Lists are **mutable** objects. When you assign a list to a variable, the variable refers to that list object in memory. If you assign the same list to multiple variables, all will refer to the same underlying object. If you modify the list (e.g., add or change an item), all variables referring to it will see the modification.
+
+```python
+a = b = []
+a.append("Hello")
+print(b)    # ['Hello']
+```
+
+In contrast, creating two empty lists separately will create two independent references to different objects.
+
+```python
+a = []
+b = a  # referring to same object
+c = [] # independent list
+
+a.append("spam")
+print(b)    # ['spam']
+print(c)    # []
+```
+
+To create a new list with the same elements as an existing list, you can use `.copy()`, the `list()` function on the original list, or a slice (`[:]`).
+
+```python
+a = [1, 2, 3]
+# [!code highlight]
+b = a.copy()
+a.append(4)
+
+print(a)    # [1, 2, 3, 4]
+print(b)    # [1, 2, 3]
+
+# [!code highlight]
+c = a[:]
+# [!code highlight]
+d = list(a)
 ```
 
 ## Working with Lists
@@ -67,8 +117,14 @@ friends[::2]    # ['Peter', 'Alice', 'John', 'Jim']
 
 ```
 
-Indexing can be used to replace the existing value in the list with another value. You can also use indexing to delete an element from the list using the `del` keyword.
+Indexing and slicing can be used to replace the existing values in the list with another values. You can also use indexing and slicing to delete one or more elements from the list using the `del` keyword.
 However, you cannot use indexing to set new elements, because using an index that is out of bounds results in an `IndexError`.
+
+::: info Replacing a slice
+
+If you want to modify a slice of the list, you need to provide a list. The slice and the list _needn't_ be equally long.
+
+:::
 
 ```python
 friends = ["Peter", "Kate", "Alice", "Simon"]
@@ -80,7 +136,37 @@ print(friends)  # ['John', 'Kate', 'Simon']
 
 # [!code error]
 friends[3] = "Susan"
+
+friends.extend(["Jim", "Greg", "Susan", "Beth", "Carol"])
+
+# [!code highlight]
+friends[2:4] = ["Sam"] # replaces ['Simon', 'Jim'] with ['Sam']
+# ['John', 'Kate', 'Sam', 'Greg', 'Susan', 'Beth', 'Carol']
+
+# [!code highlight]
+del friends[3::2] # deletes 'Greg' and 'Beth'
+
+print(friends) # ['John', 'Kate', 'Sam', 'Susan', 'Carol']
 ```
+
+::: warning Deleting elements
+
+Deleting elements using `del` will result in the indices of the remaining elements to shift. Looping over the indices of the list may lead to bugs, if you don't take this into consideration: the iteration will skip elements, because they moved to a lower index. One solution may be to iterate backwards, or use a `reversed()` list instead.
+
+The code below iterates over a list, and deletes elements, that are not between `min_valid` and `max_valid`. The first example uses a negative step value. The second example uses enumerate and a reversed list.
+
+```python
+for index in range(len(data) - 1, -1, -1):
+    if data[index] < min_valid or data[index] > max_valid:
+        del data[index]
+
+top_index = len(data) - 1
+for index, value in enumerate(reversed(data)):
+    if value < min_valid or value > max_valid:
+        del data[top_index - index]
+```
+
+:::
 
 You can check whether an element is part of the list with the membership operator `in`
 
@@ -112,7 +198,7 @@ best_friend, *other_friends = friends
 print(other_friends)    # ['Kate', 'Alice', 'Simon']
 ```
 
-### List methods
+### List methods and functions
 
 The most important list methods for adding and removing elements are
 
@@ -123,11 +209,31 @@ The most important list methods for adding and removing elements are
 - `pop(index)`: removes and returns an element at the specified index, the index defaults to the last element
 - `clear()`: empties the list
 
+```python
+my_list = []
+
+# Adding elements
+my_list.append("spam")  # ['spam']
+my_list.extend(["eggs", "bacon", "cheese"])   # ['spam', 'eggs', 'bacon', 'cheese']
+my_list.insert(0, "beef")   # ['beef', 'spam', 'eggs', 'bacon', 'cheese']
+
+# Modifying elements
+my_list[-1] = "salad" # ['beef', 'spam', 'eggs', 'bacon', 'salad']
+
+# Removing elements
+my_list.remove("spam")  # ['beef', 'eggs', 'bacon', 'salad']
+last = my_list.pop()   # last = 'salad'  my_list = ['beef', 'eggs', 'bacon']
+del my_list[0]  # ['eggs', 'bacon']
+my_list.clear() # []
+```
+
 You can sort the elements of a list using either the `sort()` method or the `sorted()` function. The `sort()` method sorts the list in place, so that it mutates the original list. In contrast, `sorted()` takes an iterable and returns a _new_ sorted list instead of modifying the original.
 
 Both can accept an optional `key` argument, which can be a function using which the values are sorted. You can use a predefined function or define a lambda function to use with each element. Both accept a `reverse` argument (`True` or `False`) to switch between descending and ascending order.
 
-You can also reverse the order of a list in place using the `reverse()` method.
+You can also reverse the order of a list in place using the `reverse()` method, or the `reversed()` function. The former reverses the list in place, while the latter returns a new list.
+
+You can find the smallest element in a list using `min()`, and the largest with `max()`. Both accept an optional sorting function on the `key` parameter.
 
 ```python
 numbers = [2, 5, 3, 10, 7]
@@ -161,7 +267,7 @@ print(orders.count("Pasta"))    # 2
 The two built-in functions `filter()` and `map()` are higher order functions that take a function and a list as their arguments.
 
 - `filter()` will filter a list based on a function that returns `True` or `False` for every element of a list, and it will return a list with all the elements for which the function returns `True`.
-- `map()` applies the function to every element of the list, and returns a list of the results.
+- `map()` applies the function to every element of the list, and returns map object of the results, which can be converted to a list.
 
 `reduce()` is a useful function from the `functools` package, that takes a function and a list, and applies the function cumulatively to the list. It can accept an optional initializer as its third argument, which it puts before the first element of the list.
 
@@ -199,16 +305,19 @@ Before reading this section get familiar with the basic `for` loop and condition
 
 :::
 
-You can create, filter and modify lists using list comprehensions as well. These follow the `[expression for element in iterable]` format, sometimes with additional conditional checks, ternaries, etc.
+You can create and transform lists using list comprehensions as well. List comprehensions follow the general format `[expression for element in iterable if condition]`. The expression can include conditional (ternary) expressions or other operations.
 
-**Expression** is any function or operation or even constant that you want to use for every element in the iterable.
+A list comprehension always creates and returns a new list.
+
+The **expression** is operation, function call, or constant evaluated for every element in the iterable. You can use ternaries in the expression for conditional logic.
 The **iterable** can be a string, a list, a tuple, or a range. It can also be a function call or expression that returns an iterable.
+The **condition** filters elements by including only those for which the condition evaluates to `True`. You can use complex conditions using `not`, `and` or `or`. You can chain multiple conditions to apply them sequentially.
 
 For example you could create a list of squares from an original list using a regular for loop or `map()`
 
 ::: info Lambda function
 
-The example below uses a lambda function. You can learn more about these [here](./functions#lambda-functions).
+The example below uses a lambda function. You can learn more about these [in the section on functions](./functions#lambda-functions).
 
 :::
 
@@ -221,7 +330,7 @@ for num in numbers:
 
 
 # or, with map() and a lambda function
-squares_map = map(lambda x: x ** 2, numbers)
+squares_map = list(map(lambda x: x ** 2, numbers))
 ```
 
 But you can also use a list comprehension
@@ -237,3 +346,87 @@ even_numbers = [x for x in numbers if x % 2 == 0]
 even_or_odd = ["even" if x % 2 == 0 else "odd" for x in numbers]
 full_names = [first + " " + last for first, last in zip(first_names, last_names)]
 ```
+
+### Nested list comprehensions
+
+For more complex situations that you could solve with nested loops, you can use nested list comprehensions.
+
+You can create a nested list to represent a 2D matrix using the following list comprehension:
+
+```python
+matrix = [[e for e in range(5)] for row in range(3)]
+# [[0, 1, 2, 3, 4],
+#  [0, 1, 2, 3, 4],
+#  [0, 1, 2, 3, 4]]
+```
+
+This creates a list for each row. In this form, the outer comprehension creates one list per iteration, resulting in a list of lists.
+
+```python
+numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]]
+evens = [[num for num in num_list if num % 2 == 0] for num_list in numbers]
+# [[2], [4, 6], [8, 10]]
+```
+
+This is the same as:
+
+```python
+evens = []
+for num_list in numbers:
+    evens_in_sublist = []
+    for num in num_list:
+        if num % 2 == 0:
+            evens_in_sublist.append(num)
+    evens.append(evens_in_sublist)
+```
+
+If you want a flat list, you can chain the iteration parts of the list comprehension. You can use it to flatten a list of lists or to flatten and filter in a single step.
+
+::: tip Order
+
+Notice how the iterations and filtering conditions in the list comprehension follow the same order as they would in a nested loop with an if-clause.
+
+:::
+
+A chained list comprehension can be used instead of nested `for` loops for various tasks.
+
+::: tabs
+
+== List comprehension
+
+```python
+# FLATTEN LIST
+all_nums = [num for num_list in numbers for num in num_list]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# FLATTEN AND FILTER
+evens = [num for num_list in numbers for num in num_list if num % 2 == 0]
+# [2, 4, 6, 8, 10]
+
+# CREATE TUPLES OF PAIRS
+pairs = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+# [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+```
+
+== Nested loops
+
+```python
+all_nums = []
+for num_list in numbers:
+    for num in num_list:
+        all_nums.append(num)
+
+evens = []
+for num_list in numbers:
+    for num in num_list:
+        if num % 2 == 0:
+            evens.append(num)
+
+pairs = []
+for x in [1, 2, 3]:
+    for y in [3, 1, 4]:
+        if x != y:
+            pairs.append((x, y))
+```
+
+:::

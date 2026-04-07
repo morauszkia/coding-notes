@@ -267,6 +267,67 @@ const colorsSatisfies = {
 type RedHexSatisfies = typeof colorsSatisfies.red; // "#FF0000" [!code highlight]
 ```
 
+Satisfies is great if you want type safety, so that TypeScript will tell you, if you misspell a property name, or use a type for a value that isn't allowed, while at the same time work with more narrow types.
+
+```typescript
+type ComplexOptions = {
+  mode: "simple" | "advanced";
+  level?: 1 | 2 | 3 | 4 | 5;
+  verbose?: boolean;
+  format?: "json" | "xml" | "yaml";
+  retryCount?: 0 | 1 | 2 | 3;
+  // ...
+};
+
+const option = {
+  mode: "simple",
+  format: "json",
+  verbose: false,
+} satisfies ComplexOptions; // [!code highlight]
+
+function useOption(option: ComplexOptions) {
+  // do something
+}
+```
+
+Using `as const` for the above `option` would preserve the specific types, but TypeScript wouldn't be able to offer type hints and autocompletion. Similarly, if option would simply be of type `ComplexOptions`, due to the many optional properties, you would get a lot of options, if you tried to use the option in your code and access one of its properties. Using `satisfies` will preserve the more specific type, and autocomplete would only offer you the properties that actually exist on your `option` object.
+
+```typescript
+type RGB = `#${string}` | [number, number, number];
+type PrimaryColor = "Red" | "Blue" | "Green";
+
+const colors = {
+  red: "#F00",
+  green: "#0F0",
+  blue: [0, 0, 255],
+} satisfies Record<PrimaryColor, RGB>; // [!code highlight]
+
+console.log(colors.red.toLowerCase());
+```
+
+In the example above, if you don't provide any type information for colors, you don't get type safety. However, if you assing the type `Record<PrimaryColor, RGB>` directly, you will get type safety, however, the last line will show an error, because the compiler cannot be sure, that red will use the string format for the color. However, using `satisfies` solves this problem, and TypeScript will be able to offer type hints and autocompletion, while also being aware that red uses the string format.
+
+Finally, you can add a default case at the end of your [switch] statements, that `satisfies never` which will let TypeScript warn you if there is a case that you didn't explicitly handle in your code.
+
+```typescript
+type Grade = "A" | "B" | "C" | "D" | "F";
+
+function getGradeDescription(grade: Grade) {
+  switch (grade) {
+    case "A":
+      return "Excellent";
+    case "B":
+      return "Good";
+    // handle rest
+
+    default:
+      // [!code highlight]
+      throw new Error(`Invalid grade: ${grade satisfies never}`);
+    // Will show error if you have unhandled cases
+  }
+}
+```
+
 ## Intersection Types
 
 We can use the `&` operator to create an intersection type, which will have all the properties of both original objects.

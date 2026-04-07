@@ -1,10 +1,10 @@
 ---
 prev:
-    text: "Lists"
-    link: "./lists"
+  text: "Lists"
+  link: "./lists"
 next:
-    text: "Conditionals"
-    link: "./conditionals"
+  text: "Conditionals"
+  link: "./conditionals"
 ---
 
 # Tuples
@@ -20,20 +20,94 @@ If you know you are working with a fixed and immutable collection of ordered dat
 
 :::
 
-Tuples are created using parentheses or by calling the `tuple()` function and passing an iterable as argument.
+Tuples are created by assigning multiple values separated with a comma, optionally surrounded by parentheses to a variable or by calling the `tuple()` function and passing an iterable as argument.
+
+```python
+personal_details = ("Peter", 23, "Python Developer")
+chars = tuple("Hello")
+film = "Life of Brian", "Monty Python", 1979
+```
 
 ::: warning Single element
 
 If you want to create a tuple with a single element, you _must_ use a trailing comma.
 
-:::
-
 ```python
-personal_details = ("Peter", 23, "Python Developer")
-characters = tuple("Hello")
+my_tuple = ("spam",)
 ```
 
+:::
+
 ## Working with Tuples
+
+As sequences, several operations that can be performed with a [list](./lists#working-with-lists) or a [string](./strings#working-with-strings) also work with tuples. For instance, we can iterate over the elements of the tuple with a [`for` loop](./loops#for-loops). You can use the membership operator `in` with tuples as well.
+
+```python
+for information in film:
+    print(information)
+
+if "Python Developer" in personal_details:
+    print("Hello, fellow Pythonista!")
+
+```
+
+The number of elements in a tuple can be accessed using `len()`.
+
+Concatenating tuples with the `+` operator returns a new tuple, and using the `*` operator returns a new tuple with the elements repeated a specified number of times.
+
+### Unpacking
+
+Similarly, the unpacking works with tuples as well. The `*` operator can be used to collect the remaining values into a [list](./lists)
+
+```python
+name, age, job = personal_details
+print(name) # Peter
+```
+
+::: info `*` position
+
+The variable that collects remaining elements doesn't have to be the last one.
+
+```python
+fruits = ("apple", "mango", "papaya", "pineapple", "cherry")
+green, *tropic, red = fruits
+
+print(tropic)           # ['mango', 'papaya', 'pineapple']
+```
+
+:::
+
+You can unpack nested tuples as well.
+
+```python
+albums = [
+    ("Welcome to my Nightmare", "Alice Cooper", 1975,
+     [
+         (1, "Welcome to my Nightmare"),
+         (2, "Devil's Food"),
+         (3, "The Black Widow"),
+         (4, "Some Folks"),
+         (5, "Only Women Bleed"),
+     ]
+     ),
+    ("Bad Company", "Bad Company", 1974,
+     [
+         (1, "Can't Get Enough"),
+         (2, "Rock Steady"),
+         (3, "Ready for Love"),
+         (4, "Don't Let Me Down"),
+         (5, "Bad Company"),
+         (6, "The Way I Choose"),
+         (7, "Movin' On"),
+         (8, "Seagull"),
+     ]
+     ),
+]
+
+# [!code highlight]
+for index, (title, artist, year, songs) in enumerate(albums):
+    print(f"{index+1}: {title}")
+```
 
 ### Accessing elements
 
@@ -47,19 +121,16 @@ age_and_job = personal_details[1:]
 
 ::: warning Immutability
 
-Unlike lists, you cannot reassign values in a tuple or delete individual elements using `del`. You would get a `TypeError` if you tried that. You can delete the whole tuple using `del my_tuple` but not individual elements.
-
-:::
-
-You can use the membership operator `in` with tuples as well. Similarly, the unpacking works with tuples as well. The `*` operator can be used to collect the remaining values into a [list](./lists)
+Unlike lists, you cannot reassign values in a tuple or delete individual elements using `del`. You would get a `TypeError` if you tried that. You can delete the whole tuple using `del my_tuple` but not individual elements. Or you can first create a list from the elements of the tuple, modify them, and finally, create a tuple from the elements again.
 
 ```python
-if "Python Developer" in personal_details:
-    print("Hello, fellow Pythonista!")
-
-name, age, job = personal_details
-print(name) # Peter
+my_tuple = ("apple",)
+my_list = list(my_tuple)
+my_list.append("lemon")
+my_tuple = tuple(my_list)
 ```
+
+:::
 
 ### Tuple Methods
 
