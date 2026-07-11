@@ -6,17 +6,37 @@ prev:
 
 # Sets
 
-Sets are unordered collections of unique elements. They can be created using curly braces or with the `set()` constructor function. You can pass in an iterable to the `set()` function to create a set. This is a common way to remove duplicate elements from a list.
+Sets are unordered collections of unique elements. Because sets use hashes to store their elements, sets may contain items that are of **hashable** type.
+
+They can be created using curly braces or with the `set()` constructor function. You can pass in an iterable to the `set()` function to create a set. This is a common way to remove duplicate elements from a list.
+
+::: warning Empty set
 
 To create an empty set you must use the function, because an empty set of curly braces would create an empty dictionary. Sets are mutable, and we will deal with adding and removing elements below.
 
+:::
+
 ```python
 my_numbers = {1, 2, 3, 4, 5}
+same_numbers = set(range(1, 6))
+same_numbers_strings = set("12345")
 empty_set = set()
 
 visiting_friends = ["Peter", "Susan", "Kate", "Peter", "Jim", "Susan" "Greg", "Peter" "Tom", "Anna"]
 my_friends = set(visiting_friends)
 ```
+
+::: warning Indexing
+
+As sets are unordered, you can't index or slice a set.
+
+:::
+
+::: info Equality
+
+Two sets are equal if they contain the same items. As sets are unordered, the order we list the items when we create the set doesn't matter.
+
+:::
 
 ## Set operations
 
@@ -26,6 +46,12 @@ One of the most common operations on sets is to check membership. You can do tha
 if "Peter" in my_friends:
     print("Peter is my friend.")
 ```
+
+::: tip Effective membership check
+
+Sets are great if you need to check if a value is valid based on a huge collection of valid values. Membership testing is faster with sets, because they use hashes to store items. If you use a list for membership check, Python needs to loop over the list to check for equality.
+
+:::
 
 The **union** of two or more sets is the set of all items that appear in any of the sets. You can create a union of two sets with the `set_one.union(set_two)` method or the `set_one | set_two` expression.
 
