@@ -52,6 +52,18 @@ const urlObj = new URL("https://google.com/maps");
 console.log(urlObj.hostname);
 ```
 
+== Python
+
+In Python the `urlparse` function of the `urllib.parse` package can be used to parse the URL. You can then access the parts of the url on the returned named tuple.
+
+```python
+from urllib.parse import urlparse
+
+# [!code highlight]
+parsed_url = urlparse(url)
+print(parsed_url.hostname)
+```
+
 :::
 
 If you want to deploy a website on the internet, you need to acquire a domain name, and associate it with your IP address.
