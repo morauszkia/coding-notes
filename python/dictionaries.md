@@ -29,6 +29,28 @@ pizza = {
 another_pizza = dict([("name", "Prosciutto"), ("size", 22), ("price", 7.89), ("toppings", ["pizza sauce", "ham", "mozzarella"])])
 ```
 
+## Type Hints
+
+For dictionaries you can use the `dict` container type with or without specifying the type of the key and the type of the values.
+
+```python
+rivers_length: dict[str, int] = {
+  "Nile": 6650,
+  "Amazon": 6400,
+  "Danube": 2888,
+}
+```
+
+Types can be nested
+
+```python
+developer_languages: dict[str, list[str]] = {
+  "Peter": ["Java", "Go"],
+  "Jim": ["Python"],
+  "Kate": ["JavaScript", "Ruby"]
+}
+```
+
 ## Accessing Values
 
 You can access the values in the dictionary either by using square brackets and providing a key, or using the `.get()` method. However, the former will raise a `KeyError` if you provide a key that doesn't exist in the dictionary. The latter will return `None` instead. To return some other _fallback_ value, you can provide a second argument.

@@ -45,6 +45,15 @@ Python lists can store values of different types. Unlike some other languages (f
 
 :::
 
+## Type hints
+
+You can add type hints to lists using the `list` container type. These can be used with or without the type of the items specified.
+
+```python
+heterogeneous_list: list = ["Peter", 23, True]
+friends_list: list[str] = ["Sam", "Julia", "Bob"]
+```
+
 ## Reference types
 
 [Variables in Python](./basics#reference-types) store **references** to objects. This behavior is not specific to lists - all Python variables store references to objects.

@@ -38,6 +38,14 @@ Two sets are equal if they contain the same items. As sets are unordered, the or
 
 :::
 
+## Type hints
+
+As with [lists](./lists#type-hints), you can add type hints to sets using the `set` container type with or without the type of the items specified.
+
+```python
+friends_set: set[str] = {"Sam", "Julia", "Bob"}
+```
+
 ## Set operations
 
 One of the most common operations on sets is to check membership. You can do that with the `in` membership operator.

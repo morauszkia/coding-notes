@@ -38,6 +38,20 @@ my_tuple = ("spam",)
 
 :::
 
+## Type Hints
+
+You can specify the types of a tuple's items using the `tuple` container type with the types of the items.
+
+```python
+personal_details: tuple[str, int, str] = ("Peter", 23, "Python Developer")
+```
+
+Types can be nested.
+
+```python
+personal_details: tuple[str, int, str, list[str]] = ("Peter", 23, "Python Developer", ["Susan", "Jim", "Sam"])
+```
+
 ## Working with Tuples
 
 As sequences, several operations that can be performed with a [list](./lists#working-with-lists) or a [string](./strings#working-with-strings) also work with tuples. For instance, we can iterate over the elements of the tuple with a [`for` loop](./loops#for-loops). You can use the membership operator `in` with tuples as well.

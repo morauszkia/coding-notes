@@ -193,6 +193,27 @@ age_int = int(age_string) # the int 25
 age_float = float(age_int)  # the float 25.0
 ```
 
+### Type hints
+
+While Python is dynamically typed, in modern Python **type hints** are used to help development, especially in larger codebases, by letting us write the _expected_ types of variables into the code. These make our code easier to read, help editors autocomplete and warn about mistakes, and as a result make bugs easier to spot.
+
+For simple variables you can add a type hint after the variable name, separated by a colon. Type hints for more complex structures will be discussed where such structures are introduced.
+
+```python
+name: str = "Peter"
+age: int = 23
+height: float = 179.3
+is_admin: bool = True
+```
+
+For more advanced data types there are container types, and types can be nested.
+
+You can also have optional values, and use the `|` operator to chain multiple types.
+
+```python
+attack_bonus: int | None
+```
+
 ## Reference types
 
 Variables in Python store **references** to objects.

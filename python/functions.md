@@ -1,7 +1,7 @@
 ---
 prev:
-    text: "Loops"
-    link: "./loops"
+  text: "Loops"
+  link: "./loops"
 ---
 
 # Functions
@@ -151,13 +151,22 @@ Functions, that do not return anything explicitly, have a return value of `None`
 A function declaration may contain multiple `return` statements. However, the execution of the function body stops after returning the first value. This can be used to _early return_ from a function under certain conditions. Additionally, the returned value may vary based on some conditional logic, and instead of updating the value of a variable within the function scope, we can directly return the value. We can omit `else` in this case, as the execution will stop as soon as a condition is true and the appropriate value is returned.
 
 ```python
-def get_price("product"):
+def get_price(product):
   if product == "book":
     return 12.99 # [!code highlight]
   if product == "ferrari":
     return 400000 # [!code highlight]
   if product == "clean air":
     return 0 # [!code highlight]
+```
+
+## Type hints for functions
+
+You can add type hints to the functions' parameters and return value.
+
+```python
+def get_price(product: str) -> float:
+  # function body
 ```
 
 ## Function scope
